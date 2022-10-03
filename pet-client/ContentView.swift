@@ -7,16 +7,29 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        return NavigationView{
+            ZStack {
+                Color.yellow.edgesIgnoringSafeArea(.all)
+        
+                Text("Hello world\n\n")
+                
+                //화면이동방법!
+                NavigationLink(destination: MainView()
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                ) {
+                    Text("메인 화면으로")
+                }
+                
+            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .padding()
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
