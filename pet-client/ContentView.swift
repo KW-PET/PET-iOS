@@ -19,15 +19,7 @@ struct ContentView: View {
         }){
             
             Text("카카오 로그인")
-        }
-
-        .onOpenURL(perform: { url in
-            if (AuthApi.isKakaoTalkLoginUrl(url)) {
-                _ = AuthController.handleOpenUrl(url: url)
-            }
-        })
-        
-       
+        }       
     }
 }
  

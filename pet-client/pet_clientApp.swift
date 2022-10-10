@@ -1,4 +1,6 @@
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 @main
 struct pet_clientApp: App {
@@ -6,7 +8,11 @@ struct pet_clientApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().onOpenURL(perform: { url in
+                if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                    AuthController.handleOpenUrl(url: url)
+                }
+            })
         }
     }
 }
