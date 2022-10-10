@@ -16,6 +16,7 @@
 		1E1420C328E817C5003EA6D2 /* pet_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420C228E817C5003EA6D2 /* pet_clientUITests.swift */; };
 		1E1420C528E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */; };
 		1E1420D828E81EB6003EA6D2 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420D728E81EB6003EA6D2 /* Component.swift */; };
+		1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */; };
 		1ECCFF4A28E81F3500662084 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4928E81F3500662084 /* Model.swift */; };
 		1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4B28E81F5E00662084 /* Util.swift */; };
 		1ECCFF4E28E81F6400662084 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* View.swift */; };
@@ -80,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */,
 				20EDAA3D2AE16E9294025BE9 /* Pods_pet_client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,10 +647,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pet-client/pet_client.entitlements";
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -687,6 +691,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "pet-client/pet_client.entitlements";
 				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
