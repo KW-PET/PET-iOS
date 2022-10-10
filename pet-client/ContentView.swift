@@ -1,26 +1,33 @@
-//
-//  ContentView.swift
-//  pet-client
-//
-//  Created by 김지수 on 2022/10/01.
-//
-
 import SwiftUI
+import KakaoSDKAuth
+import KakaoSDKUser
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Button(action : {
+            if (UserApi.isKakaoTalkLoginAvailable()) {
+                UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                    print("installed \(oauthToken?.accessToken)")
+                    print("installed \(error)")
+                }
+            }else{
+                UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                    print("non-installed \(oauthToken?.accessToken)")
+                    print("non-installed \(error)")
+                }
+            }
+        }){
+            
+            Text("카카오 로그인")
         }
-        .padding()
-    }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .onOpenURL(perform: { url in
+            if (AuthApi.isKakaoTalkLoginUrl(url)) {
+                _ = AuthController.handleOpenUrl(url: url)
+            }
+        })
+        
+       
     }
 }
+ 
