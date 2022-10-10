@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */; };
-		1E1420A928E817C3003EA6D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A828E817C3003EA6D2 /* ContentView.swift */; };
 		1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AA28E817C4003EA6D2 /* Assets.xcassets */; };
 		1E1420AF28E817C4003EA6D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AE28E817C4003EA6D2 /* Preview Assets.xcassets */; };
 		1E1420B928E817C5003EA6D2 /* pet_clientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420B828E817C5003EA6D2 /* pet_clientTests.swift */; };
@@ -17,7 +16,6 @@
 		1E1420D828E81EB6003EA6D2 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420D728E81EB6003EA6D2 /* Component.swift */; };
 		1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1E31B0DD28F39DB700654FC0 /* KakaoSDK */; };
 		1E31B0E128F3AA9E00654FC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */; };
-		1E31B0E428F3C3A100654FC0 /* kakao_login_medium_wide.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E31B0E328F3C3A100654FC0 /* kakao_login_medium_wide.png */; };
 		1ECCFF4A28E81F3500662084 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4928E81F3500662084 /* Model.swift */; };
 		1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4B28E81F5E00662084 /* Util.swift */; };
 		1ECCFF4E28E81F6400662084 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* View.swift */; };
@@ -45,7 +43,6 @@
 /* Begin PBXFileReference section */
 		1E1420A328E817C3003EA6D2 /* pet-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pet-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientApp.swift; sourceTree = "<group>"; };
-		1E1420A828E817C3003EA6D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1E1420AA28E817C4003EA6D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E1420AC28E817C4003EA6D2 /* pet_client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pet_client.entitlements; sourceTree = "<group>"; };
 		1E1420AE28E817C4003EA6D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -57,7 +54,6 @@
 		1E1420D728E81EB6003EA6D2 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		1E31B0DF28F39FCD00654FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E31B0E328F3C3A100654FC0 /* kakao_login_medium_wide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kakao_login_medium_wide.png; sourceTree = "<group>"; };
 		1E31B0E528F3CDF400654FC0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1ECCFF4928E81F3500662084 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1ECCFF4B28E81F5E00662084 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
@@ -115,6 +111,7 @@
 		1E1420A528E817C3003EA6D2 /* pet-client */ = {
 			isa = PBXGroup;
 			children = (
+				1E31B0E628F3D53800654FC0 /* Resources */,
 				1E31B0DF28F39FCD00654FC0 /* Info.plist */,
 				1E1420D128E81861003EA6D2 /* Component */,
 				1E1420D328E81870003EA6D2 /* Model */,
@@ -123,12 +120,9 @@
 				1E1420D628E81A10003EA6D2 /* ViewController */,
 				1E1420D428E81875003EA6D2 /* ViewModel */,
 				1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */,
-				1E1420A828E817C3003EA6D2 /* ContentView.swift */,
-				1E31B0E328F3C3A100654FC0 /* kakao_login_medium_wide.png */,
 				1E1420AA28E817C4003EA6D2 /* Assets.xcassets */,
 				1E1420AC28E817C4003EA6D2 /* pet_client.entitlements */,
 				1E1420AD28E817C4003EA6D2 /* Preview Content */,
-				1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */,
 				1E31B0E528F3CDF400654FC0 /* Config.xcconfig */,
 			);
 			path = "pet-client";
@@ -205,6 +199,14 @@
 				1ECCFF4F28E81F6C00662084 /* ViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1E31B0E628F3D53800654FC0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E1420AF28E817C4003EA6D2 /* Preview Assets.xcassets in Resources */,
-				1E31B0E428F3C3A100654FC0 /* kakao_login_medium_wide.png in Resources */,
 				1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +345,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E1420A928E817C3003EA6D2 /* ContentView.swift in Sources */,
 				1E1420D828E81EB6003EA6D2 /* Component.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* View.swift in Sources */,
 				1E31B0E128F3AA9E00654FC0 /* AppDelegate.swift in Sources */,
