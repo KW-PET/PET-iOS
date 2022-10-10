@@ -2,18 +2,26 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 
-func getKakaoAgreement(){ //회원가입 시 카카오톡으로 넘어가서 동의받는 부분
+func getKakaoAgreement()->Bool { //회원가입 시 카카오톡으로 넘어가서 동의받는 부분
+    var result: Bool = true
     if (UserApi.isKakaoTalkLoginAvailable()) {
         UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
             print("installed \(oauthToken?.accessToken)")
             print("installed \(error)")
+            if(object_getClass(error)?.description() == "NSNull"){
+                result = false
+            }
         }
     }else{
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
             print("non-installed \(oauthToken?.accessToken)")
             print("non-installed \(error)")
+            if(object_getClass(error)?.description() == "NSNull"){
+                result = false
+            }
         }
     }
+    return result
 }
 
 func getUserToken(){ //유저 토큰 얻어오기
@@ -49,9 +57,12 @@ func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테�
     }
 }
 
-struct ContentView: View {
+struct LoginView: View {
     var body: some View {
-        Button(action : getKakaoAgreement){
+        Button(action : {
+            var succeed = getKakaoAgreement()
+            print(succeed)
+        }){
             Image("KakaoLogin")
         }
         Button(action : getUserToken){
@@ -65,4 +76,3 @@ struct ContentView: View {
         }
     }
 }
- 
