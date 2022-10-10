@@ -15,6 +15,8 @@
 		1E1420C328E817C5003EA6D2 /* pet_clientUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420C228E817C5003EA6D2 /* pet_clientUITests.swift */; };
 		1E1420C528E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */; };
 		1E1420D828E81EB6003EA6D2 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420D728E81EB6003EA6D2 /* Component.swift */; };
+		1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1E31B0DD28F39DB700654FC0 /* KakaoSDK */; };
+		1E31B0E128F3AA9E00654FC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */; };
 		1ECCFF4A28E81F3500662084 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4928E81F3500662084 /* Model.swift */; };
 		1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4B28E81F5E00662084 /* Util.swift */; };
 		1ECCFF4E28E81F6400662084 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* View.swift */; };
@@ -52,6 +54,9 @@
 		1E1420C228E817C5003EA6D2 /* pet_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITests.swift; sourceTree = "<group>"; };
 		1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E1420D728E81EB6003EA6D2 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		1E31B0DF28F39FCD00654FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1E31B0E228F3B07700654FC0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1ECCFF4928E81F3500662084 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1ECCFF4B28E81F5E00662084 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		1ECCFF4D28E81F6400662084 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +113,7 @@
 		1E1420A528E817C3003EA6D2 /* pet-client */ = {
 			isa = PBXGroup;
 			children = (
+				1E31B0DF28F39FCD00654FC0 /* Info.plist */,
 				1E1420D128E81861003EA6D2 /* Component */,
 				1E1420D328E81870003EA6D2 /* Model */,
 				1E1420D228E8186E003EA6D2 /* Util */,
@@ -118,6 +125,8 @@
 				1E1420AA28E817C4003EA6D2 /* Assets.xcassets */,
 				1E1420AC28E817C4003EA6D2 /* pet_client.entitlements */,
 				1E1420AD28E817C4003EA6D2 /* Preview Content */,
+				1E31B0E028F3AA9E00654FC0 /* AppDelegate.swift */,
+				1E31B0E228F3B07700654FC0 /* Config.xcconfig */,
 			);
 			path = "pet-client";
 			sourceTree = "<group>";
@@ -211,6 +220,9 @@
 			dependencies = (
 			);
 			name = "pet-client";
+			packageProductDependencies = (
+				1E31B0DD28F39DB700654FC0 /* KakaoSDK */,
+			);
 			productName = "pet-client";
 			productReference = 1E1420A328E817C3003EA6D2 /* pet-client.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +295,9 @@
 				Base,
 			);
 			mainGroup = 1E14209A28E817C3003EA6D2;
+			packageReferences = (
+				1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+			);
 			productRefGroup = 1E1420A428E817C3003EA6D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -328,6 +343,7 @@
 				1E1420A928E817C3003EA6D2 /* ContentView.swift in Sources */,
 				1E1420D828E81EB6003EA6D2 /* Component.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* View.swift in Sources */,
+				1E31B0E128F3AA9E00654FC0 /* AppDelegate.swift in Sources */,
 				1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */,
 				1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
@@ -489,6 +505,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pet-client/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -506,8 +523,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "iOS.PET.pet-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -525,6 +542,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "pet-client/Info.plist";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -542,8 +560,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "iOS.PET.pet-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -676,6 +694,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1E31B0DD28F39DB700654FC0 /* KakaoSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
+			productName = KakaoSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1E14209B28E817C3003EA6D2 /* Project object */;
 }
