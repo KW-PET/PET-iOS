@@ -99,3 +99,6 @@ iOSInjectionProject/
 
 ### Xcode Config ###
 */*.xcconfig
+
+### Pods ###
+Pods
