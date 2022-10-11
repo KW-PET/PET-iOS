@@ -11,5 +11,10 @@
 
 <img width="706" alt="image" src="https://user-images.githubusercontent.com/73420533/193801071-a0a9f32e-2791-4857-bbab-7c82ad7562ca.png">
 
+### -1011
+- Map Place 관리 / 마커 / 위치 이동
+<img width="1056" alt="image" src="https://user-images.githubusercontent.com/73420533/195077768-e900868b-38a5-449d-827e-cd82e732e161.png">
+- 카카오 로그인
+
 
 
