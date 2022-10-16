@@ -16,3 +16,14 @@ public struct Place: Hashable{
     let address: String
     let phone: String
 }
+
+
+class PlaceType {
+    var image: String
+    var name: String
+    
+    init(image: String, name: String) {
+        self.image = image
+        self.name = name
+    }
+}
