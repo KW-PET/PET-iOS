@@ -91,7 +91,6 @@ iOSInjectionProject/
 
 ### Xcode Patch ###
 *.xcodeproj/*
-!*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
@@ -102,3 +101,7 @@ iOSInjectionProject/
 
 ### Pods ###
 Pods
+
+### macOS ###
+.DS_Store
+*/.DS_Store
