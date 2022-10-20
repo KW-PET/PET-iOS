@@ -17,6 +17,7 @@
 		1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1E31B0DD28F39DB700654FC0 /* KakaoSDK */; };
 		1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */; };
 		1EA19F732901485A00FB8712 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA19F722901485A00FB8712 /* RecommendView.swift */; };
+		1EA19F832901591400FB8712 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EA19F822901591400FB8712 /* Alamofire */; };
 		1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACC3FA28FBA6EA009760CE /* ListView.swift */; };
 		1EACC40128FBAD10009760CE /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACC40028FBAD10009760CE /* Palette.swift */; };
 		1EACC40628FBBE4A009760CE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACC40528FBBE4A009760CE /* Place.swift */; };
@@ -91,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EA19F832901591400FB8712 /* Alamofire in Frameworks */,
 				1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */,
 				1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */,
 			);
@@ -301,6 +303,7 @@
 			name = "pet-client";
 			packageProductDependencies = (
 				1E31B0DD28F39DB700654FC0 /* KakaoSDK */,
+				1EA19F822901591400FB8712 /* Alamofire */,
 			);
 			productName = "pet-client";
 			productReference = 1E1420A328E817C3003EA6D2 /* pet-client.app */;
@@ -379,6 +382,7 @@
 			mainGroup = 1E14209A28E817C3003EA6D2;
 			packageReferences = (
 				1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
+				1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 1E1420A428E817C3003EA6D2 /* Products */;
 			projectDirPath = "";
@@ -930,6 +934,14 @@
 				kind = branch;
 			};
 		};
+		1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -937,6 +949,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDK;
+		};
+		1EA19F822901591400FB8712 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
