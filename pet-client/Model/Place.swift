@@ -19,10 +19,12 @@ public struct Place: Hashable{
 
 
 class PlaceType {
+    var id: Int
     var image: String
     var name: String
     
-    init(image: String, name: String) {
+    init(id: Int, image: String, name: String) {
+        self.id = id
         self.image = image
         self.name = name
     }
