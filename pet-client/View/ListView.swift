@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ListView: View {
     @State private var firstIsPresented = true
-    
+    @State var selectedId:Int = 10000
+
     var body: some View {
         ZStack{
             MainView()
@@ -17,13 +18,13 @@ struct ListView: View {
                     VStack{
                         ScrollView(.horizontal){
                             HStack{
-                                PlaceCard(placeType: PlaceType(image: "HospitalIcon", name: "병원"))
-                                PlaceCard(placeType: PlaceType(image: "PharmacyIcon", name: "약국"))
-                                PlaceCard(placeType: PlaceType(image: "SalonIcon", name: "미용"))
-                                PlaceCard(placeType: PlaceType(image: "HotelIcon", name: "호텔"))
-                                PlaceCard(placeType: PlaceType(image: "PharmacyIcon", name: "약국"))
-                                PlaceCard(placeType: PlaceType(image: "SalonIcon", name: "미용"))
-                                PlaceCard(placeType: PlaceType(image: "HotelIcon", name: "호텔"))
+                                PlaceCard(placeType: PlaceType(id: 1, image: "HospitalIcon", name: "병원"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 2, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 3, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 4, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 5, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 6, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
+                                PlaceCard(placeType: PlaceType(id: 7, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
                             }
                             .padding()
                             .padding(.top, 20)

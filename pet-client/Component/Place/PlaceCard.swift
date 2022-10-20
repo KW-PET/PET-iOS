@@ -9,10 +9,12 @@ import SwiftUI
 
 struct PlaceCard: View {
     var placeType: PlaceType
-    
+    @Binding var selectedId: Int
+
     var body: some View{
         Button(action:{
             print("클릭")
+            selectedId = placeType.id
         }){
             VStack{
                 Image(placeType.image)
@@ -23,7 +25,7 @@ struct PlaceCard: View {
             }
             .frame(width:70, height:70)
             .cornerRadius(15)
-            .background(Color.white)
+            .background(RoundedRectangle(cornerRadius: 15, style: .continuous).fill(selectedId==placeType.id ? ColorManager.YellowColor : Color.white))
             .overlay(
                 RoundedRectangle(cornerRadius: 15)
                     .stroke(ColorManager.LightGreyColor)
