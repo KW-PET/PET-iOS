@@ -41,6 +41,7 @@ struct MainView: View {
         var body: some View {
             ZStack {
                 VStack {
+                    SearchBar(text: $text)
                     Button(action: {coord = (129.05562775, 35.1379222)}) {
                         Text("Move to Busan")
                     }
