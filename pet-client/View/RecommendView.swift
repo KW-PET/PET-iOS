@@ -74,3 +74,9 @@ struct RecommendView: View {
         }
     }
 }
+
+struct RecommendView_Previews: PreviewProvider {
+    static var previews: some View {
+        RecommendView()
+    }
+}

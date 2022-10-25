@@ -579,7 +579,7 @@
 /* Begin XCBuildConfiguration section */
 		1E1420C628E817C5003EA6D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EE613E928F3EEDB0019C0E4 /* Config.xcconfig */;
+			baseConfigurationReference = 53BC9C403C52F554867C1C43 /* Pods-pet-client.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
