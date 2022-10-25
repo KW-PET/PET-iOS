@@ -35,6 +35,9 @@ struct Place_: Codable {
 
 struct MainView: View {
     @State var coord: (Double, Double) = (126.9784147, 37.5666805)
+    @State var selectedId:Int = 10000
+    @State var text : String = ""
+
         var body: some View {
             ZStack {
                 VStack {
@@ -45,11 +48,19 @@ struct MainView: View {
                         Text("Move to Seoul somewhere")
                     }
                     Spacer()
-                }
-                .zIndex(1)
-                VStack {
-                    Spacer()
-
+                    ScrollView(.horizontal){
+                        HStack{
+                            PlaceCard(placeType: PlaceType(id: 1, image: "HospitalIcon", name: "병원"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 2, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 3, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 4, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 5, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 6, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 7, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
+                        }
+                        .padding()
+                        .padding(.top, 20)
+                    }
                 }
                 .zIndex(1)
                 
