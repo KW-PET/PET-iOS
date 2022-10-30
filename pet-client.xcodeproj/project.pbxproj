@@ -30,6 +30,9 @@
 		1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* LoginView.swift */; };
 		1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4F28E81F6C00662084 /* ViewController.swift */; };
 		1ECCFF5228E81F7600662084 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF5128E81F7600662084 /* ViewModel.swift */; };
+		1EE04FDE2903E5E5002145A7 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FDD2903E5E5002145A7 /* CommunityView.swift */; };
+		1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE02903EA68002145A7 /* CommunityListElem.swift */; };
+		1EE04FE42903F314002145A7 /* TabElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE32903F314002145A7 /* TabElem.swift */; };
 		1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */; };
 		1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF996A428F3F1DC00CA521F /* MapView.swift */; };
 /* End PBXBuildFile section */
@@ -79,6 +82,9 @@
 		1ECCFF4D28E81F6400662084 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1ECCFF4F28E81F6C00662084 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1ECCFF5128E81F7600662084 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		1EE04FDD2903E5E5002145A7 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		1EE04FE02903EA68002145A7 /* CommunityListElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityListElem.swift; sourceTree = "<group>"; };
+		1EE04FE32903F314002145A7 /* TabElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabElem.swift; sourceTree = "<group>"; };
 		1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE613E928F3EEDB0019C0E4 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1EF996A428F3F1DC00CA521F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -188,6 +194,8 @@
 		1E1420D128E81861003EA6D2 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				1EE04FE22903F30A002145A7 /* Common */,
+				1EE04FDF2903EA5E002145A7 /* Community */,
 				1EA19F6D2901432C00FB8712 /* Place */,
 			);
 			path = Component;
@@ -227,6 +235,7 @@
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
 				1EA19F722901485A00FB8712 /* RecommendView.swift */,
+				1EE04FDD2903E5E5002145A7 /* CommunityView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +279,22 @@
 				1EACC40828FBBE65009760CE /* PlaceTemporary.swift */,
 			);
 			path = Temporary;
+			sourceTree = "<group>";
+		};
+		1EE04FDF2903EA5E002145A7 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				1EE04FE02903EA68002145A7 /* CommunityListElem.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		1EE04FE22903F30A002145A7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1EE04FE32903F314002145A7 /* TabElem.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		1EE613E628F3EE9D0019C0E4 /* Resources */ = {
@@ -555,13 +580,16 @@
 				1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */,
 				1EACC40628FBBE4A009760CE /* Place.swift in Sources */,
 				1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */,
+				1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */,
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
 				1EACC40128FBAD10009760CE /* Palette.swift in Sources */,
+				1EE04FE42903F314002145A7 /* TabElem.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
 				1EACC40928FBBE65009760CE /* PlaceTemporary.swift in Sources */,
 				1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */,
 				1EACC40B28FBD3D5009760CE /* PlaceListElement.swift in Sources */,
 				1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */,
+				1EE04FDE2903E5E5002145A7 /* CommunityView.swift in Sources */,
 				1EA19F732901485A00FB8712 /* RecommendView.swift in Sources */,
 				1ECCFF5228E81F7600662084 /* ViewModel.swift in Sources */,
 				1ECCFF4A28E81F3500662084 /* Model.swift in Sources */,
