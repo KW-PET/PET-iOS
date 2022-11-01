@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1117C2A529113845001FF2FD /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A429113845001FF2FD /* PostDetailView.swift */; };
 		1117C2A72911388A001FF2FD /* CommentListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A62911388A001FF2FD /* CommentListElem.swift */; };
+		1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A829113B47001FF2FD /* RecommendView.swift */; };
 		116EEDF029077F4200B41A24 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EEDEF29077F4200B41A24 /* SearchBar.swift */; };
 		11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E66CAE28EB44BA00716CF9 /* MainView.swift */; };
 		1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */; };
@@ -60,6 +61,7 @@
 		05671D20CB687CEB0B6127C1 /* Pods-pet-client-pet-clientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pet-client-pet-clientUITests.debug.xcconfig"; path = "Target Support Files/Pods-pet-client-pet-clientUITests/Pods-pet-client-pet-clientUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1117C2A429113845001FF2FD /* PostDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		1117C2A62911388A001FF2FD /* CommentListElem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListElem.swift; sourceTree = "<group>"; };
+		1117C2A829113B47001FF2FD /* RecommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
 		116EEDEF29077F4200B41A24 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		11E66CAE28EB44BA00716CF9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		1E1420D528E81A06003EA6D2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1117C2A829113B47001FF2FD /* RecommendView.swift */,
 				1117C2A429113845001FF2FD /* PostDetailView.swift */,
 				1EF996A428F3F1DC00CA521F /* MapView.swift */,
 				11E66CAE28EB44BA00716CF9 /* MainView.swift */,
@@ -591,6 +594,7 @@
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
 				1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */,
 				1EACC40628FBBE4A009760CE /* Place.swift in Sources */,
+				1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */,
 				1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */,
 				1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */,
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
