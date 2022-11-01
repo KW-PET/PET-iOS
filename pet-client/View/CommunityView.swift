@@ -34,7 +34,14 @@ struct CommunityView: View{
                 }
                 TabView{
                     List{
-                        CommunityListElem()
+                        //링크 예시
+                        NavigationLink(destination: PostDetailView()
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                        ){
+                            CommunityListElem()
+                        }
+                        
                         CommunityListElem()
                         CommunityListElem()
                         CommunityListElem()
@@ -57,5 +64,11 @@ struct CommunityView: View{
                 }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
         }
+    }
+}
+
+struct CommunityView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommunityView()
     }
 }

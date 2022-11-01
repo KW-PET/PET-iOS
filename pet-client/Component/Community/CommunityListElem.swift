@@ -36,7 +36,6 @@ struct CommunityListElem: View {
                 Text("✏️ 5")
             }
         }
-        .padding(.horizontal, 24)
-        .padding(.vertical, 28)
+        .padding(18)
     }
 }
