@@ -32,6 +32,8 @@ struct PostDetailView: View{
                 CommentView()
                 Spacer()
             }
+                commentBar()
+
         }
     }
 }
@@ -44,7 +46,37 @@ struct CommentView: View {
             CommentListElem()
             CommentListElem()
             CommentListElem()
+        }
+    }
+}
 
+struct commentBar: View {
+    @State var text:String = ""
+    @State var editText : Bool = false
+    
+    var body: some View{
+        HStack{
+            TextField("댓글을 입력하세요" , text: $text)
+                .padding(15)
+                .padding(.horizontal,5)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(15)
+                .padding(.horizontal,10)
+                .padding(.top,2)
+                .overlay(
+                    VStack{
+                       
+                        if self.editText{
+                                }
+                        Image(systemName: "paperplane")
+                            .foregroundColor(.black)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                            .padding(30)
+                        }
+                        
+                ).onTapGesture {
+                    self.editText = true
+                }
         }
     }
 }
