@@ -16,19 +16,6 @@ struct ListView: View {
             MainView()
                 .sheet(isPresented: $firstIsPresented){
                     VStack{
-                        ScrollView(.horizontal){
-                            HStack{
-                                PlaceCard(placeType: PlaceType(id: 1, image: "HospitalIcon", name: "병원"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 2, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 3, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 4, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 5, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 6, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
-                                PlaceCard(placeType: PlaceType(id: 7, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
-                            }
-                            .padding()
-                            .padding(.top, 20)
-                        }
                         Divider()
                         
                         List{
@@ -48,5 +35,10 @@ struct ListView: View {
                     .background(Color.clear)
                 }
         }
+    }
+}
+struct ListView_Previews: PreviewProvider {
+    static var previews: some View {
+        ListView()
     }
 }
