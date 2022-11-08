@@ -38,6 +38,9 @@
 		1EE04FE42903F314002145A7 /* TabElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE32903F314002145A7 /* TabElem.swift */; };
 		1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */; };
 		1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF996A428F3F1DC00CA521F /* MapView.swift */; };
+		1EFB611329175F4800D43D61 /* MyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB611229175F4800D43D61 /* MyPostView.swift */; };
+		1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61142917617D00D43D61 /* MyLikeView.swift */; };
+		1EFB61172917627500D43D61 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61162917627500D43D61 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +96,9 @@
 		1EE04FE32903F314002145A7 /* TabElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabElem.swift; sourceTree = "<group>"; };
 		1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF996A428F3F1DC00CA521F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1EFB611229175F4800D43D61 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
+		1EFB61142917617D00D43D61 /* MyLikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikeView.swift; sourceTree = "<group>"; };
+		1EFB61162917627500D43D61 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4A504451868076EC5BFEAA6C /* Pods-pet-clientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pet-clientTests.debug.xcconfig"; path = "Target Support Files/Pods-pet-clientTests/Pods-pet-clientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		53BC9C403C52F554867C1C43 /* Pods-pet-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pet-client.debug.xcconfig"; path = "Target Support Files/Pods-pet-client/Pods-pet-client.debug.xcconfig"; sourceTree = "<group>"; };
 		6972AB03348D8EFE5FE47CEF /* Pods-pet-clientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pet-clientTests.release.xcconfig"; path = "Target Support Files/Pods-pet-clientTests/Pods-pet-clientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -250,6 +256,9 @@
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
 				1EE04FDD2903E5E5002145A7 /* CommunityView.swift */,
+				1EFB611229175F4800D43D61 /* MyPostView.swift */,
+				1EFB61142917617D00D43D61 /* MyLikeView.swift */,
+				1EFB61162917627500D43D61 /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -592,6 +601,7 @@
 				1EA19F89290159E800FB8712 /* Login.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */,
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
+				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */,
 				1EACC40628FBBE4A009760CE /* Place.swift in Sources */,
 				1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */,
@@ -599,10 +609,12 @@
 				1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */,
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
 				1EACC40128FBAD10009760CE /* Palette.swift in Sources */,
+				1EFB611329175F4800D43D61 /* MyPostView.swift in Sources */,
 				1EE04FE42903F314002145A7 /* TabElem.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
 				1EACC40928FBBE65009760CE /* PlaceTemporary.swift in Sources */,
 				1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */,
+				1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */,
 				1EACC40B28FBD3D5009760CE /* PlaceListElement.swift in Sources */,
 				1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */,
 				1EE04FDE2903E5E5002145A7 /* CommunityView.swift in Sources */,
