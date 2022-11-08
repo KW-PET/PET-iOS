@@ -10,43 +10,124 @@ import SwiftUI
 import NMapsMap
 import UIKit
 
-
-struct Place_: Codable {
-    var name: String
-    var placeId: Int
-    var lon: Double
-    var lat: Double
-    var category: String
-    var address: String
-    var phone: String
-    var like: Bool
+struct PlaceInfo: View {
+    let place: Place
     
-    init(_name: String, _placeID: Int, _lon: Double, _lat: Double, _category: String, _address:String, _phone: String, _like: Bool){
-        name=_name
-        placeId=_placeID
-        lon = _lon
-        lat = _lat
-        category = _category
-        address = _address
-        phone = _phone
-        like = _like
+    var body: some View{
+        VStack{
+            VStack{
+                Spacer()
+                HStack{
+                    Text(place.name)
+                        .font(.system(size: 23).weight(.bold))
+                        .padding(1)
+                    Spacer()
+                    Text("10:00 ~ 18:00")
+                        .font(.system(size: 14).weight(.regular))
+                        .foregroundColor(ColorManager.GreyColor)
+                }
+                
+                HStack{
+                    Text(place.address)
+                        .font(.system(size: 17).weight(.regular))
+                    Spacer()
+                    Text("800m")
+                        .font(.system(size: 16).weight(.bold))
+                        .foregroundColor(ColorManager.OrangeColor)
+                }
+            }.padding(23)
+            
+            HStack{
+                Button(action: {
+                
+                }){
+                    HStack{
+                            Image(systemName:"phone") .foregroundColor(.black)
+                                .imageScale(.large)
+                                .padding(5)
+                            
+                            Text("전화")
+                                .font(.system(size:18))
+                                .fontWeight(.medium)
+                                .foregroundColor(Color.black)
+                                .padding(5)
+                        }
+                        .frame(width:110, height:60)
+                }
+                Button(action: {
+                
+                }){
+                    HStack{
+                            Image(systemName:"bookmark") .foregroundColor(.black)
+                                .imageScale(.large)
+                                .padding(5)
+                            
+                            Text("찜")
+                                .font(.system(size:18))
+                                .fontWeight(.medium)
+                                .foregroundColor(Color.black)
+                                .padding(5)
+                        }
+                        .frame(width:110, height:60)
+                }
+
+                Button(action: {
+                
+                }){
+                    HStack{
+                            Image(systemName:"tray.and.arrow.up") .foregroundColor(.black)
+                                .imageScale(.large)
+                                .padding(5)
+                            
+                            Text("공유")
+                                .font(.system(size:18))
+                                .fontWeight(.medium)
+                                .foregroundColor(Color.black)
+                                .padding(5)
+                        }
+                        .frame(width:110, height:60)
+                }
+
+            }
+        }
     }
 }
+
 
 struct MainView: View {
     @State var coord: (Double, Double) = (126.9784147, 37.5666805)
     @State var selectedId:Int = 10000
     @State var text : String = ""
+    
+    class SheetMananger: ObservableObject{
+        @Published var curPlace : Place = Place(placeid: 0, xpos: 0, ypos: 0, category: 0, name: "", address: "", phone: "")
+        @Published var ifView : Bool = false
+    }
+    
 
+    @StateObject var sheetManager = SheetMananger()
+    
+    
+    
         var body: some View {
             ZStack {
                 VStack {
+                    SearchBar(text: $text)
+                    /*
                     Button(action: {coord = (129.05562775, 35.1379222)}) {
                         Text("Move to Busan")
                     }
                     Button(action: {coord = (126.9784147, 37.5666805)}) {
                         Text("Move to Seoul somewhere")
                     }
+                     */
+                    
+                        .sheet(isPresented: $sheetManager.ifView) {
+                            PlaceInfo(place: sheetManager.curPlace)
+                            .presentationDetents([.height(200)])
+
+                    }
+                    
                     Spacer()
                     ScrollView(.horizontal){
                         HStack{
@@ -64,78 +145,85 @@ struct MainView: View {
                 }
                 .zIndex(1)
                 
-                UIMapView(coord: coord)
+                UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
                     .edgesIgnoringSafeArea(.vertical)
             }
         }
     }
 
-
-
 struct UIMapView: UIViewRepresentable {
     var coord: (Double, Double)
+    var selectedId : Int
+    @Binding var curPlace:Place
+    @Binding var ifView:Bool
+    @State var mapview:NMFNaverMapView =  NMFNaverMapView()
+    @State var markerList:[NMFMarker] = []
     @ObservedObject var viewModel = MainViewModel()
-    
     
     func addMarker(_ mapView: NMFNaverMapView ) {
         
-        let p = [ Place_(_name:"sample", _placeID: 1, _lon: 126.9783740, _lat:37.5970135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  Place_(_name:"sample", _placeID: 1, _lon: 126.9763740, _lat:37.5870135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  Place_(_name:"sample", _placeID: 1, _lon: 126.9780740, _lat:37.5770135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  Place_(_name:"sample", _placeID: 1, _lon: 126.9483740, _lat:37.5870135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  
-            Place_(_name:"sample", _placeID: 1, _lon: 126.9483740, _lat:37.5876135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  
-            Place_(_name:"sample", _placeID: 1, _lon: 126.9473740, _lat:37.5870135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false),
-                  
-                  
-            Place_(_name:"sample", _placeID: 1, _lon: 126.9883740, _lat:37.5870135, _category: "HOSPITAL",_address: "",_phone: "010-0000-0000",_like: false)
-            
-                  ]
+        let p = [
+            Place( placeid: 1, xpos: 126.9783740, ypos:37.5800135, category: 1,name:"마루 동물병원",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 1, xpos: 126.9763740, ypos:37.5870135, category: 1,name:"마루 동물병원2",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 1, xpos: 126.9743740, ypos:37.5670135, category: 2,name:"마루 동물병원3",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 1, xpos: 126.9663740, ypos:37.5970135, category: 3,name:"마루 동물병원4",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 4, xpos: 126.9763240, ypos:37.5870135, category: 4,name:"마루 동물병원5",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 1, xpos: 126.9763740, ypos:37.5955135, category: 5,name:"마루 동물병원6",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
+            Place( placeid: 1, xpos: 126.7763740, ypos:37.5873135, category: 1,name:"마루 동물병원7",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000") ]
         
         for place in p {
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: (place.lat), lng: (place.lon))
-            marker.mapView = mapView.mapView
-            marker.iconTintColor = UIColor.red
-            marker.userInfo = ["name" : place.name ]
-            
-            //터치 이벤트 등록해
-            marker.touchHandler = { (overlay) -> Bool in
-                 print("마커 터치")
-                 print(overlay.userInfo["name"] ?? "name없음")
+            if(selectedId == 10000){
+                let marker = NMFMarker()
                 
-              //   viewModel.place = place
-               //  viewModel.placeId = overlay.userInfo["placeId"] as! String
-              //   viewModel.isBottomPageUp = true
-                 return true
-               }
+                marker.position = NMGLatLng(lat: (place.ypos), lng: (place.xpos))
+                marker.mapView = mapView.mapView
+                marker.iconTintColor = UIColor.red
+                marker.userInfo = ["name" : place.name as String,
+                                   "category": place.category as Int,
+                                   "place": place]
+                
+                //터치 이벤트 등록해
+                marker.touchHandler = { (overlay) -> Bool in
+                    print("마커 터치")
+                    curPlace = overlay.userInfo["place"] as! Place
+                    ifView = true
+
+                    //   viewModel.place = place
+                    //  viewModel.placeId = overlay.userInfo["placeId"] as! String
+                    //   viewModel.isBottomPageUp = true
+                    return true
+                }
+            }
         }
-      
     }
     
     func makeUIView(context: Context) -> NMFNaverMapView {
-        let view = NMFNaverMapView()
-        view.showZoomControls = false
-        view.mapView.positionMode = .direction
-        view.mapView.zoomLevel = 13
-        
-        addMarker(view)
-        
-        return view
-    }
-    
-    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
+        //let view = NMFNaverMapView()
+        mapview.showZoomControls = false
+        mapview.mapView.positionMode = .direction
+        mapview.mapView.zoomLevel = 13
         let coord = NMGLatLng(lat: coord.1, lng: coord.0)
         let cameraUpdate = NMFCameraUpdate(scrollTo: coord)
         cameraUpdate.animation = .fly
         cameraUpdate.animationDuration = 1
-        uiView.mapView.moveCamera(cameraUpdate)}
+        mapview.mapView.moveCamera(cameraUpdate)
+        addMarker(mapview)
+        
+        print(ifView)
+        
+        return mapview
+    }
+    
+    func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
+        /*
+        coord 값 변경 -> 카메라이동
+        let coord = NMGLatLng(lat: coord.1, lng: coord.0)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: coord)
+        cameraUpdate.animation = .fly
+        cameraUpdate.animationDuration = 1
+        uiView.mapView.moveCamera(cameraUpdate)
+         */
+    }
     
     
 }
@@ -143,8 +231,10 @@ struct UIMapView: UIViewRepresentable {
 class MainViewModel: ObservableObject{
     
 }
+
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
     }
 }
+

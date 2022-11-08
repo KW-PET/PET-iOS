@@ -11,7 +11,7 @@ public struct Place: Hashable{
     let placeid: Int
     let xpos: Double
     let ypos: Double
-    let category: String
+    let category: Int
     let name: String
     let address: String
     let phone: String
