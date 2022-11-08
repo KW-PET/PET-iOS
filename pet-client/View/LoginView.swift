@@ -58,9 +58,12 @@ func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테�
 }
 
 struct LoginView: View {
+    var network = Network()
+    
     var body: some View {
         Button(action : {
-            var succeed = getKakaoAgreement()
+            var succeed = network.test()
+//            var succeed = getKakaoAgreement()
             print(succeed)
         }){
             Image("KakaoLogin")
