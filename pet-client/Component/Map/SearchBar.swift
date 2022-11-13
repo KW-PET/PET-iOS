@@ -13,21 +13,23 @@ struct SearchBar: View {
     @State var editText : Bool = false
     
     var body: some View {
+     
         HStack{
+       
+
+          
             TextField("위치를 검색하세요" , text : $text)
+                .multilineTextAlignment(.leading)
                 .padding(15)
                 .padding(.horizontal,35)
                 .background(Color(.white))
-                .cornerRadius(15)
-                .shadow(color: .gray, radius: 2)
-                .padding(10)
-                
+ 
                 .overlay(
-                    HStack{
+                    HStack {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.gray)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(30)
+                            .padding(20)
                         
                         if self.editText{
                             //x버튼이미지를 클릭하게되면 입력되어있던값들을 취소하고
@@ -49,6 +51,10 @@ struct SearchBar: View {
                     self.editText = true
                 }
         }
+        .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.gray, lineWidth: 1))
+        .padding(10)
+
+        
     }
 }
 

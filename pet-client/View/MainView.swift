@@ -107,26 +107,47 @@ struct MainView: View {
 
     @StateObject var sheetManager = SheetMananger()
     
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
     
     
-        var body: some View {
+    var body: some View {
+        NavigationView {
+            
             ZStack {
                 VStack {
-                    SearchBar(text: $text)
-                    /*
-                    Button(action: {coord = (129.05562775, 35.1379222)}) {
-                        Text("Move to Busan")
-                    }
-                    Button(action: {coord = (126.9784147, 37.5666805)}) {
-                        Text("Move to Seoul somewhere")
-                    }
-                     */
                     
-                        .sheet(isPresented: $sheetManager.ifView) {
-                            PlaceInfo(place: sheetManager.curPlace)
-                            .presentationDetents([.height(200)])
-
-                    }
+                    /*
+                     Button(action: {coord = (129.05562775, 35.1379222)}) {
+                     Text("Move to Busan")
+                     }
+                     Button(action: {coord = (126.9784147, 37.5666805)}) {
+                     Text("Move to Seoul somewhere")
+                     }
+                     */
+                    NavigationLink(destination: SearchView()
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                    ) {
+                        TextField("위치를 검색하세요",text: $text)
+                                .multilineTextAlignment(.leading) 
+                                .padding(15)
+                                .padding(.horizontal,35)
+                                .background(Color(.white))
+                                .cornerRadius(15)
+                                .shadow(color: .gray, radius: 2)
+                                .padding(10)
+                                
+                                .overlay(
+                                    HStack{
+                                        Image(systemName: "magnifyingglass")
+                                            .foregroundColor(.gray)
+                                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                            .padding(30)
+                                    })
+                        }
+                    
                     
                     Spacer()
                     ScrollView(.horizontal){
@@ -145,11 +166,17 @@ struct MainView: View {
                 }
                 .zIndex(1)
                 
+                
+                .sheet(isPresented: $sheetManager.ifView) {
+                    PlaceInfo(place: sheetManager.curPlace)
+                    .presentationDetents([.height(200)])}
+                
                 UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
                     .edgesIgnoringSafeArea(.vertical)
             }
         }
     }
+}
 
 struct UIMapView: UIViewRepresentable {
     var coord: (Double, Double)
