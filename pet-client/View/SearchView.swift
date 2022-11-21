@@ -37,7 +37,7 @@ struct SearchView: View {
                         .foregroundColor(ColorManager.GreyColor)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 20)
-                        .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.gray, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.gray.opacity(0.5), lineWidth: 1))
                         .padding(.vertical, 3)
                         .padding(.horizontal, 5)
                     
@@ -61,7 +61,7 @@ struct SearchView: View {
                         .foregroundColor(ColorManager.GreyColor)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 20)
-                        .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.gray, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 50).stroke(Color.gray.opacity(0.5), lineWidth: 1))
                         .padding(.vertical, 3)
                         .padding(.horizontal, 5)
                     
