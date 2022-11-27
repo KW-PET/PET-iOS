@@ -40,7 +40,6 @@
 		1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE02903EA68002145A7 /* CommunityListElem.swift */; };
 		1EE04FE42903F314002145A7 /* TabElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE32903F314002145A7 /* TabElem.swift */; };
 		1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */; };
-		1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF996A428F3F1DC00CA521F /* MapView.swift */; };
 		1EFB611329175F4800D43D61 /* MyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB611229175F4800D43D61 /* MyPostView.swift */; };
 		1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61142917617D00D43D61 /* MyLikeView.swift */; };
 		1EFB61172917627500D43D61 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61162917627500D43D61 /* SettingView.swift */; };
@@ -100,7 +99,6 @@
 		1EE04FE02903EA68002145A7 /* CommunityListElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityListElem.swift; sourceTree = "<group>"; };
 		1EE04FE32903F314002145A7 /* TabElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabElem.swift; sourceTree = "<group>"; };
 		1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EF996A428F3F1DC00CA521F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1EFB611229175F4800D43D61 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
 		1EFB61142917617D00D43D61 /* MyLikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikeView.swift; sourceTree = "<group>"; };
 		1EFB61162917627500D43D61 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -624,7 +622,6 @@
 				1EE04FE42903F314002145A7 /* TabElem.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
 				1EACC40928FBBE65009760CE /* PlaceTemporary.swift in Sources */,
-				1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */,
 				1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */,
 				1EACC40B28FBD3D5009760CE /* PlaceListElement.swift in Sources */,
 				1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */,
