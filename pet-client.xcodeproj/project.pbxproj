@@ -10,9 +10,11 @@
 		1117C2A529113845001FF2FD /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A429113845001FF2FD /* PostDetailView.swift */; };
 		1117C2A72911388A001FF2FD /* CommentListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A62911388A001FF2FD /* CommentListElem.swift */; };
 		1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A829113B47001FF2FD /* RecommendView.swift */; };
+		1150219C292134CA00D7E900 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150219B292134CA00D7E900 /* SearchView.swift */; };
+		1150219F2921438A00D7E900 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 1150219E2921438A00D7E900 /* SwiftUIFlow */; };
+		115021A1292146F600D7E900 /* MypageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115021A0292146F600D7E900 /* MypageView.swift */; };
 		116EEDF029077F4200B41A24 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EEDEF29077F4200B41A24 /* SearchBar.swift */; };
 		11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E66CAE28EB44BA00716CF9 /* MainView.swift */; };
-		1E0C80A1291A78A400AE452C /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1E0C80A0291A78A400AE452C /* Config.xcconfig */; };
 		1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */; };
 		1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AA28E817C4003EA6D2 /* Assets.xcassets */; };
 		1E1420AF28E817C4003EA6D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AE28E817C4003EA6D2 /* Preview Assets.xcassets */; };
@@ -71,9 +73,10 @@
 		1117C2A62911388A001FF2FD /* CommentListElem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListElem.swift; sourceTree = "<group>"; };
 		1117C2A829113B47001FF2FD /* RecommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = NMapsMap.xcframework; path = Pods/NMapsMap/framework/NMapsMap.xcframework; sourceTree = "<group>"; };
+		1150219B292134CA00D7E900 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		115021A0292146F600D7E900 /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
 		116EEDEF29077F4200B41A24 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		11E66CAE28EB44BA00716CF9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1E0C80A0291A78A400AE452C /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = "pet-client/Config.xcconfig"; sourceTree = SOURCE_ROOT; };
 		1E1420A328E817C3003EA6D2 /* pet-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pet-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientApp.swift; sourceTree = "<group>"; };
 		1E1420AA28E817C4003EA6D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 			files = (
 				1EA19F832901591400FB8712 /* Alamofire in Frameworks */,
 				1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */,
+				1150219F2921438A00D7E900 /* SwiftUIFlow in Frameworks */,
 				1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */,
 				1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
@@ -188,7 +192,6 @@
 				1E1420D628E81A10003EA6D2 /* ViewController */,
 				1E1420D428E81875003EA6D2 /* ViewModel */,
 				1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */,
-				1E0C80A0291A78A400AE452C /* Config.xcconfig */,
 				1E1420AA28E817C4003EA6D2 /* Assets.xcassets */,
 				1E1420AC28E817C4003EA6D2 /* pet_client.entitlements */,
 				1E1420AD28E817C4003EA6D2 /* Preview Content */,
@@ -263,8 +266,8 @@
 			children = (
 				1117C2A829113B47001FF2FD /* RecommendView.swift */,
 				1117C2A429113845001FF2FD /* PostDetailView.swift */,
-				1EF996A428F3F1DC00CA521F /* MapView.swift */,
 				11E66CAE28EB44BA00716CF9 /* MainView.swift */,
+				1150219B292134CA00D7E900 /* SearchView.swift */,
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
 				1EE04FDD2903E5E5002145A7 /* CommunityView.swift */,
@@ -273,6 +276,7 @@
 				1EFB61162917627500D43D61 /* SettingView.swift */,
 				1E93A3DC2922F40D00D320F0 /* CommunityPostView.swift */,
 				1E9E98EC293222C3005945A0 /* Router.swift */,
+				115021A0292146F600D7E900 /* MypageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,6 +391,7 @@
 				1E31B0DD28F39DB700654FC0 /* KakaoSDK */,
 				1EA19F822901591400FB8712 /* Alamofire */,
 				1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				1150219E2921438A00D7E900 /* SwiftUIFlow */,
 			);
 			productName = "pet-client";
 			productReference = 1E1420A328E817C3003EA6D2 /* pet-client.app */;
@@ -467,6 +472,7 @@
 				1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1E3E197E292E1BA7009C5BD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 			);
 			productRefGroup = 1E1420A428E817C3003EA6D2 /* Products */;
 			projectDirPath = "";
@@ -622,10 +628,12 @@
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
 				1E9E98ED293222C3005945A0 /* Router.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
+				1150219C292134CA00D7E900 /* SearchView.swift in Sources */,
 				1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */,
 				1EACC40628FBBE4A009760CE /* Place.swift in Sources */,
 				1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */,
 				1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */,
+				115021A1292146F600D7E900 /* MypageView.swift in Sources */,
 				1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */,
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
 				1EACC40128FBAD10009760CE /* Palette.swift in Sources */,
@@ -681,7 +689,6 @@
 /* Begin XCBuildConfiguration section */
 		1E1420C628E817C5003EA6D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E0C80A0291A78A400AE452C /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -741,7 +748,6 @@
 		};
 		1E1420C728E817C5003EA6D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E0C80A0291A78A400AE452C /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1024,6 +1030,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1051,6 +1065,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1150219E2921438A00D7E900 /* SwiftUIFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
+			productName = SwiftUIFlow;
+		};
 		1E31B0DD28F39DB700654FC0 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;

@@ -10,30 +10,6 @@ import SwiftUI
 import NMapsMap
 import UIKit
 
-
-struct Place_: Codable {
-    var name: String
-    var placeId: Int
-    var lon: Double
-    var lat: Double
-    var category: String
-    var address: String
-    var phone: String
-    var like: Bool
-    
-    init(_name: String, _placeID: Int, _lon: Double, _lat: Double, _category: String, _address:String, _phone: String, _like: Bool){
-        name=_name
-        placeId=_placeID
-        lon = _lon
-        lat = _lat
-        category = _category
-        address = _address
-        phone = _phone
-        like = _like
-    }
-}
-
-
 struct PlaceInfo: View {
     let place: Place
     
@@ -122,27 +98,57 @@ struct MainView: View {
     @State var coord: (Double, Double) = (126.9784147, 37.5666805)
     @State var selectedId:Int = 10000
     @State var text : String = ""
-    @State var ifView : Bool = false
-    @State var curPlace : Place = Place(placeid: 0, xpos: 0, ypos: 0, category: 0, name: "", address: "", phone: "")
+    
+    class SheetMananger: ObservableObject{
+        @Published var curPlace : Place = Place(placeid: 0, xpos: 0, ypos: 0, category: 0, name: "", address: "", phone: "")
+        @Published var ifView : Bool = false
+    }
+    
 
-        var body: some View {
+    @StateObject var sheetManager = SheetMananger()
+    
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
+    
+    
+    var body: some View {
+        NavigationView {
+            
             ZStack {
                 VStack {
-                    SearchBar(text: $text)
+                    
                     /*
-                    Button(action: {coord = (129.05562775, 35.1379222)}) {
-                        Text("Move to Busan")
-                    }
-                    Button(action: {coord = (126.9784147, 37.5666805)}) {
-                        Text("Move to Seoul somewhere")
-                    }
+                     Button(action: {coord = (129.05562775, 35.1379222)}) {
+                     Text("Move to Busan")
+                     }
+                     Button(action: {coord = (126.9784147, 37.5666805)}) {
+                     Text("Move to Seoul somewhere")
+                     }
                      */
-                    .sheet(isPresented: $ifView) {
-                        PlaceInfo(place: curPlace)
-                       
-                            .presentationDetents([.height(200)])
-
-                    }
+                    NavigationLink(destination: SearchView()
+                        .navigationBarHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                    ) {
+                        TextField("위치를 검색하세요",text: $text)
+                                .multilineTextAlignment(.leading) 
+                                .padding(15)
+                                .padding(.horizontal,35)
+                                .background(Color(.white))
+                                .cornerRadius(15)
+                                .shadow(color: .gray, radius: 2)
+                                .padding(10)
+                                
+                                .overlay(
+                                    HStack{
+                                        Image(systemName: "magnifyingglass")
+                                            .foregroundColor(.gray)
+                                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                            .padding(30)
+                                    })
+                        }
+                    
+                    
                     Spacer()
                     ScrollView(.horizontal){
                         HStack{
@@ -160,11 +166,17 @@ struct MainView: View {
                 }
                 .zIndex(1)
                 
-                UIMapView(coord: coord, selectedId: selectedId, curPlace: $curPlace, ifView: $ifView)
+                
+                .sheet(isPresented: $sheetManager.ifView) {
+                    PlaceInfo(place: sheetManager.curPlace)
+                    .presentationDetents([.height(200)])}
+                
+                UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
                     .edgesIgnoringSafeArea(.vertical)
             }
         }
     }
+}
 
 struct UIMapView: UIViewRepresentable {
     var coord: (Double, Double)
@@ -189,6 +201,7 @@ struct UIMapView: UIViewRepresentable {
         for place in p {
             if(selectedId == 10000){
                 let marker = NMFMarker()
+                
                 marker.position = NMGLatLng(lat: (place.ypos), lng: (place.xpos))
                 marker.mapView = mapView.mapView
                 marker.iconTintColor = UIColor.red
@@ -222,6 +235,9 @@ struct UIMapView: UIViewRepresentable {
         cameraUpdate.animationDuration = 1
         mapview.mapView.moveCamera(cameraUpdate)
         addMarker(mapview)
+        
+        print(ifView)
+        
         return mapview
     }
     
