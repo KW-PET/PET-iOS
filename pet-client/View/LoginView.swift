@@ -27,16 +27,17 @@ func getKakaoAgreement()->Bool { //회원가입 시 카카오톡으로 넘어가
 }
 
 func getUserToken(){ //유저 토큰 얻어오기
-   UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
-       if let error = error {
-           print(error)
-       }
-       else {
-           print("accessTokenInfo() success: \(accessTokenInfo)")
-       }
-   }
- 
-
+    UserApi.shared.accessTokenInfo {(accessTokenInfo, error) in
+        if let error = error {
+            print(error)
+        }
+        else {
+            print("accessTokenInfo() success: \(accessTokenInfo)")
+        }
+    }
+}
+    
+    
 func getUserInfo(){ //유저 정보 가져오기
     UserApi.shared.me() {(user, error) in
         if let error = error {
@@ -47,7 +48,7 @@ func getUserInfo(){ //유저 정보 가져오기
         }
     }
 }
-
+    
 func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테스트할 때, 혹은 탈퇴 시 사용
     UserApi.shared.unlink {(error) in
         if let error = error {
@@ -58,7 +59,7 @@ func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테�
         }
     }
 }
-
+    
 struct LoginView: View {
     var body: some View {
         Button(action : {
@@ -79,7 +80,7 @@ struct LoginView: View {
         }
     }
 }
-
+    
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
