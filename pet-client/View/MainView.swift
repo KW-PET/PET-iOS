@@ -9,9 +9,11 @@ import Combine
 import SwiftUI
 import NMapsMap
 import UIKit
+ 
+
 
 struct PlaceInfo: View {
-    let place: Place
+    let place: PlaceResult
     
     var body: some View{
         VStack{
@@ -22,16 +24,16 @@ struct PlaceInfo: View {
                         .font(.system(size: 23).weight(.bold))
                         .padding(1)
                     Spacer()
-                    Text("10:00 ~ 18:00")
+                    Text(place.category)
                         .font(.system(size: 14).weight(.regular))
                         .foregroundColor(ColorManager.GreyColor)
                 }
                 
                 HStack{
                     Text(place.address)
-                        .font(.system(size: 17).weight(.regular))
+                        .font(.system(size: 13).weight(.regular))
                     Spacer()
-                    Text("800m")
+                    Text(String(place.distance))
                         .font(.system(size: 16).weight(.bold))
                         .foregroundColor(ColorManager.OrangeColor)
                 }
@@ -95,30 +97,27 @@ struct PlaceInfo: View {
 
 
 struct MainView: View {
+    @StateObject var list = FetchData() // API GET!!!
     @State var coord: (Double, Double) = (126.9784147, 37.5666805)
     @State var selectedId:Int = 10000
     @State var text : String = ""
     
     class SheetMananger: ObservableObject{
-        @Published var curPlace : Place = Place(placeid: 0, xpos: 0, ypos: 0, category: 0, name: "", address: "", phone: "")
+        @Published var curPlace : PlaceResult = PlaceResult(name: "", address: "", distance: 0, category: "", place_id: 0, phone: "", xpos: 0, ypos:0, like_cnt: 0)
         @Published var ifView : Bool = false
     }
     
-
     @StateObject var sheetManager = SheetMananger()
-    
+  
     init(){
         UINavigationBar.setAnimationsEnabled(false)
     }
     
-    
     var body: some View {
         NavigationView {
-            
             ZStack {
                 VStack {
-                    
-                    /*
+                      /*
                      Button(action: {coord = (129.05562775, 35.1379222)}) {
                      Text("Move to Busan")
                      }
@@ -126,6 +125,16 @@ struct MainView: View {
                      Text("Move to Seoul somewhere")
                      }
                      */
+                    
+//                    List {
+//                        ForEach(list.datas) { data in
+//                            VStack(alignment: .leading, spacing: 10) {
+//                                Text(data.name)
+//                            }
+//                        }
+//                    }
+                    
+                    
                     NavigationLink(destination: SearchView()
                         .navigationBarHidden(true)
                         .navigationBarBackButtonHidden(true)
@@ -147,8 +156,6 @@ struct MainView: View {
                                             .padding(30)
                                     })
                         }
-                    
-                    
                     Spacer()
                     ScrollView(.horizontal){
                         HStack{
@@ -171,7 +178,7 @@ struct MainView: View {
                     PlaceInfo(place: sheetManager.curPlace)
                     .presentationDetents([.height(200)])}
                 
-                UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
+                UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView, placeList: $list.datas)
                     .edgesIgnoringSafeArea(.vertical)
             }
         }
@@ -181,46 +188,31 @@ struct MainView: View {
 struct UIMapView: UIViewRepresentable {
     var coord: (Double, Double)
     var selectedId : Int
-    @Binding var curPlace:Place
+    @Binding var curPlace:PlaceResult
     @Binding var ifView:Bool
+    @Binding var placeList : [PlaceResult]
+    
     @State var mapview:NMFNaverMapView =  NMFNaverMapView()
     @State var markerList:[NMFMarker] = []
     @ObservedObject var viewModel = MainViewModel()
     
     func addMarker(_ mapView: NMFNaverMapView ) {
-        
-        let p = [
-            Place( placeid: 1, xpos: 126.9783740, ypos:37.5800135, category: 1,name:"마루 동물병원",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 1, xpos: 126.9763740, ypos:37.5870135, category: 1,name:"마루 동물병원2",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 1, xpos: 126.9743740, ypos:37.5670135, category: 2,name:"마루 동물병원3",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 1, xpos: 126.9663740, ypos:37.5970135, category: 3,name:"마루 동물병원4",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 4, xpos: 126.9763240, ypos:37.5870135, category: 4,name:"마루 동물병원5",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 1, xpos: 126.9763740, ypos:37.5955135, category: 5,name:"마루 동물병원6",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000"),
-            Place( placeid: 1, xpos: 126.7763740, ypos:37.5873135, category: 1,name:"마루 동물병원7",address: "서울특별시 노원구 석계로 13길 11",phone: "010-0000-0000") ]
-        
-        for place in p {
-            if(selectedId == 10000){
-                let marker = NMFMarker()
-                
-                marker.position = NMGLatLng(lat: (place.ypos), lng: (place.xpos))
+    
+        for place in self.placeList {
+                 let marker = NMFMarker()
+            marker.position = NMGLatLng(lat:37.5800135, lng:  126.9)
+           // marker.position = NMGLatLng(lat: place.ypos, lng:  place.xpos)
                 marker.mapView = mapView.mapView
                 marker.iconTintColor = UIColor.red
-                marker.userInfo = ["name" : place.name as String,
-                                   "category": place.category as Int,
-                                   "place": place]
+                marker.userInfo = ["place": place ]
                 
-                //터치 이벤트 등록해
+                //터치 이벤트 등록
                 marker.touchHandler = { (overlay) -> Bool in
-                    print("마커 터치")
-                    curPlace = overlay.userInfo["place"] as! Place
+                    curPlace = overlay.userInfo["place"] as! PlaceResult
                     ifView = true
-
-                    //   viewModel.place = place
-                    //  viewModel.placeId = overlay.userInfo["placeId"] as! String
-                    //   viewModel.isBottomPageUp = true
                     return true
                 }
-            }
+            
         }
     }
     
@@ -228,20 +220,19 @@ struct UIMapView: UIViewRepresentable {
         //let view = NMFNaverMapView()
         mapview.showZoomControls = false
         mapview.mapView.positionMode = .direction
-        mapview.mapView.zoomLevel = 13
+        mapview.mapView.zoomLevel = 10
         let coord = NMGLatLng(lat: coord.1, lng: coord.0)
         let cameraUpdate = NMFCameraUpdate(scrollTo: coord)
         cameraUpdate.animation = .fly
         cameraUpdate.animationDuration = 1
         mapview.mapView.moveCamera(cameraUpdate)
-        addMarker(mapview)
-        
-        print(ifView)
-        
+                
         return mapview
     }
     
     func updateUIView(_ uiView: NMFNaverMapView, context: Context) {
+        addMarker(mapview)
+
         /*
         coord 값 변경 -> 카메라이동
         let coord = NMGLatLng(lat: coord.1, lng: coord.0)
