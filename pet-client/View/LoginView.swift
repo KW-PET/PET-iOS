@@ -16,6 +16,7 @@ func getKakaoAgreement()->Bool { //회원가입 시 카카오톡으로 넘어가
         }
     }else{
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+            loginManager.signIn(accessToken: oauthToken?.accessToken ?? "")
             print("non-installed \(oauthToken?.accessToken)")
             print("non-installed \(error)")
             if(object_getClass(error)?.description() == "NSNull"){

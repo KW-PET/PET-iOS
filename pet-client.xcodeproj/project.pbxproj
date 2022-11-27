@@ -11,7 +11,6 @@
 		1117C2A72911388A001FF2FD /* CommentListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A62911388A001FF2FD /* CommentListElem.swift */; };
 		1117C2A929113B47001FF2FD /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1117C2A829113B47001FF2FD /* RecommendView.swift */; };
 		1150219C292134CA00D7E900 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1150219B292134CA00D7E900 /* SearchView.swift */; };
-		1150219F2921438A00D7E900 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 1150219E2921438A00D7E900 /* SwiftUIFlow */; };
 		115021A1292146F600D7E900 /* MypageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115021A0292146F600D7E900 /* MypageView.swift */; };
 		116EEDF029077F4200B41A24 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EEDEF29077F4200B41A24 /* SearchBar.swift */; };
 		11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E66CAE28EB44BA00716CF9 /* MainView.swift */; };
@@ -25,7 +24,6 @@
 		1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */; };
 		1E3E197D292E1A25009C5BD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */; };
 		1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		1E93A3DD2922F40D00D320F0 /* CommunityPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E93A3DC2922F40D00D320F0 /* CommunityPostView.swift */; };
 		1E9E98ED293222C3005945A0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9E98EC293222C3005945A0 /* Router.swift */; };
 		1EA19F832901591400FB8712 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EA19F822901591400FB8712 /* Alamofire */; };
 		1EA19F89290159E800FB8712 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA19F88290159E800FB8712 /* Login.swift */; };
@@ -40,11 +38,12 @@
 		1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* LoginView.swift */; };
 		1ECCFF5028E81F6C00662084 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4F28E81F6C00662084 /* ViewController.swift */; };
 		1ECCFF5228E81F7600662084 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF5128E81F7600662084 /* ViewModel.swift */; };
-		1EE04FDE2903E5E5002145A7 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FDD2903E5E5002145A7 /* CommunityView.swift */; };
 		1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE02903EA68002145A7 /* CommunityListElem.swift */; };
 		1EE04FE42903F314002145A7 /* TabElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE32903F314002145A7 /* TabElem.swift */; };
 		1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */; };
-		1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF996A428F3F1DC00CA521F /* MapView.swift */; };
+		1EFB3156293383ED0064B31E /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 1EFB3155293383ED0064B31E /* SwiftUIFlow */; };
+		1EFB3158293385EF0064B31E /* CommunityPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB3157293385EE0064B31E /* CommunityPostView.swift */; };
+		1EFB315A293389610064B31E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1EFB3159293389610064B31E /* Config.xcconfig */; };
 		1EFB611329175F4800D43D61 /* MyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB611229175F4800D43D61 /* MyPostView.swift */; };
 		1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61142917617D00D43D61 /* MyLikeView.swift */; };
 		1EFB61172917627500D43D61 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFB61162917627500D43D61 /* SettingView.swift */; };
@@ -89,7 +88,6 @@
 		1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E31B0DF28F39FCD00654FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		1E93A3DC2922F40D00D320F0 /* CommunityPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPostView.swift; sourceTree = "<group>"; };
 		1E9E98EC293222C3005945A0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		1EA19F88290159E800FB8712 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		1EACC3FA28FBA6EA009760CE /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -103,11 +101,11 @@
 		1ECCFF4D28E81F6400662084 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		1ECCFF4F28E81F6C00662084 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1ECCFF5128E81F7600662084 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		1EE04FDD2903E5E5002145A7 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		1EE04FE02903EA68002145A7 /* CommunityListElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityListElem.swift; sourceTree = "<group>"; };
 		1EE04FE32903F314002145A7 /* TabElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabElem.swift; sourceTree = "<group>"; };
 		1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EF996A428F3F1DC00CA521F /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1EFB3157293385EE0064B31E /* CommunityPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityPostView.swift; sourceTree = "<group>"; };
+		1EFB3159293389610064B31E /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		1EFB611229175F4800D43D61 /* MyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostView.swift; sourceTree = "<group>"; };
 		1EFB61142917617D00D43D61 /* MyLikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikeView.swift; sourceTree = "<group>"; };
 		1EFB61162917627500D43D61 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -124,8 +122,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EA19F832901591400FB8712 /* Alamofire in Frameworks */,
+				1EFB3156293383ED0064B31E /* SwiftUIFlow in Frameworks */,
 				1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */,
-				1150219F2921438A00D7E900 /* SwiftUIFlow in Frameworks */,
 				1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */,
 				1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
@@ -194,6 +192,7 @@
 				1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */,
 				1E1420AA28E817C4003EA6D2 /* Assets.xcassets */,
 				1E1420AC28E817C4003EA6D2 /* pet_client.entitlements */,
+				1EFB3159293389610064B31E /* Config.xcconfig */,
 				1E1420AD28E817C4003EA6D2 /* Preview Content */,
 			);
 			path = "pet-client";
@@ -269,12 +268,11 @@
 				11E66CAE28EB44BA00716CF9 /* MainView.swift */,
 				1150219B292134CA00D7E900 /* SearchView.swift */,
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
+				1EFB3157293385EE0064B31E /* CommunityPostView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
-				1EE04FDD2903E5E5002145A7 /* CommunityView.swift */,
 				1EFB611229175F4800D43D61 /* MyPostView.swift */,
 				1EFB61142917617D00D43D61 /* MyLikeView.swift */,
 				1EFB61162917627500D43D61 /* SettingView.swift */,
-				1E93A3DC2922F40D00D320F0 /* CommunityPostView.swift */,
 				1E9E98EC293222C3005945A0 /* Router.swift */,
 				115021A0292146F600D7E900 /* MypageView.swift */,
 			);
@@ -391,7 +389,7 @@
 				1E31B0DD28F39DB700654FC0 /* KakaoSDK */,
 				1EA19F822901591400FB8712 /* Alamofire */,
 				1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
-				1150219E2921438A00D7E900 /* SwiftUIFlow */,
+				1EFB3155293383ED0064B31E /* SwiftUIFlow */,
 			);
 			productName = "pet-client";
 			productReference = 1E1420A328E817C3003EA6D2 /* pet-client.app */;
@@ -472,7 +470,7 @@
 				1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1E3E197E292E1BA7009C5BD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
+				1EFB3154293383ED0064B31E /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 			);
 			productRefGroup = 1E1420A428E817C3003EA6D2 /* Products */;
 			projectDirPath = "";
@@ -490,9 +488,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EFB315A293389610064B31E /* Config.xcconfig in Resources */,
 				1E1420AF28E817C4003EA6D2 /* Preview Assets.xcassets in Resources */,
 				1E3E197D292E1A25009C5BD4 /* GoogleService-Info.plist in Resources */,
-				1E0C80A1291A78A400AE452C /* Config.xcconfig in Resources */,
 				1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,10 +620,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */,
-				1E93A3DD2922F40D00D320F0 /* CommunityPostView.swift in Sources */,
 				1EA19F89290159E800FB8712 /* Login.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */,
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
+				1EFB3158293385EF0064B31E /* CommunityPostView.swift in Sources */,
 				1E9E98ED293222C3005945A0 /* Router.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
@@ -642,11 +640,9 @@
 				1EE04FE42903F314002145A7 /* TabElem.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
 				1EACC40928FBBE65009760CE /* PlaceTemporary.swift in Sources */,
-				1EF996A528F3F1DC00CA521F /* MapView.swift in Sources */,
 				1EFB61152917617D00D43D61 /* MyLikeView.swift in Sources */,
 				1EACC40B28FBD3D5009760CE /* PlaceListElement.swift in Sources */,
 				1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */,
-				1EE04FDE2903E5E5002145A7 /* CommunityView.swift in Sources */,
 				1117C2A529113845001FF2FD /* PostDetailView.swift in Sources */,
 				1117C2A72911388A001FF2FD /* CommentListElem.swift in Sources */,
 				1ECCFF5228E81F7600662084 /* ViewModel.swift in Sources */,
@@ -690,6 +686,7 @@
 /* Begin XCBuildConfiguration section */
 		1E1420C628E817C5003EA6D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EFB3159293389610064B31E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -749,6 +746,7 @@
 		};
 		1E1420C728E817C5003EA6D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EFB3159293389610064B31E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1031,14 +1029,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
@@ -1063,14 +1053,17 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		1EFB3154293383ED0064B31E /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1150219E2921438A00D7E900 /* SwiftUIFlow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1150219D2921438A00D7E900 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
-			productName = SwiftUIFlow;
-		};
 		1E31B0DD28F39DB700654FC0 /* KakaoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
@@ -1085,6 +1078,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		1EFB3155293383ED0064B31E /* SwiftUIFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EFB3154293383ED0064B31E /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
+			productName = SwiftUIFlow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
