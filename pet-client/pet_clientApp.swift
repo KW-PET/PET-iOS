@@ -8,6 +8,8 @@ struct pet_clientApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            MainView()
+//            SettingView()
             LoginView().onOpenURL(perform: { url in
                 if (AuthApi.isKakaoTalkLoginUrl(url)) {
                     AuthController.handleOpenUrl(url: url)
