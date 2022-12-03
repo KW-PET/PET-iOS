@@ -55,21 +55,19 @@ class FetchData: ObservableObject {
     @Published var datas: [PlaceResult] = []
     
     init() {
-        setData()
     }
     
-    func setData() {
-        getData() { returnedData in
+    func setData(lon : Double, lat : Double) {
+        getData(lon : lon, lat : lat) { returnedData in
             DispatchQueue.main.async { [weak self] in
                 self?.datas = returnedData
             }
-            //print(returnedData[0])
         }
     }
     
-    func getData(escapingHandler: @escaping (_ data:  [PlaceResult])->Void){
+    func getData(lon : Double, lat : Double, escapingHandler: @escaping (_ data:  [PlaceResult])->Void){
         
-        AF.request("http://49.50.164.40:8080/place", method: .post, parameters:  ["lon" : 126.9783740, "lat": 37.5800135, "sort" : 1], encoder: JSONParameterEncoder.default).responseJSON { response in
+        AF.request("http://49.50.164.40:8080/place", method: .post, parameters:  ["lon" : lon, "lat": lat, "sort" : 1], encoder: JSONParameterEncoder.default).responseJSON { response in
             //   print("response: \(response)")
             
             var routines: [PlaceResult]

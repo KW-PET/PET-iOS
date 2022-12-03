@@ -270,25 +270,24 @@ struct MypageView: View{
     ]
     var body: some View{
         NavigationView{
-            
- 
             VStack{
-                HStack{
-                     Text("마이페이지")
-                        .font(.system(size: 20).weight(.bold))
-                        .foregroundColor(Color.black)
-                    Spacer()
-                }
-                .padding(.vertical, 18)
-                .padding(.horizontal, 28)
-                
-                VStack {
-                }
-                .frame(width: 1000, height:8)
-                .background(Color.gray.opacity(0.2))
-                .border(Color.gray.opacity(0.3))
-                
-                HStack{
+                VStack{
+                    HStack{
+                        Text("마이페이지")
+                            .font(.system(size: 20).weight(.bold))
+                            .foregroundColor(Color.black)
+                        Spacer()
+                    }
+                    .padding(.vertical, 18)
+                    .padding(.horizontal, 28)
+                    
+                    VStack {
+                    }
+                    .frame(width: 1000, height:8)
+                    .background(Color.gray.opacity(0.2))
+                    .border(Color.gray.opacity(0.3))
+                    
+                    HStack{
                         Text("몽글이")
                             .font(.system(size: 20).weight(.bold))
                             .foregroundColor(Color.black)
@@ -296,27 +295,27 @@ struct MypageView: View{
                             .font(.system(size: 18).weight(.bold))
                             .foregroundColor(Color.black)
                         Spacer()
-                }
-                .padding(.vertical, 14)
-                .padding(.horizontal, 28)
-                
-                Divider()
-                
-                HStack{
-                    Image("MypetIcon")
-                        .resizable()
-                        .frame(width: 25, height: 25)
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 28)
                     
+                    Divider()
+                    
+                    HStack{
+                        Image("MypetIcon")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                        
                         Text("나의 PET !")
                             .font(.system(size: 20).weight(.bold))
                             .foregroundColor(Color.black)
                             .padding(.horizontal,5)
                         Spacer()
-                    
-                    Button(action: {
-                        isEdit = !isEdit
-                    }){
                         
+                        Button(action: {
+                            isEdit = !isEdit
+                        }){
+                            
                             Text(isEdit ? "완료":"추가")
                                 .font(.system(size: 15).weight(.medium))
                                 .foregroundColor(ColorManager.GreyColor)
@@ -324,59 +323,59 @@ struct MypageView: View{
                                 .padding(.horizontal, 16)
                                 .cornerRadius(50)
                                 .background(RoundedRectangle(cornerRadius: 4, style: .continuous).fill(Color.gray.opacity(0.2)))
+                            
+                        }
+                    }
+                    .padding(.top, 14)
+                    .padding(.horizontal, 28)
+                    
+                    
+                    // scroll
+                    if(!isEdit){
+                        HStack(alignment: .center) {
+                            ForEach(petList,id: \.self) { pet in
+                                Profile(pet: pet)
+                            }
+                        }.modifier(ScrollingHStackModifier(items: petList.count, itemWidth: 280, itemSpacing: 10))
+                    }
+                    else{
+                        ContentView()
+                    }
+                    
+                    VStack {
+                    }
+                    .frame(width: 1000, height:8)
+                    .background(Color.gray.opacity(0.2))
+                    .border(Color.gray.opacity(0.3))
+                    
+                    
+                    List{
+                    
+                        Text("내가 쓴 글")
+                            .font(.system(size: 19).weight(.bold))
+                            .foregroundColor(Color.black)
+                            .padding(.vertical, 11)
+                            .padding(.horizontal, 28)
+                        Divider()
+                        
+                        Text("좋아요 누른 글")
+                            .font(.system(size: 19).weight(.bold))
+                            .foregroundColor(Color.black)
+                            .padding(.vertical, 11)
+                            .padding(.horizontal, 28)
+                        Divider()
+                        
+                        Text("로그아웃")
+                            .font(.system(size: 19).weight(.bold))
+                            .foregroundColor(Color.black)
+                            .padding(.vertical, 11)
+                            .padding(.horizontal, 28)
+                        Divider()
                         
                     }
-                }
-                .padding(.top, 14)
-                .padding(.horizontal, 28)
-
-                
-                // scroll
-                if(!isEdit){
-                    HStack(alignment: .center) {
-                        ForEach(petList,id: \.self) { pet in
-                            Profile(pet: pet)
-                        }
-                    }.modifier(ScrollingHStackModifier(items: petList.count, itemWidth: 280, itemSpacing: 10))
-                }
-                else{
-                    ContentView()
-                }
-                
-                VStack {
-                }
-                .frame(width: 1000, height:8)
-                .background(Color.gray.opacity(0.2))
-                .border(Color.gray.opacity(0.3))
-                
-                
-                VStack(alignment:.leading){
                     
-                    Text("내가 쓴 글")
-                        .font(.system(size: 19).weight(.bold))
-                        .foregroundColor(Color.black)
-                        .padding(.vertical, 11)
-                        .padding(.horizontal, 28)
-                    Divider()
-                    
-                    Text("좋아요 누른 글")
-                        .font(.system(size: 19).weight(.bold))
-                        .foregroundColor(Color.black)
-                        .padding(.vertical, 11)
-                        .padding(.horizontal, 28)
-                    Divider()
-                    
-                    Text("로그아웃")
-                        .font(.system(size: 19).weight(.bold))
-                        .foregroundColor(Color.black)
-                        .padding(.vertical, 11)
-                        .padding(.horizontal, 28)
-                    Divider()
                     
                 }
-            
-           
-                 
             }
         }
     }
