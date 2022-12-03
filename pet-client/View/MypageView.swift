@@ -156,7 +156,7 @@ struct LabelTextField : View {
     }
 }
 
-struct ContentView : View {
+struct MypageContentView : View {
     @State var petname: String = ""
     @State var sort: String = ""
     @State var age : String = ""
@@ -328,6 +328,7 @@ struct MypageView: View{
                     }
                     .padding(.top, 14)
                     .padding(.horizontal, 28)
+
                     
                     
                     // scroll

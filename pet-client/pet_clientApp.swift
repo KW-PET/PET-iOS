@@ -3,18 +3,14 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 
 @main
+
 struct pet_clientApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
-            CommonTabMenu()
-//            SettingView()
-//            LoginView().onOpenURL(perform: { url in
-//                if (AuthApi.isKakaoTalkLoginUrl(url)) {
-//                    AuthController.handleOpenUrl(url: url)
-//                }
-//            })
+           // CommonTabMenu()
+            ContentView().environmentObject(appDelegate.appState)
         }
     }
 }
