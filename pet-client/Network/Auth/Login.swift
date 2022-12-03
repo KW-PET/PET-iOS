@@ -8,40 +8,48 @@
 import SwiftUI
 import Alamofire
 
-struct Test: Codable {
-    let result: String
+struct LoginResponse: Codable {
+    let status:Int?
+    let data: String
+    let success:Bool?
 }
 
-class Network:ObservableObject {
-    func test() {
-        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        guard let url = URL(string: "\(baseURL)/test?msg=hello") else { fatalError("Missing URL") }
-        let urlRequest = URLRequest(url: url)
-        
-        // Task 만들기
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            if let error = error {
-                print("Request error: ", error)
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse else { return }
-            print("response=",response);
-            // 응답 상태코드가 200(성공)일 경우에만 디코딩
-            if response.statusCode == 200 {
-                guard let data = data else { return }
-                DispatchQueue.main.async {
-                    do {
-                        let decodedData = try JSONDecoder().decode(Test.self, from: data)
-                        print(decodedData)
-                        print("this is parsing test = ", decodedData.result)
-                    } catch let error {
-                        print("Error decoding: ", error)
-                    }
-                }
+class LoginManager: ObservableObject {
+    @Published var jwtToken: String
+    @StateObject var viewModel = ContentVM()
+
+    init() {
+        jwtToken = ""
+    }
+    
+    func setJwtToken(accessToken: String) {
+        getJwtToken(accessToken: accessToken) { returnedData in
+            DispatchQueue.main.async { [weak self] in
+                self?.jwtToken = returnedData
+                UserDefaults.standard.set(returnedData, forKey: "jwtToken")
             }
         }
-        // Task 수행하기
-        dataTask.resume()
     }
+    
+    func getJwtToken(accessToken:String, escapingHandler: @escaping (_ data: String)->Void){
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        AF.request("\(baseURL)/kakao/login?access_Token=\(accessToken)", method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .responseJSON { response in
+            var routines: String
+            do {
+                let decoder = JSONDecoder()
+                switch (response.result) {
+                case .success:
+                    let result  = try decoder.decode(LoginResponse.self, from: response.data!)
+                    routines = result.data
+                    escapingHandler(routines)
+                case .failure(let error):
+                    print("login error")
+                }
+            } catch let parsingError {
+                print("login parsing Error:")
+            }
+        }.resume()
+    }
+    
 }

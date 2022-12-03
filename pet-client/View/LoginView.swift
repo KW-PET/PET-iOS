@@ -2,26 +2,30 @@ import SwiftUI
 import KakaoSDKAuth
 import KakaoSDKUser
 
-func getKakaoAgreement()->Bool { //회원가입 시 카카오톡으로 넘어가서 동의받는 부분
-    var result: Bool = true
-    if (UserApi.isKakaoTalkLoginAvailable()) {
-        UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
-            print("installed \(oauthToken?.accessToken)")
-            print("installed \(error)")
-            if(object_getClass(error)?.description() == "NSNull"){
-                result = false
+@MainActor
+func getKakaoAgreement() async -> Bool{ //회원가입 시 카카오톡으로 넘어가서 동의받는 부분
+    @ObservedObject var loginManager = LoginManager()
+    var result = false
+
+    return await withCheckedContinuation { continuation in
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
+                loginManager.setJwtToken(accessToken: oauthToken?.accessToken ?? "")
+                if((oauthToken?.accessToken) != nil){
+                    result = true
+                }
+                continuation.resume(returning: result)
             }
-        }
-    }else{
-        UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-            print("non-installed \(oauthToken?.accessToken)")
-            print("non-installed \(error)")
-            if(object_getClass(error)?.description() == "NSNull"){
-                result = false
+        } else{
+            UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+                loginManager.setJwtToken(accessToken: oauthToken?.accessToken ?? "")
+                if((oauthToken?.accessToken) != nil){
+                    result = true
+                }
+                continuation.resume(returning: result)
             }
         }
     }
-    return result
 }
 
 func getUserToken(){ //유저 토큰 얻어오기
@@ -34,7 +38,7 @@ func getUserToken(){ //유저 토큰 얻어오기
         }
     }
 }
-
+    
 func getUserInfo(){ //유저 정보 가져오기
     UserApi.shared.me() {(user, error) in
         if let error = error {
@@ -45,7 +49,7 @@ func getUserInfo(){ //유저 정보 가져오기
         }
     }
 }
-
+    
 func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테스트할 때, 혹은 탈퇴 시 사용
     UserApi.shared.unlink {(error) in
         if let error = error {
@@ -56,30 +60,36 @@ func disconnectWithKakao(){ //앱과 카카오계정 연결 끊기. 개발 테�
         }
     }
 }
-
-struct LoginView: View {
-    var network = Network()
     
+struct LoginView: View {
+    @StateObject var viewModel = ContentVM()
+    @EnvironmentObject var appState: AppState
+
     var body: some View {
-        Button(action : {
-            var succeed = network.test()
-//            var succeed = getKakaoAgreement()
-            print(succeed)
-        }){
-            Image("KakaoLogin")
-        }
-        Button(action : getUserToken){
-            Text("유저 토큰")
-        }
-        Button(action : disconnectWithKakao){
-            Text("연결 끊기")
-        }
-        Button(action : getUserInfo){
-            Text("유저 정보")
+        VStack{
+            Button(action : {
+                Task {
+                    var result = await getKakaoAgreement()
+                    if(result){
+                        appState.refreshContentView()
+                    }
+                }
+            }){
+                Image("KakaoLogin")
+            }
+            Button(action : getUserToken){
+                Text("유저 토큰")
+            }
+            Button(action : disconnectWithKakao){
+                Text("연결 끊기")
+            }
+            Button(action : getUserInfo){
+                Text("유저 정보")
+            }
         }
     }
 }
-
+    
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()

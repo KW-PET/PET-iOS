@@ -156,7 +156,7 @@ struct LabelTextField : View {
     }
 }
 
-struct ContentView : View {
+struct MypageContentView : View {
     @State var petname: String = ""
     @State var sort: String = ""
     @State var age : String = ""
@@ -340,7 +340,7 @@ struct MypageView: View{
                     }.modifier(ScrollingHStackModifier(items: petList.count, itemWidth: 280, itemSpacing: 10))
                 }
                 else{
-                    ContentView()
+                    MypageContentView()
                 }
                 
                 VStack {
