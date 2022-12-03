@@ -4,6 +4,7 @@ import KakaoSDKAuth
 import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate{
+    @ObservedObject var appState = AppState()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
         let kakaoAppKey = Bundle.main.infoDictionary?["KAKAO_NATIVE_APP_KEY"] ?? ""
