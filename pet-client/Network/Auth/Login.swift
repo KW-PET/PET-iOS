@@ -6,46 +6,50 @@
 //
 
 import SwiftUI
-struct LoginResult: Codable {
-    let status:Int
+import Alamofire
+
+struct LoginResponse: Codable {
+    let status:Int?
     let data: String
-    let success:Bool
+    let success:Bool?
 }
 
 class LoginManager: ObservableObject {
-    @Published var isLoggedIn = false
-    @State var accessToken = UserDefaults.standard.string(forKey: "accessToken")
+    @Published var jwtToken: String
+    @StateObject var viewModel = ContentVM()
+
+    init() {
+        jwtToken = ""
+    }
     
-    func signIn(accessToken: String) {
-        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        guard let url = URL(string: "\(baseURL)/kakao/login?access_Token=\(accessToken)") else { fatalError("Missing URL") }
-        let urlRequest = URLRequest(url: url)
-        
-        let dataTask = URLSession.shared.dataTask(with: urlRequest, completionHandler: {[weak self] data, response, error in
-            if let error = error { return }
-            let response = response as? HTTPURLResponse
-            let data = data
-            DispatchQueue.main.async {
-                if(response?.statusCode == 200) {
-                    do{
-                        self?.isLoggedIn = true
-                        let decodedData = try JSONDecoder().decode(LoginResult.self, from: data!)
-                        UserDefaults.standard.set(decodedData.data, forKey: "accessToken")
-                    } catch{
-                        print(error)
-                    }
-                }
+    func setJwtToken(accessToken: String) {
+        getJwtToken(accessToken: accessToken) { returnedData in
+            DispatchQueue.main.async { [weak self] in
+                self?.jwtToken = returnedData
+                UserDefaults.standard.set(returnedData, forKey: "jwtToken")
             }
-        })
-        dataTask.resume()
+        }
     }
     
-    func getAccessToken() -> String {
-        return UserDefaults.standard.string(forKey: "accessToken") ?? ""
+    func getJwtToken(accessToken:String, escapingHandler: @escaping (_ data: String)->Void){
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        AF.request("\(baseURL)/kakao/login?access_Token=\(accessToken)", method: .get, parameters: nil, encoding: JSONEncoding.default)
+            .responseJSON { response in
+            var routines: String
+            do {
+                let decoder = JSONDecoder()
+                switch (response.result) {
+                case .success:
+                    let result  = try decoder.decode(LoginResponse.self, from: response.data!)
+                    routines = result.data
+                    escapingHandler(routines)
+                case .failure(let error):
+                    print("login error")
+                }
+            } catch let parsingError {
+                print("login parsing Error:")
+            }
+        }.resume()
     }
     
-    func authCheck() -> Bool {
-        var token = UserDefaults.standard.string(forKey: "accessToken")
-        return token == "" || token == nil ? false : true
-    }
 }
