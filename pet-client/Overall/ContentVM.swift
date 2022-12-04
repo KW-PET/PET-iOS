@@ -8,19 +8,24 @@
 import Foundation
 
 class ContentVM: ObservableObject {
-  enum ViewMode {
-    case signUp
-    case main
-  }
+    enum ViewMode {
+        case signUp
+        case main
+        case launching
+    }
 
     let authService = AuthService()
     @Published var authorized: Bool? = nil
 
     var viewMode: ViewMode {
-        if authorized == true {
-            return .main
+        if let authorized = authorized {
+            if authorized == true {
+                return .main
+            } else {
+                return .signUp
+            }
         } else {
-            return .signUp
+            return .launching
         }
     }
 

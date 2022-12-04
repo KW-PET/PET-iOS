@@ -25,6 +25,8 @@ struct ContentView: View {
                 })
             case .main:
                 MainView()
+            case .launching:
+                LaunchingView()
             }
         }
         .onAppear {
