@@ -15,7 +15,7 @@ struct CommonTabMenu: View {
             
             TabView(selection: $selection) {
                 MainView()
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 8)
                     .tabItem {
                         Image(systemName: "house.fill")
                         Text("홈으로")
@@ -24,7 +24,7 @@ struct CommonTabMenu: View {
                     .tag(0)
                 
                 CommunityView()
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 8)
 
                     .tabItem {
                         Image(systemName: "bookmark.circle.fill")
@@ -33,7 +33,7 @@ struct CommonTabMenu: View {
                     .tag(1)
                 
                 RecommendView()
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 8)
 
                     .font(.system(size: 30))
                     .tabItem {
@@ -43,7 +43,7 @@ struct CommonTabMenu: View {
                     .tag(2)
                 
                 MypageView()
-                    .padding(.bottom, 18)
+                    .padding(.bottom, 8)
 
                     .font(.system(size: 30))
                     .tabItem {
