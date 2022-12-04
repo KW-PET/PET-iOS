@@ -66,27 +66,34 @@ struct LoginView: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        VStack{
-            Button(action : {
-                Task {
-                    var result = await getKakaoAgreement()
-                    if(result){
-                        appState.refreshContentView()
+        NavigationView{
+            VStack{
+                Image("LaunchingLogo")
+                Spacer().frame(height: 200)
+                Image("PetLogo")
+                Spacer().frame(height: 150)
+                Button(action : {
+                    Task {
+                        var result = await getKakaoAgreement()
+                        if(result){
+                            appState.refreshContentView()
+                        }
                     }
+                }){
+                    Image("KakaoLogin")
                 }
-            }){
-                Image("KakaoLogin")
+                Spacer()
             }
-            Button(action : getUserToken){
-                Text("유저 토큰")
-            }
-            Button(action : disconnectWithKakao){
-                Text("연결 끊기")
-            }
-            Button(action : getUserInfo){
-                Text("유저 정보")
-            }
-        }
+        }        
+//            Button(action : getUserToken){
+//                Text("유저 토큰")
+//            }
+//            Button(action : disconnectWithKakao){
+//                Text("연결 끊기")
+//            }
+//            Button(action : getUserInfo){
+//                Text("유저 정보")
+//            }
     }
 }
     
