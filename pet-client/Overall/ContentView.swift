@@ -27,6 +27,8 @@ struct ContentView: View {
                 MainView()
             case .launching:
                 LaunchingView()
+            case .setNickname:
+                NicknameSetupView()
             }
         }
         .onAppear {

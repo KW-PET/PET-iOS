@@ -12,15 +12,21 @@ class ContentVM: ObservableObject {
         case signUp
         case main
         case launching
+        case setNickname
     }
-
+    
     let authService = AuthService()
     @Published var authorized: Bool? = nil
-
+    @Published var hasNickname: Bool = false
+    
     var viewMode: ViewMode {
         if let authorized = authorized {
             if authorized == true {
-                return .main
+                if hasNickname == true {
+                    return .main
+                } else {
+                    return .setNickname
+                }
             } else {
                 return .signUp
             }
@@ -28,11 +34,13 @@ class ContentVM: ObservableObject {
             return .launching
         }
     }
-
+    
     func checkAuthSession() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            let result = self.authService.authCheck()
-            self.authorized = result
+            let authCheck = self.authService.authCheck()
+            let nicknameCheck = self.authService.nicknameCheck()
+            self.authorized = authCheck
+            self.hasNickname = nicknameCheck
         }
     }
 }
