@@ -25,6 +25,10 @@ struct ContentView: View {
                 })
             case .main:
                 CommonTabMenu()
+            case .launching:
+                LaunchingView()
+            case .setNickname:
+                NicknameSetupView()
             }
         }
         .onAppear {

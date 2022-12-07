@@ -10,46 +10,20 @@ import Alamofire
 
 struct LoginResponse: Codable {
     let status:Int?
-    let data: String
+    let data: String?
     let success:Bool?
 }
 
 class LoginManager: ObservableObject {
-    @Published var jwtToken: String
     @StateObject var viewModel = ContentVM()
-
-    init() {
-        jwtToken = ""
-    }
     
-    func setJwtToken(accessToken: String) {
-        getJwtToken(accessToken: accessToken) { returnedData in
-            DispatchQueue.main.async { [weak self] in
-                self?.jwtToken = returnedData
-                UserDefaults.standard.set(returnedData, forKey: "jwtToken")
-            }
-        }
-    }
-    
-    func getJwtToken(accessToken:String, escapingHandler: @escaping (_ data: String)->Void){
+    func getJwtToken(accessToken: String) async throws -> LoginResponse {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        AF.request("\(baseURL)/kakao/login?access_Token=\(accessToken)", method: .get, parameters: nil, encoding: JSONEncoding.default)
-            .responseJSON { response in
-            var routines: String
-            do {
-                let decoder = JSONDecoder()
-                switch (response.result) {
-                case .success:
-                    let result  = try decoder.decode(LoginResponse.self, from: response.data!)
-                    routines = result.data
-                    escapingHandler(routines)
-                case .failure(let error):
-                    print("login error")
-                }
-            } catch let parsingError {
-                print("login parsing Error:")
-            }
-        }.resume()
+        return try await AF.request("\(baseURL)/kakao/login?access_Token=\(accessToken)", method: .get, parameters: nil, encoding: JSONEncoding.default).serializingDecodable(LoginResponse.self).value
     }
     
+    func updateNickname(nickname: String) async throws -> LoginResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/updateNickname", method: .post, parameters: [ "nickname": nickname ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LoginResponse.self).value
+    }
 }
