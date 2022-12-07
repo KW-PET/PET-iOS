@@ -104,13 +104,12 @@ struct PlaceInfo: View {
 
 
 struct MainView: View {
-    @State var coord: (Double, Double) = (126.9784147, 37.5666805)
     @State var selectedId:Int = 0
     @State var text : String = ""
     
     
     class SheetMananger: ObservableObject{
-        @Published var curPlace : PlaceResult = PlaceResult(name: "", address: "", distance: 0, category: "", place_id: 0, phone: "", xpos: 0, ypos:0, like_cnt: 0)
+        @Published var curPlace : PlaceResult = PlaceResult(name: "", address: "", distance: 0, category: "", place_id: 0, phone: "", lon: 0, lat:0, like_cnt: 0)
         @Published var ifView : Bool = false
     }
     
@@ -167,7 +166,7 @@ struct MainView: View {
                     PlaceInfo(place: sheetManager.curPlace)
                     .presentationDetents([.height(200)])}
                 
-                UIMapView(coord: coord, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
+                UIMapView(selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
                     .edgesIgnoringSafeArea(.vertical)
                     .zIndex(1)
             }
@@ -176,16 +175,16 @@ struct MainView: View {
 }
 
 struct UIMapView: UIViewRepresentable {
-    var coord: (Double, Double)
+    @State var coord: (Double, Double) = (127.027610, 37.498095)
     var selectedId : Int
+    var set : Bool = false
     @Binding var curPlace:PlaceResult
     @Binding var ifView:Bool
     @State var mapview:NMFNaverMapView =  NMFNaverMapView()
     @State var markerlist : [NMFMarker] = []
     @StateObject var list : FetchData  // API GET!!!
 
-    init(coord: (Double, Double), selectedId: Int, curPlace: Binding<PlaceResult>, ifView: Binding<Bool>) {
-        self.coord = coord
+    init( selectedId: Int, curPlace: Binding<PlaceResult>, ifView: Binding<Bool>) {
         self.selectedId = selectedId
         _curPlace = curPlace
         _ifView = ifView
@@ -199,10 +198,10 @@ struct UIMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> NMFNaverMapView {
         mapview.showZoomControls = false
         mapview.mapView.positionMode = .direction
-        mapview.mapView.zoomLevel = 13
+        mapview.mapView.zoomLevel = 17
         mapview.showLocationButton = true
         mapview.mapView.addCameraDelegate(delegate: context.coordinator)
-         
+        
         return mapview
     }
     
@@ -238,55 +237,55 @@ struct UIMapView: UIViewRepresentable {
             else if (self.selectedId == 6 ){
                 marker.mapView =  a.category == "동물장묘업" ? mapview.mapView : nil
             }
+            else {
+                marker.mapView = mapview.mapView
+            }
         }
 
     }
     
         class Coordinator: NSObject, NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
             var parent :UIMapView
-            var count: Int = 1 // 추후 지움
             init(_ parent: UIMapView){
                 self.parent = parent
             }
             
             func mapViewCameraIdle(_ mapView: NMFMapView){
-//                print( mapView.cameraPosition.target.lat, mapView.cameraPosition.target.lng)
-
-                self.parent.list.setData(lon: Double(  mapView.cameraPosition.target.lng), lat:Double( mapView.cameraPosition.target.lat) )
-
-
+                
+                self.parent.list.setData(lon: Double(  mapView.cameraPosition.target.lng), lat:Double( mapView.cameraPosition.target.lat) ) // API 다시 호출
+                
+              //  print ( "aa" )
+                
                 for marker in self.parent.markerlist {
                     marker.mapView = nil
                 }
+                // 기존에 있던 마커 지우기
                 self.parent.markerlist = []
                 
                 for place in self.parent.list.datas {
-             //       print(place)
-            
-                         let marker = NMFMarker()
-                    marker.position = NMGLatLng(lat:37.5666805  + ( 0.0003 * Double(count) ) , lng:  126.9784147 )
-                   // marker.position = NMGLatLng(lat: place.ypos, lng:  place.xpos)
-                    
-                    if(place.category=="동물병원"){
-                        marker.iconTintColor = UIColor.red}
-                    else if (place.category=="동물약국"){
-                        marker.iconTintColor = UIColor.blue}
+                    if(place.lat != nil && place.lon != nil){
+                        let marker = NMFMarker()
+                        marker.position = NMGLatLng(lat: Double(place.lat ?? 0), lng: Double( place.lon ?? 0))
+                        
+                        if(place.category=="동물병원"){
+                            marker.iconTintColor = UIColor.red}
+                        else if (place.category=="동물약국"){
+                            marker.iconTintColor = UIColor.blue}
+                        
                         
                         marker.userInfo = ["place": place ]
-                    marker.mapView = self.parent.mapview.mapView
-
+                        //marker.mapView = self.parent.mapview.mapView
+                        
                         marker.touchHandler = { (overlay) -> Bool in
                             self.parent.curPlace = overlay.userInfo["place"] as! PlaceResult
                             self.parent.ifView = true
                             return true
                         }
-                    parent.markerlist.append(marker)
-                    count = count + 1 //
-
-                }
+                        parent.markerlist.append(marker)
+                    }}
+                    
                 
             }
-            
         }
     
     

@@ -349,9 +349,8 @@ struct MypageView: View{
                     .background(Color.gray.opacity(0.2))
                     .border(Color.gray.opacity(0.3))
                     
-                    
-                    List{
-                    
+                    ScrollView{
+                        
                         Text("내가 쓴 글")
                             .font(.system(size: 19).weight(.bold))
                             .foregroundColor(Color.black)
@@ -374,7 +373,6 @@ struct MypageView: View{
                         Divider()
                         
                     }
-                    
                     
                 }
             }

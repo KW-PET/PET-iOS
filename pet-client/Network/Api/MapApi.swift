@@ -12,6 +12,7 @@ import Alamofire
 struct Response: Codable {
     let status:Int?
     let data: [PlaceResult]
+    let message : String?
     let success:Bool?
 }
 
@@ -24,8 +25,8 @@ public struct PlaceResult: Codable, Identifiable{
     let category : String
     let place_id : Int
     let phone : String
-    let xpos : Double
-    let ypos : Double
+    let lon : Double?
+    let lat : Double?
     let like_cnt : Int
     
     init(name : String,
@@ -34,8 +35,8 @@ public struct PlaceResult: Codable, Identifiable{
          category : String,
          place_id : Int,
          phone : String,
-         xpos : Double,
-         ypos : Double,
+         lon : Double,
+         lat : Double,
          like_cnt : Int) {
         self.name = name
         self.address = address
@@ -43,8 +44,8 @@ public struct PlaceResult: Codable, Identifiable{
         self.category = category
         self.place_id = place_id
         self.phone = phone
-        self.xpos = xpos
-        self.ypos = ypos
+        self.lon = lon
+        self.lat = lat
         self.like_cnt = like_cnt
     }
     
@@ -55,6 +56,7 @@ class FetchData: ObservableObject {
     @Published var datas: [PlaceResult] = []
     
     init() {
+        //  setData(lon: 126.9784147, lat: 37.5666805)
     }
     
     func setData(lon : Double, lat : Double) {
@@ -68,7 +70,7 @@ class FetchData: ObservableObject {
     func getData(lon : Double, lat : Double, escapingHandler: @escaping (_ data:  [PlaceResult])->Void){
         
         AF.request("http://49.50.164.40:8080/place", method: .post, parameters:  ["lon" : lon, "lat": lat, "sort" : 1], encoder: JSONParameterEncoder.default).responseJSON { response in
-            //   print("response: \(response)")
+          //  print("response: \(response)")
             
             var routines: [PlaceResult]
             do {

@@ -24,7 +24,7 @@ struct ContentView: View {
                     }
                 })
             case .main:
-                MainView()
+                CommonTabMenu()
             case .launching:
                 LaunchingView()
             case .setNickname:
