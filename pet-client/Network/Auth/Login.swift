@@ -10,7 +10,7 @@ import Alamofire
 
 struct LoginResponse: Codable {
     let status:Int?
-    let data: String
+    let data: String?
     let success:Bool?
 }
 
@@ -24,6 +24,6 @@ class LoginManager: ObservableObject {
     
     func updateNickname(nickname: String) async throws -> LoginResponse {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        return try await AF.request("\(baseURL)/updateNickname", method: .post, parameters: [ "nickname": nickname ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken()]).serializingDecodable(LoginResponse.self).value
+        return try await AF.request("\(baseURL)/updateNickname", method: .post, parameters: [ "nickname": nickname ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LoginResponse.self).value
     }
 }

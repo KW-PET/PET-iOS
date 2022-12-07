@@ -17,8 +17,8 @@ struct UserInfo: Codable {
 class UserManager: ObservableObject {
     @StateObject var viewModel = ContentVM()
     
-    func getUserInfo() async throws -> String {
+    func getUserInfo() async throws -> UserInfo {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        return try await AF.request("\(baseURL)/user", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken()]).serializingString().value
+        return try await AF.request("\(baseURL)/user", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken()]).serializingDecodable(UserInfo.self).value
     }
 }
