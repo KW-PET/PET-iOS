@@ -34,7 +34,6 @@
 		1E9BF71B293B8AD700CAF327 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF718293B8AD600CAF327 /* AppState.swift */; };
 		1E9BF71F293B8B7100CAF327 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF71E293B8B7100CAF327 /* ContentView.swift */; };
 		1E9BF721293B8B8300CAF327 /* ContentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF720293B8B8300CAF327 /* ContentVM.swift */; };
-		1E9BF727293B95CB00CAF327 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF726293B95CA00CAF327 /* CommunityView.swift */; };
 		1EA19F832901591400FB8712 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EA19F822901591400FB8712 /* Alamofire */; };
 		1EA19F89290159E800FB8712 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA19F88290159E800FB8712 /* Login.swift */; };
 		1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACC3FA28FBA6EA009760CE /* ListView.swift */; };
@@ -850,7 +849,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -899,7 +898,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pet-client/Info.plist";
