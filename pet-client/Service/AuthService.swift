@@ -12,9 +12,16 @@ class AuthService {
     func getJwtToken() -> String {
         return UserDefaults.standard.string(forKey: "jwtToken") ?? ""
     }
-    
+
+    func getNickname() -> String {
+        return UserDefaults.standard.string(forKey: "nickname") ?? ""
+    }
+
     func authCheck() -> Bool {
-        var token = getJwtToken()
-        return token == "" || token == nil ? false : true
+        return getJwtToken() != ""
+    }
+    
+    func nicknameCheck() -> Bool {
+        return getNickname() != ""
     }
 }

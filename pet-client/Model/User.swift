@@ -15,15 +15,4 @@ public struct UserModel: Codable{
     var nickname: String?
     var email: String?
     var token: String?
-    
-    init(created_at: [Int], modified_at: [Int], userId: Int, uuid: String, name: String, nickname: String, email: String, token: String) {
-        self.created_at = created_at
-        self.modified_at = modified_at
-        self.userId = userId
-        self.uuid = uuid
-        self.name = name
-        self.nickname = nickname
-        self.email = email
-        self.token = token
-    }
 }
