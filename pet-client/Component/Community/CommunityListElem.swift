@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct CommunityListElem: View {
+    @Binding var communityPost: CommunityPostResponseModel
+    var nowTime = Date()
+    
     var body: some View{
         VStack(alignment: .leading){
             HStack{
-                Text("# 노원구")
+                Text("# \(communityPost.post.tag)")
                     .font(.system(size: 15).weight(.medium))
                     .foregroundColor(ColorManager.GreyColor)
                     .padding(.vertical, 7)
@@ -19,21 +22,22 @@ struct CommunityListElem: View {
                     .cornerRadius(4)
                     .background(RoundedRectangle(cornerRadius: 4, style: .continuous).fill(ColorManager.YellowColor))
                 Spacer()
-                Text("7분 전")
+                Text("\(Date().makeTime(created_at: communityPost.post.created_at!).relativeTime)")
                     .font(.system(size: 15).weight(.medium))
                     .foregroundColor(ColorManager.GreyColor)
             }.padding(.bottom, 6)
-            Text("월계동 중랑천에서 같이 산책하실 분~")
+            Text("\(communityPost.post.title)")
                 .font(.system(size: 18).weight(.bold))
                 .foregroundColor(Color.black)
                 .padding(.bottom, 4)
-            Text("오늘 8시에 같이 어울려 놀 분 없으실까요? 저희 아이는 말티즈입니다~")
+            Text("\(communityPost.post.content)")
                 .font(.system(size: 17).weight(.medium))
                 .foregroundColor(Color.black)
                 .padding(.bottom, 10)
+                .multilineTextAlignment(.leading)
             HStack{
-                Text("👍 3")
-                Text("✏️ 5")
+                Text("👍 \(communityPost.countLike)")
+                Text("✏️ \(communityPost.countComment)")
             }
         }
         .padding(18)

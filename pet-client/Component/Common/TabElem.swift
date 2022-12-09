@@ -9,12 +9,17 @@ import SwiftUI
 
 struct TabElem: View{
     @Binding var selectedId: Int
+    @Binding var postList: [CommunityPostResponseModel]
     var title: String
     var id: Int
 
     var body: some View{
         Button(action:{
-            selectedId = id
+            Task{
+                let result = try await CommunityManager().getPostList(category: title)
+                postList = result.data ?? []
+                selectedId = id
+            }
         }){
             Text("\(title)")
                 .font(.system(size: 15).weight(.medium))
