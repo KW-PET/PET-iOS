@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-enum PostCategory: String, CaseIterable, Identifiable {
-    case 같이해요
-    case 궁금해요
-    case 얘기해요
-    case 찾습니다
-
-    var id: Self { self }
-}
-
 struct CommunityPostView: View{
     enum Field {
         case tag
@@ -26,11 +17,16 @@ struct CommunityPostView: View{
     @State var tag: String = ""
     @State var title: String = ""
     @State var content: String = ""
-    @State private var category = PostCategory.같이해요
+    @State var category = "같이해요"
     @State var movePage: Bool = false
-
     @FocusState private var focusField: Field?
-    
+
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.gray
+        let attributes: [NSAttributedString.Key:Any] = [.foregroundColor : UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(attributes, for: .selected)
+    }
+ 
     var body: some View{
         NavigationView{
             VStack{
@@ -42,20 +38,15 @@ struct CommunityPostView: View{
                     Spacer()
                 }
                 
-                VStack{
-                        Picker("카테고리", selection: $category) {
-                            Text("같이해요").tag(PostCategory.같이해요)
-                            Text("궁금해요").tag(PostCategory.궁금해요)
-                            Text("얘기해요").tag(PostCategory.얘기해요)
-                            Text("찾습니다").tag(PostCategory.찾습니다)
-                        }
-                        .padding(10)
-                        .background(Color(.white))
-                        .cornerRadius(15)
-                        .shadow(color: .gray, radius: 2)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.black)
+                Picker(selection: $category, label: Text("카테고리"), content: {
+                    Text("같이해요").tag("같이해요")
+                    Text("궁금해요").tag("궁금해요")
+                    Text("얘기해요").tag("얘기해요")
+                    Text("찾습니다").tag("찾습니다")
+                })
+                .pickerStyle(SegmentedPickerStyle())
 
+                VStack{
                     TextField("태그를 입력하세요 (1개만 입력 가능)", text: $tag)
                         .padding(15)
                         .background(Color(.white))
@@ -92,7 +83,7 @@ struct CommunityPostView: View{
                     NavigationLink(destination: CommunityView(), isActive: $movePage) {
                         Button(action:{
                             Task {
-                                movePage = try await CommunityManager().addPost(category: category.rawValue, tag: tag, title: title, content: content).success ?? false
+                                movePage = try await CommunityManager().addPost(category: category, tag: tag, title: title, content: content).success ?? false
                             }
                         }){
                             Text("작성 완료")
@@ -110,15 +101,12 @@ struct CommunityPostView: View{
             }
             .padding(.vertical, 18)
             .padding(.horizontal, 28)
-            .onTapGesture {
-                focusField = nil
-            }
+            .background(
+                Color.white
+                    .onTapGesture {
+                        focusField = nil
+                    }
+            )
         }
     }
 }
-
-//struct CommunityPostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CommunityPostView()
-//    }
-//}
