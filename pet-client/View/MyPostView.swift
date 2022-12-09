@@ -23,10 +23,10 @@ struct MyPostView: View{
                 .padding(.horizontal, 28)
 
                 List{
-                    CommunityListElem()
-                    CommunityListElem()
-                    CommunityListElem()
-                    CommunityListElem()
+//                    CommunityListElem()
+//                    CommunityListElem()
+//                    CommunityListElem()
+//                    CommunityListElem()
                 }.listStyle(.plain)
             }
         }
