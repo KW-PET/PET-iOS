@@ -8,14 +8,21 @@
 import Foundation
 
 public struct CommunityPostModel: Codable{
-    var post_id: Int
     var created_at: [Int]?
     var modified_at: [Int]?
-    var category: String
-    var content: String
-    var tag: String?
+    var postId: Int
     var title: String
-    var view: Int
+    var content: String
     var writer: String
-    var user_id: Int
+    var tag: String
+    var category: String
+    var view: Int
+    var pic: String?
+    var user: UserModel
+}
+
+public struct CommunityPostResponseModel: Codable{
+    var post: CommunityPostModel
+    var countLike: Int
+    var countComment: Int
 }
