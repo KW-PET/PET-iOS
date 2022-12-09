@@ -9,7 +9,6 @@ struct pet_clientApp: App {
     
     var body: some Scene {
         WindowGroup {
-           // CommonTabMenu()
             ContentView().environmentObject(appDelegate.appState)
         }
     }

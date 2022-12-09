@@ -268,6 +268,8 @@ struct MypageView: View{
             count: 200
         )
     ]
+    @EnvironmentObject var appState: AppState
+    
     var body: some View{
         NavigationView{
             VStack{
@@ -365,11 +367,18 @@ struct MypageView: View{
                             .padding(.horizontal, 28)
                         Divider()
                         
-                        Text("로그아웃")
-                            .font(.system(size: 19).weight(.bold))
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 11)
-                            .padding(.horizontal, 28)
+                        Button(action: {
+                            UserDefaults.standard.removeObject(forKey: "jwtToken")
+                            UserDefaults.standard.removeObject(forKey: "nickname")
+                            appState.refreshContentView()
+                        }) {
+                            Text("로그아웃")
+                        }
+                        .font(.system(size: 19).weight(.bold))
+                        .foregroundColor(Color.black)
+                        .padding(.vertical, 11)
+                        .padding(.horizontal, 28)
+
                         Divider()
                         
                     }
