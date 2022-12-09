@@ -83,6 +83,6 @@ struct CommunityView: View{
                     }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 }
