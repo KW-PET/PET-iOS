@@ -15,7 +15,6 @@
 		115021A1292146F600D7E900 /* MypageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115021A0292146F600D7E900 /* MypageView.swift */; };
 		116EEDF029077F4200B41A24 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EEDEF29077F4200B41A24 /* SearchBar.swift */; };
 		1199AC6A293B8C2000E7DCCA /* CommonTabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199AC69293B8C2000E7DCCA /* CommonTabMenu.swift */; };
-		11D30F66293C79B1008C2295 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D30F65293C79B1008C2295 /* CommunityView.swift */; };
 		11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E66CAE28EB44BA00716CF9 /* MainView.swift */; };
 		1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */; };
 		1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AA28E817C4003EA6D2 /* Assets.xcassets */; };
@@ -86,7 +85,6 @@
 		115021A0292146F600D7E900 /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
 		116EEDEF29077F4200B41A24 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		1199AC69293B8C2000E7DCCA /* CommonTabMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTabMenu.swift; sourceTree = "<group>"; };
-		11D30F65293C79B1008C2295 /* CommunityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		11E66CAE28EB44BA00716CF9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1E1420A328E817C3003EA6D2 /* pet-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pet-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientApp.swift; sourceTree = "<group>"; };
@@ -292,7 +290,6 @@
 				1150219B292134CA00D7E900 /* SearchView.swift */,
 				1E9BF726293B95CA00CAF327 /* CommunityView.swift */,
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
-				11D30F65293C79B1008C2295 /* CommunityView.swift */,
 				1EFB3157293385EE0064B31E /* CommunityPostView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
 				1EFB611229175F4800D43D61 /* MyPostView.swift */,
@@ -662,7 +659,6 @@
 				1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */,
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
 				1EFB3158293385EF0064B31E /* CommunityPostView.swift in Sources */,
-				11D30F66293C79B1008C2295 /* CommunityView.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1150219C292134CA00D7E900 /* SearchView.swift in Sources */,

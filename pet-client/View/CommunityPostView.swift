@@ -17,7 +17,8 @@ struct CommunityPostView: View{
     @State var tag: String = ""
     @State var title: String = ""
     @State var content: String = ""
-    @State var category = "같이해요"
+    @State var category: String = "같이해요"
+    @State var requested: Bool = false
     @State var movePage: Bool = false
     @FocusState private var focusField: Field?
 
@@ -84,6 +85,7 @@ struct CommunityPostView: View{
                         Button(action:{
                             Task {
                                 movePage = try await CommunityManager().addPost(category: category, tag: tag, title: title, content: content).success ?? false
+                                requested = true
                             }
                         }){
                             Text("작성 완료")
@@ -96,6 +98,14 @@ struct CommunityPostView: View{
                         .frame(maxWidth:.infinity)
                         .background(ColorManager.OrangeColor)
                         .cornerRadius(30)
+                        .alert("작성 실패", isPresented:
+                                Binding<Bool>(get: { !self.movePage && self.requested },
+                                              set: {  self.movePage = !$0 })
+                        ) {
+                            Button("확인") {}
+                        } message: {
+                            Text("게시글 작성에 실패했습니다.")
+                        }
                     }
                 }
             }
