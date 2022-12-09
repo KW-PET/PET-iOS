@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 struct PostDetailView: View{
-    @State var selectedId:Int = 1
+    var postId: Int
     
     var body: some View{
+        NavigationView{            
             VStack(){
-                
                 HStack{
                     Image("CommunityIcon")
                     Text("커뮤니티")
@@ -23,17 +23,16 @@ struct PostDetailView: View{
                 }
                 .padding(.vertical, 18)
                 .padding(.horizontal, 28)
-            
+                
                 
                 Divider()
                 ScrollView() {
-
-                PostView()
-                CommentView()
-                Spacer()
-            }
+                    PostView()
+                    CommentView()
+                    Spacer()
+                }
                 commentBar()
-
+            }
         }
     }
 }
@@ -172,11 +171,5 @@ struct PostView: View {
             Divider()
         }
      
-    }
-}
-
-struct PostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostDetailView()
     }
 }

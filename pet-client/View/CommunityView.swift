@@ -55,7 +55,7 @@ struct CommunityView: View{
                     TabView{
                         List{
                             ForEach(0..<postList.count, id: \.self) { i in
-                                NavigationLink(destination: PostDetailView()
+                                NavigationLink(destination: PostDetailView(postId: postList[i].post.postId)
                                     .navigationBarHidden(true)
                                     .navigationBarBackButtonHidden(true)
                                 ){
