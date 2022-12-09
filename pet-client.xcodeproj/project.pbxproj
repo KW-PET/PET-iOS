@@ -15,7 +15,6 @@
 		115021A1292146F600D7E900 /* MypageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115021A0292146F600D7E900 /* MypageView.swift */; };
 		116EEDF029077F4200B41A24 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116EEDEF29077F4200B41A24 /* SearchBar.swift */; };
 		1199AC6A293B8C2000E7DCCA /* CommonTabMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199AC69293B8C2000E7DCCA /* CommonTabMenu.swift */; };
-		11D30F66293C79B1008C2295 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D30F65293C79B1008C2295 /* CommunityView.swift */; };
 		11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E66CAE28EB44BA00716CF9 /* MainView.swift */; };
 		1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */; };
 		1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E1420AA28E817C4003EA6D2 /* Assets.xcassets */; };
@@ -34,7 +33,6 @@
 		1E9BF71B293B8AD700CAF327 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF718293B8AD600CAF327 /* AppState.swift */; };
 		1E9BF71F293B8B7100CAF327 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF71E293B8B7100CAF327 /* ContentView.swift */; };
 		1E9BF721293B8B8300CAF327 /* ContentVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF720293B8B8300CAF327 /* ContentVM.swift */; };
-		1E9BF727293B95CB00CAF327 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9BF726293B95CA00CAF327 /* CommunityView.swift */; };
 		1EA19F832901591400FB8712 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EA19F822901591400FB8712 /* Alamofire */; };
 		1EA19F89290159E800FB8712 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA19F88290159E800FB8712 /* Login.swift */; };
 		1EACC3FB28FBA6EA009760CE /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EACC3FA28FBA6EA009760CE /* ListView.swift */; };
@@ -46,6 +44,8 @@
 		1ECCFF4A28E81F3500662084 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4928E81F3500662084 /* Model.swift */; };
 		1ECCFF4C28E81F5E00662084 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4B28E81F5E00662084 /* Util.swift */; };
 		1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCFF4D28E81F6400662084 /* LoginView.swift */; };
+		1ED7C3CB2943262A006AC0CB /* CommunityApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED7C3CA2943262A006AC0CB /* CommunityApi.swift */; };
+		1ED7C3CD294327D2006AC0CB /* CommunityPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED7C3CC294327D2006AC0CB /* CommunityPost.swift */; };
 		1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE02903EA68002145A7 /* CommunityListElem.swift */; };
 		1EE04FE42903F314002145A7 /* TabElem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE04FE32903F314002145A7 /* TabElem.swift */; };
 		1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */; };
@@ -85,7 +85,6 @@
 		115021A0292146F600D7E900 /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
 		116EEDEF29077F4200B41A24 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		1199AC69293B8C2000E7DCCA /* CommonTabMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTabMenu.swift; sourceTree = "<group>"; };
-		11D30F65293C79B1008C2295 /* CommunityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		11E66CAE28EB44BA00716CF9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1E1420A328E817C3003EA6D2 /* pet-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pet-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1420A628E817C3003EA6D2 /* pet_clientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientApp.swift; sourceTree = "<group>"; };
@@ -117,6 +116,8 @@
 		1ECCFF4928E81F3500662084 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1ECCFF4B28E81F5E00662084 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		1ECCFF4D28E81F6400662084 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1ED7C3CA2943262A006AC0CB /* CommunityApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityApi.swift; sourceTree = "<group>"; };
+		1ED7C3CC294327D2006AC0CB /* CommunityPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPost.swift; sourceTree = "<group>"; };
 		1EE04FE02903EA68002145A7 /* CommunityListElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityListElem.swift; sourceTree = "<group>"; };
 		1EE04FE32903F314002145A7 /* TabElem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabElem.swift; sourceTree = "<group>"; };
 		1EE613E728F3EEAA0019C0E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				1137E92729336CDC008A8056 /* MapApi.swift */,
+				1ED7C3CA2943262A006AC0CB /* CommunityApi.swift */,
 				1E756CFD293C396300AAB814 /* UserApi.swift */,
 			);
 			path = Api;
@@ -274,6 +276,7 @@
 				1ECCFF4928E81F3500662084 /* Model.swift */,
 				1EACC40528FBBE4A009760CE /* Place.swift */,
 				1E756D01293C3C0000AAB814 /* User.swift */,
+				1ED7C3CC294327D2006AC0CB /* CommunityPost.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,7 +290,6 @@
 				1150219B292134CA00D7E900 /* SearchView.swift */,
 				1E9BF726293B95CA00CAF327 /* CommunityView.swift */,
 				1ECCFF4D28E81F6400662084 /* LoginView.swift */,
-				11D30F65293C79B1008C2295 /* CommunityView.swift */,
 				1EFB3157293385EE0064B31E /* CommunityPostView.swift */,
 				1EACC3FA28FBA6EA009760CE /* ListView.swift */,
 				1EFB611229175F4800D43D61 /* MyPostView.swift */,
@@ -652,11 +654,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */,
+				1ED7C3CD294327D2006AC0CB /* CommunityPost.swift in Sources */,
 				1EA19F89290159E800FB8712 /* Login.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */,
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
 				1EFB3158293385EF0064B31E /* CommunityPostView.swift in Sources */,
-				11D30F66293C79B1008C2295 /* CommunityView.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1EFB61172917627500D43D61 /* SettingView.swift in Sources */,
 				1150219C292134CA00D7E900 /* SearchView.swift in Sources */,
@@ -667,6 +669,7 @@
 				1E756CFE293C396300AAB814 /* UserApi.swift in Sources */,
 				1E9BF721293B8B8300CAF327 /* ContentVM.swift in Sources */,
 				115021A1292146F600D7E900 /* MypageView.swift in Sources */,
+				1ED7C3CB2943262A006AC0CB /* CommunityApi.swift in Sources */,
 				1EE04FE12903EA68002145A7 /* CommunityListElem.swift in Sources */,
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
 				1EACC40128FBAD10009760CE /* Palette.swift in Sources */,
@@ -850,7 +853,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -899,7 +902,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pet-client/Info.plist";

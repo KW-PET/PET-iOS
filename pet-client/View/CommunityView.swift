@@ -12,63 +12,77 @@ struct CommunityView: View{
     
     var body: some View{
         NavigationView{
-            VStack{
-                HStack{
-                    Image("CommunityIcon")
-                    Text("커뮤니티")
-                        .font(.system(size: 20).weight(.bold))
-                        .foregroundColor(Color.black)
-                    Spacer()
+            ZStack{
+                NavigationLink(destination: CommunityPostView()
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                ){
+                    Image("PencilIcon")
+                        .frame(width:70, height:70)
+                        .cornerRadius(35)
+                        .background(RoundedRectangle(cornerRadius: 35, style: .continuous).fill(ColorManager.YellowColor))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 35)
+                                .stroke(ColorManager.LightGreyColor)
+                                .shadow(color:Color.black.opacity(0.1),radius: 5, x:0, y:2)
+                        )
                 }
-                .padding(.vertical, 18)
-                .padding(.horizontal, 28)
-                
-                ZStack(alignment: .bottom){
-                    HStack{
-                        TabElem(selectedId: $selectedId, title: "같이해요", id: 1)
-                        TabElem(selectedId: $selectedId, title: "궁금해요", id: 2)
-                        TabElem(selectedId: $selectedId, title: "얘기해요", id: 3)
-                        TabElem(selectedId: $selectedId, title: "찾습니다", id: 4)
-                    }
-                    Divider()
-                }
-                TabView{
-                    List{
-                        //링크 예시
-                        NavigationLink(destination: PostDetailView()
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                        ){
-                            CommunityListElem()
-                        }
-                        
-                        CommunityListElem()
-                        CommunityListElem()
-                        CommunityListElem()
-                    }.listStyle(.plain)
-                        .tabItem {
-                            Text("같이해요")
-                        }
-                    CommunityListElem()
-                        .tabItem {
-                            Text("궁금해요")
-                        }
-                    CommunityListElem()
-                        .tabItem {
-                            Text("얘기해요")
-                        }
-                    CommunityListElem()
-                        .tabItem {
-                            Text("찾습니다")
-                        }
-                }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            }
-        }
-    }
-}
+                .zIndex(10)
+                .offset(x:120, y:270)
 
-struct CommunityView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityView()
+                VStack{
+                    HStack{
+                        Image("CommunityIcon")
+                        Text("커뮤니티")
+                            .font(.system(size: 20).weight(.bold))
+                            .foregroundColor(Color.black)
+                        Spacer()
+                    }
+                    .padding(.vertical, 18)
+                    .padding(.horizontal, 28)
+                    
+                    ZStack(alignment: .bottom){
+                        HStack{
+                            TabElem(selectedId: $selectedId, title: "같이해요", id: 1)
+                            TabElem(selectedId: $selectedId, title: "궁금해요", id: 2)
+                            TabElem(selectedId: $selectedId, title: "얘기해요", id: 3)
+                            TabElem(selectedId: $selectedId, title: "찾습니다", id: 4)
+                        }
+                        Divider()
+                    }
+                    
+                    TabView{
+                        List{
+                            //링크 예시
+                            NavigationLink(destination: PostDetailView()
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                            ){
+                                CommunityListElem()
+                            }
+                            
+                            CommunityListElem()
+                            CommunityListElem()
+                            CommunityListElem()
+                        }.listStyle(.plain)
+                            .tabItem {
+                                Text("같이해요")
+                            }
+                        CommunityListElem()
+                            .tabItem {
+                                Text("궁금해요")
+                            }
+                        CommunityListElem()
+                            .tabItem {
+                                Text("얘기해요")
+                            }
+                        CommunityListElem()
+                            .tabItem {
+                                Text("찾습니다")
+                            }
+                    }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                }
+            }
+        }.navigationBarBackButtonHidden(true)
     }
 }

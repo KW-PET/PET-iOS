@@ -17,8 +17,17 @@ struct CommunityPostView: View{
     @State var tag: String = ""
     @State var title: String = ""
     @State var content: String = ""
+    @State var category: String = "같이해요"
+    @State var requested: Bool = false
+    @State var movePage: Bool = false
     @FocusState private var focusField: Field?
-    
+
+    init() {
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.gray
+        let attributes: [NSAttributedString.Key:Any] = [.foregroundColor : UIColor.white]
+        UISegmentedControl.appearance().setTitleTextAttributes(attributes, for: .selected)
+    }
+ 
     var body: some View{
         NavigationView{
             VStack{
@@ -30,6 +39,14 @@ struct CommunityPostView: View{
                     Spacer()
                 }
                 
+                Picker(selection: $category, label: Text("카테고리"), content: {
+                    Text("같이해요").tag("같이해요")
+                    Text("궁금해요").tag("궁금해요")
+                    Text("얘기해요").tag("얘기해요")
+                    Text("찾습니다").tag("찾습니다")
+                })
+                .pickerStyle(SegmentedPickerStyle())
+
                 VStack{
                     TextField("태그를 입력하세요 (1개만 입력 가능)", text: $tag)
                         .padding(15)
@@ -62,28 +79,44 @@ struct CommunityPostView: View{
                     }
                 }
 
-                Button(action:{print("clicked!")}){
-                    Text("작성 완료")
-                        .font(.system(size: 15).weight(.medium))
-                        .foregroundColor(Color.white)
+                
+                VStack{
+                    NavigationLink(destination: CommunityView(), isActive: $movePage) {
+                        Button(action:{
+                            Task {
+                                movePage = try await CommunityManager().addPost(category: category, tag: tag, title: title, content: content).success ?? false
+                                requested = true
+                            }
+                        }){
+                            Text("작성 완료")
+                                .font(.system(size: 15).weight(.medium))
+                                .foregroundColor(Color.white)
+                                .frame(maxWidth:.infinity)
+                        }
+                        .padding(.vertical, 15)
+                        .padding(.horizontal, 7)
+                        .frame(maxWidth:.infinity)
+                        .background(ColorManager.OrangeColor)
+                        .cornerRadius(30)
+                        .alert("작성 실패", isPresented:
+                                Binding<Bool>(get: { !self.movePage && self.requested },
+                                              set: {  self.movePage = !$0 })
+                        ) {
+                            Button("확인") {}
+                        } message: {
+                            Text("게시글 작성에 실패했습니다.")
+                        }
+                    }
                 }
-                .padding(.vertical, 15)
-                .padding(.horizontal, 7)
-                .frame(maxWidth:.infinity)
-                .background(ColorManager.OrangeColor)
-                .cornerRadius(30)
             }
             .padding(.vertical, 18)
             .padding(.horizontal, 28)
-            .onTapGesture {
-                focusField = nil
-            }
+            .background(
+                Color.white
+                    .onTapGesture {
+                        focusField = nil
+                    }
+            )
         }
     }
 }
-
-//struct CommunityPostView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CommunityPostView()
-//    }
-//}
