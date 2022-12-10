@@ -18,10 +18,13 @@ struct CommunityView: View{
                     .navigationBarHidden(true)
                     .navigationBarBackButtonHidden(true)
                 ){
-                    Image("PencilIcon")
-                        .frame(width:70, height:70)
+                    Image(systemName: "square.and.pencil")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .foregroundColor(.white)
+                        .frame(width:66, height:66)
                         .cornerRadius(35)
-                        .background(RoundedRectangle(cornerRadius: 35, style: .continuous).fill(ColorManager.YellowColor))
+                        .background(RoundedRectangle(cornerRadius: 35, style: .continuous).fill(.yellow))
                         .overlay(
                             RoundedRectangle(cornerRadius: 35)
                                 .stroke(ColorManager.LightGreyColor)
@@ -29,7 +32,7 @@ struct CommunityView: View{
                         )
                 }
                 .zIndex(10)
-                .offset(x:120, y:270)
+                .offset(x:125, y:275)
 
                 VStack{
                     HStack{
