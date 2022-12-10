@@ -22,17 +22,25 @@ struct MyPostView: View{
                 .padding(.vertical, 18)
                 .padding(.horizontal, 28)
 
-                List{
-                    ForEach(0..<postList.count, id: \.self) { i in
-                        NavigationLink(destination: PostDetailView(postId: postList[i].post.postId)
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                        ){
-                            CommunityListElem(communityPost: $postList[i])
+                if(postList.isEmpty){
+                    Spacer()
+                    Text("작성한 글이 없습니다.")
+                        .font(.system(size: 16).weight(.bold))
+                        .foregroundColor(ColorManager.GreyColor)
+                    Spacer()
+                } else{
+                    List{
+                        ForEach(0..<postList.count, id: \.self) { i in
+                            NavigationLink(destination: PostDetailView(postId: postList[i].post.postId)
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                            ){
+                                CommunityListElem(communityPost: $postList[i])
+                            }
                         }
                     }
+                    .listStyle(.plain)
                 }
-                .listStyle(.plain)
             }
         }
         .onAppear{
