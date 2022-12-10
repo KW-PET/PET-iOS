@@ -90,6 +90,7 @@ struct RecommendView: View {
             Task{
                 let result = try await PlaceManager().getPlaceList(lon: userLongitude, lat: userLatitude, sort: 2)
                 placeList = result.data ?? []
+                sortOrder = "recommend"
             }
         }
     }
