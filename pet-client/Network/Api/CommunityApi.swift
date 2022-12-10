@@ -27,7 +27,7 @@ struct CommunityGetResponse: Codable {
 
 struct LikePostResponse: Codable {
     let status:Int?
-    let data: String?
+    let data: Bool?
     let success:Bool?
 }
 struct CommentPostResponse: Codable {
@@ -74,4 +74,11 @@ class CommunityManager: ObservableObject {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
         return try await AF.request("\(baseURL)/post/comment", method: .post, parameters: ["comment":comment, "post":postid], encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommentPostResponse.self).value
     }
+    
+    func postReply(postid:Int, comment: String, parentid: Int) async throws -> CommentPostResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/post/comment/reply", method: .post, parameters: ["comment":comment, "post":postid, "parentId": parentid], encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommentPostResponse.self).value
+    }
+    
+    
 }
