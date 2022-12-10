@@ -352,8 +352,11 @@ struct MypageView: View{
                     .border(Color.gray.opacity(0.3))
                     
                     ScrollView{
-                        
-                        Text("내가 쓴 글")
+                        NavigationLink(destination: MyPostView()
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                        ){
+                            Text("내가 쓴 글")
                             .font(.system(size: 19).weight(.bold))
                             .foregroundColor(Color.black)
                             .padding(.vertical, 11)
