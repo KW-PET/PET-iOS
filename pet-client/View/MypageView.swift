@@ -364,11 +364,16 @@ struct MypageView: View{
                         }
                         Divider()
                         
-                        Text("좋아요 누른 글")
-                            .font(.system(size: 19).weight(.bold))
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 11)
-                            .padding(.horizontal, 28)
+                        NavigationLink(destination: MyLikeView()
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                        ){
+                            Text("공감한 글")
+                                .font(.system(size: 19).weight(.bold))
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 11)
+                                .padding(.horizontal, 28)
+                        }
                         Divider()
                         
                         Button(action: {
