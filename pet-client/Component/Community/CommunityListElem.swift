@@ -37,7 +37,12 @@ struct CommunityListElem: View {
                 .multilineTextAlignment(.leading)
             HStack{
                 Text("👍 \(communityPost.countLike)")
+                    .font(.system(size: 16).weight(.medium))
+                    .foregroundColor(Color.black)
+
                 Text("✏️ \(communityPost.countComment)")
+                    .font(.system(size: 16).weight(.medium))
+                    .foregroundColor(Color.black)
             }
         }
         .padding(18)

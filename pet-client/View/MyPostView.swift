@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct MyPostView: View{
-    @State var selectedId:Int = 1
-    
+    @State var postList: [CommunityPostResponseModel] = []
+
     var body: some View{
         NavigationView{
             VStack{
@@ -22,12 +22,31 @@ struct MyPostView: View{
                 .padding(.vertical, 18)
                 .padding(.horizontal, 28)
 
-                List{
-//                    CommunityListElem()
-//                    CommunityListElem()
-//                    CommunityListElem()
-//                    CommunityListElem()
-                }.listStyle(.plain)
+                if(postList.isEmpty){
+                    Spacer()
+                    Text("작성한 글이 없습니다.")
+                        .font(.system(size: 16).weight(.bold))
+                        .foregroundColor(ColorManager.GreyColor)
+                    Spacer()
+                } else{
+                    List{
+                        ForEach(0..<postList.count, id: \.self) { i in
+                            NavigationLink(destination: PostDetailView(postId: postList[i].post.postId)
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                            ){
+                                CommunityListElem(communityPost: $postList[i])
+                            }
+                        }
+                    }
+                    .listStyle(.plain)
+                }
+            }
+        }
+        .onAppear{
+            Task{
+                let result = try await CommunityManager().getMyPostList()
+                postList = result.data ?? []
             }
         }
     }
