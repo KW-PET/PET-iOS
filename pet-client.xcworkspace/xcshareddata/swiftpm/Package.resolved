@@ -33,7 +33,7 @@
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "67ae9555da3f5ff9f432485c1fc09e2dcd0b58da"
+        "revision" : "257d948548f3c0fd0bd272ab166a586b1d563415"
       }
     },
     {
@@ -87,7 +87,7 @@
       "location" : "https://github.com/kakao/kakao-ios-sdk",
       "state" : {
         "branch" : "master",
-        "revision" : "c503b3b0f60bf1b788cc3e71eab28648a838861c"
+        "revision" : "e1fc9d3edee8aa1a79da4c332d4442529df47f4b"
       }
     },
     {

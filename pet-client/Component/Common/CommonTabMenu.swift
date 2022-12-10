@@ -12,7 +12,6 @@ struct CommonTabMenu: View {
     @State private var selection = 0
     var body: some View {
         ZStack{
-            
             TabView(selection: $selection) {
                 MainView()
                     .padding(.bottom, 8)
@@ -27,7 +26,7 @@ struct CommonTabMenu: View {
                     .padding(.bottom, 8)
 
                     .tabItem {
-                        Image(systemName: "bookmark.circle.fill")
+                        Image(systemName: "quote.bubble.fill")
                         Text("커뮤니티")
                     }
                     .tag(1)
@@ -37,7 +36,7 @@ struct CommonTabMenu: View {
 
                     .font(.system(size: 30))
                     .tabItem {
-                        Image(systemName: "video.circle.fill")
+                        Image(systemName: "antenna.radiowaves.left.and.right")
                         Text("주변추천")
                     }
                     .tag(2)
@@ -47,7 +46,7 @@ struct CommonTabMenu: View {
 
                     .font(.system(size: 30))
                     .tabItem {
-                        Image(systemName: "video.circle.fill")
+                        Image(systemName: "person.circle")
                         Text("마이페이지")
                     }
                     .tag(3)

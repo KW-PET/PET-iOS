@@ -13,11 +13,12 @@ struct PlaceCard: View {
 
     var body: some View{
         Button(action:{
-            print("클릭")
             selectedId = placeType.id
         }){
             VStack{
                 Image(placeType.image)
+                    .resizable()
+                    .frame(width: 35, height: 35)
                 Text(placeType.name)
                     .font(.system(size:11))
                     .fontWeight(.regular)

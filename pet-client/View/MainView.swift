@@ -147,13 +147,13 @@ struct MainView: View {
                     Spacer()
                     ScrollView(.horizontal){
                         HStack{
-                            PlaceCard(placeType: PlaceType(id: 0, image: "HospitalIcon", name: "전체"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 0, image: "AllIcon", name: "전체"), selectedId: $selectedId)
                             PlaceCard(placeType: PlaceType(id: 1, image: "HospitalIcon", name: "병원"), selectedId: $selectedId)
                             PlaceCard(placeType: PlaceType(id: 2, image: "PharmacyIcon", name: "약국"), selectedId: $selectedId)
                             PlaceCard(placeType: PlaceType(id: 3, image: "SalonIcon", name: "미용"), selectedId: $selectedId)
                             PlaceCard(placeType: PlaceType(id: 4, image: "HotelIcon", name: "호텔"), selectedId: $selectedId)
-                            PlaceCard(placeType: PlaceType(id: 5, image: "HospitalIcon", name: "운송"), selectedId: $selectedId)
-                            PlaceCard(placeType: PlaceType(id: 6, image: "HospitalIcon", name: "장묘"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 5, image: "TaxiIcon", name: "운송"), selectedId: $selectedId)
+                            PlaceCard(placeType: PlaceType(id: 6, image: "FuneralIcon", name: "장묘"), selectedId: $selectedId)
                         }
                         .padding()
                         .padding(.top, 20)
@@ -253,9 +253,7 @@ struct UIMapView: UIViewRepresentable {
             func mapViewCameraIdle(_ mapView: NMFMapView){
                 
                 self.parent.list.setData(lon: Double(  mapView.cameraPosition.target.lng), lat:Double( mapView.cameraPosition.target.lat) ) // API 다시 호출
-                
-              //  print ( "aa" )
-                
+                                
                 for marker in self.parent.markerlist {
                     marker.mapView = nil
                 }
@@ -271,6 +269,14 @@ struct UIMapView: UIViewRepresentable {
                             marker.iconTintColor = UIColor.red}
                         else if (place.category=="동물약국"){
                             marker.iconTintColor = UIColor.blue}
+                        else if(place.category=="동물미용업"){
+                            marker.iconTintColor = UIColor.green}
+                        else if (place.category=="동물위탁관리업"){
+                            marker.iconTintColor = UIColor.purple}
+                        else if(place.category=="동물운송업"){
+                            marker.iconTintColor = UIColor.yellow}
+                        else if (place.category=="동물장묘업"){
+                            marker.iconTintColor = UIColor.gray}
                         
                         
                         marker.userInfo = ["place": place ]
