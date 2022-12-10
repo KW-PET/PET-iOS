@@ -26,3 +26,27 @@ public struct CommunityPostResponseModel: Codable{
     var countLike: Int
     var countComment: Int
 }
+
+public struct CommunityGetResponseModel: Codable{
+    var post: CommunityPostModel
+    var countLike: Int
+    var countComment: Int
+    var comments: [CommentModel]?
+
+}
+
+ public struct CommentModel: Codable{
+        var id: Int
+        var comment: String
+        var createdDate: [Int]?
+        var modifiedDate: [Int]?
+        var nickname: String
+        var childComments : [ReplyModel]?
+ }
+public struct ReplyModel : Codable{
+    var id: Int
+    var comment: String
+    var createdDate: [Int]?
+    var modifiedDate: [Int]?
+    var nickname: String
+}

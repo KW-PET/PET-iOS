@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct CommentListElem: View {
+    var comment: CommentModel
+    
     var body: some View{
         HStack(alignment: .top) {
             Image(systemName: "hare")
@@ -27,11 +29,18 @@ struct CommentListElem: View {
             
             VStack(alignment: .leading){
                 HStack(){
-                    Text("말티즈 님")
+                    Text(comment.nickname + " 님")
                         .font(Font.system(size: 17))
                         .bold()
                         .padding(.top, 10)
                         .padding(.bottom, 1)
+                    Text("\(Date().makeTime(created_at: comment.createdDate!).relativeTime)")
+                        .font(.system(size: 13))
+                        .foregroundColor(ColorManager.GreyColor)
+                        .padding(.top, 10)
+                        .padding(.bottom, 1)
+
+
                     
                     Spacer()
                     Image(systemName: "bubble.left")
@@ -44,17 +53,16 @@ struct CommentListElem: View {
                         .padding(.trailing,25)
                 }
                 
-                Text("저희 아이도 말티즈인데 같이 놀고 싶어요~!! ㅎㅎ")
+                Text(comment.comment)
                     .font(.body)
-                // 여러줄일 경우 정렬을 왼쪽정렬로 선택
                     .multilineTextAlignment(.leading)
-                // 여러줄로 보여줄 수 있고, 옆으로 쭉 길게 보여주는건 비활성화 처리함
                     .fixedSize(horizontal: false, vertical: true)
             }
             
         }
         .frame(height: 80)
-        .padding(5)
+        .padding(.horizontal, 5)
+        .padding(.vertical,2)
         
         Divider()
     }

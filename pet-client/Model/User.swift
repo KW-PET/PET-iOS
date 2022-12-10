@@ -12,7 +12,7 @@ public struct UserModel: Codable{
     var userId: Int?
     var uuid: String?
     var name: String?
-    var nickname: String?
+    var nickname: String
     var email: String?
     var token: String?
 }
