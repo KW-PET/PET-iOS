@@ -26,6 +26,8 @@
 		1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */; };
 		1E3E197D292E1A25009C5BD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */; };
 		1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		1E7052882944290E009341BA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7052872944290E009341BA /* LocationService.swift */; };
+		1E70528C2944C04A009341BA /* PlaceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70528B2944C04A009341BA /* PlaceApi.swift */; };
 		1E756CF8293C2D8300AAB814 /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E756CF7293C2D8300AAB814 /* LaunchingView.swift */; };
 		1E756CFE293C396300AAB814 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E756CFD293C396300AAB814 /* UserApi.swift */; };
 		1E756D02293C3C0000AAB814 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E756D01293C3C0000AAB814 /* User.swift */; };
@@ -99,6 +101,8 @@
 		1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E31B0DF28F39FCD00654FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E7052872944290E009341BA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		1E70528B2944C04A009341BA /* PlaceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceApi.swift; sourceTree = "<group>"; };
 		1E756CF7293C2D8300AAB814 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
 		1E756CFD293C396300AAB814 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		1E756D01293C3C0000AAB814 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				1137E92729336CDC008A8056 /* MapApi.swift */,
 				1ED7C3CA2943262A006AC0CB /* CommunityApi.swift */,
 				1E756CFD293C396300AAB814 /* UserApi.swift */,
+				1E70528B2944C04A009341BA /* PlaceApi.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				1E9BF713293B1EDD00CAF327 /* AuthService.swift */,
+				1E7052872944290E009341BA /* LocationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 				1ED7C3D529436CA4006AC0CB /* CommunityView.swift in Sources */,
 				11E66CAF28EB44BA00716CF9 /* MainView.swift in Sources */,
 				1ED7C3CD294327D2006AC0CB /* CommunityPost.swift in Sources */,
+				1E70528C2944C04A009341BA /* PlaceApi.swift in Sources */,
 				1EA19F89290159E800FB8712 /* Login.swift in Sources */,
 				1ECCFF4E28E81F6400662084 /* LoginView.swift in Sources */,
 				1EE613E828F3EEAA0019C0E4 /* AppDelegate.swift in Sources */,
@@ -676,6 +683,7 @@
 				1EACC40D28FBDAFF009760CE /* PlaceCard.swift in Sources */,
 				1EACC40128FBAD10009760CE /* Palette.swift in Sources */,
 				1EFB611329175F4800D43D61 /* MyPostView.swift in Sources */,
+				1E7052882944290E009341BA /* LocationService.swift in Sources */,
 				1EE04FE42903F314002145A7 /* TabElem.swift in Sources */,
 				1E1420A728E817C3003EA6D2 /* pet_clientApp.swift in Sources */,
 				1EACC40928FBBE65009760CE /* PlaceTemporary.swift in Sources */,
