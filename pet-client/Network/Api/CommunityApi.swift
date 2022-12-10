@@ -19,6 +19,24 @@ struct CommunityWriteResponse: Codable {
     let success:Bool?
 }
 
+struct CommunityGetResponse: Codable {
+    let status:Int?
+    let data: CommunityGetResponseModel?
+    let success:Bool?
+}
+
+struct LikePostResponse: Codable {
+    let status:Int?
+    let data: String?
+    let success:Bool?
+}
+struct CommentPostResponse: Codable {
+    let status:Int?
+    let data: Int?
+    let success:Bool?
+}
+
+
 class CommunityManager: ObservableObject {
     @StateObject var viewModel = ContentVM()
     
@@ -40,5 +58,20 @@ class CommunityManager: ObservableObject {
     func getMyLikePostList() async throws -> CommunityPostResponse {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
         return try await AF.request("\(baseURL)/likepost", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommunityPostResponse.self).value
+    }
+    
+    func getPostDetail(postid:Int) async throws -> CommunityGetResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/post/\(postid)", method: .get, parameters: nil, encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommunityGetResponse.self).value
+    }
+    
+    func postLike(postid:Int) async throws -> LikePostResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/like/\(postid)", method: .post, parameters: nil, encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LikePostResponse.self).value
+    }
+    
+    func postComment(postid:Int, comment: String) async throws -> CommentPostResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/post/comment", method: .post, parameters: ["comment":comment, "post":postid], encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommentPostResponse.self).value
     }
 }

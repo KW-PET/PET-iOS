@@ -10,6 +10,8 @@ import SwiftUI
 
 struct PostDetailView: View{
     var postId: Int
+    @State var postDetail: CommunityGetResponseModel = CommunityGetResponseModel(post: CommunityPostModel(created_at: [0,0,0,0,0,0], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+
     
     var body: some View{
         NavigationView{            
@@ -27,29 +29,46 @@ struct PostDetailView: View{
                 
                 Divider()
                 ScrollView() {
-                    PostView()
-                    CommentView()
+                    PostView(postId : postId, postDetail: $postDetail)
+                    if(postDetail.countComment>0){
+                        CommentView(postId: postId, postDetail: $postDetail )
+                    }
                     Spacer()
                 }
-                commentBar()
+                commentBar(postId : postId, postDetail: $postDetail)
             }
         }
+        .onAppear{
+            Task{
+                let result = try await CommunityManager().getPostDetail(postid: postId)
+                postDetail = result.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+            }
+        }
+   
     }
 }
 
 
 
 struct CommentView: View {
+    var postId:Int
+    @Binding var postDetail: CommunityGetResponseModel
+
     var body: some View{
         VStack(alignment: .leading){
-            CommentListElem()
-            CommentListElem()
-            CommentListElem()
+            if(postDetail.countComment>0){
+                ForEach(0..<postDetail.countComment, id: \.self) { i in
+                    CommentListElem(comment: postDetail.comments![i])
+                }
+            }
+        
         }
     }
 }
 
 struct commentBar: View {
+    var postId:Int
+    @Binding var postDetail: CommunityGetResponseModel
     @State var text:String = ""
     @State var editText : Bool = false
     
@@ -64,14 +83,32 @@ struct commentBar: View {
                 .padding(.top,2)
                 .overlay(
                     VStack{
-                       
+                        
                         if self.editText{
-                                }
-                        Image(systemName: "paperplane")
-                            .foregroundColor(.black)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
-                            .padding(30)
                         }
+                        Button(action: {
+                            if(text != ""){
+                            Task{
+                                let result = try await CommunityManager().postComment(postid: postId, comment:text).success ?? false
+                                    if(result){
+                                        let result_ = try await CommunityManager().getPostDetail(postid: postId)
+                                        postDetail = result_.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                                        if(result_.success ?? false){
+                                            text = ""
+                                            self.editText = false
+                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        ){ Image(systemName: "paperplane")
+                                .foregroundColor(.black)
+                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                                .padding(30)
+                        }
+                    }
                         
                 ).onTapGesture {
                     self.editText = true
@@ -82,11 +119,13 @@ struct commentBar: View {
 
 
 struct PostView: View {
+    var postId:Int
+    @Binding var postDetail: CommunityGetResponseModel
     var body: some View{
         VStack(alignment: .leading){
             VStack(alignment: .leading){
                 HStack{
-                    Text("# 노원구")
+                    Text("#" + postDetail.post.tag)
                         .font(.system(size: 15).weight(.medium))
                         .foregroundColor(ColorManager.GreyColor)
                         .padding(.vertical, 7)
@@ -96,18 +135,25 @@ struct PostView: View {
                     Spacer()
                 }.padding(.bottom, 6)
                 
-                Text("월계동 중랑천에서 같이 산책하실 분~")
+                Text(postDetail.post.title)
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.black)
                     .padding(.vertical, 10)
-                Text("오늘 8시에 같이 어울려 놀 분 없으실까요? 저희 아이는 말티즈입니다~")
+                Text(postDetail.post.content)
                     .font(.system(size: 19).weight(.medium))
                     .foregroundColor(Color.black)
                     .padding(.bottom, 10)
-                Text("2022-10-31 11:23")
-                    .font(.system(size: 15).weight(.medium))
-                    .foregroundColor(ColorManager.GreyColor)
-                    .padding(.bottom, 5)
+                HStack(){
+                    Text( String(postDetail.post.created_at![0]) + "-\(postDetail.post.created_at![1])-\(postDetail.post.created_at![2]) \(postDetail.post.created_at![3]):\(postDetail.post.created_at![4])")
+                        .font(.system(size: 15).weight(.medium))
+                        .foregroundColor(ColorManager.GreyColor)
+                        .padding(.bottom, 4)
+                    Spacer()
+                    Text("조회 "+String(postDetail.post.view) )
+                        .font(.system(size: 12))
+                        .foregroundColor(ColorManager.GreyColor)
+                        .padding(.bottom, 4)
+                }
                 
                 
                 HStack() {
@@ -125,12 +171,12 @@ struct PostView: View {
 
 
                             VStack(alignment: .leading) {
-                              Text("말티즈 님")
+                                Text(String(postDetail.post.user.nickname) + "님")
                               .font(Font.system(size: 20))
                               .bold()
                               .padding(.top, 5)
                               .padding(.bottom,1)
-                              Text("초코 (5세)")
+                              Text("펫 (0세)")
                               .font(Font.system(size: 17))
                               .padding(.bottom,5)
                           }
@@ -149,27 +195,39 @@ struct PostView: View {
             Divider()
             
             HStack{
-                Image(systemName: "heart.circle.fill")
-                    .foregroundColor(.black)
-                    .imageScale(.large)
-
-                Text("공감하기 3")
-                    .font(.system(size: 17).weight(.medium))
-                    .foregroundColor(Color.black)
-                    .padding(.trailing,10)
+                Button(action: {
+                    Task {
+                        let result = try await CommunityManager().postLike(postid: postId).success ?? false
+                        if(result){
+                            let result = try await CommunityManager().getPostDetail(postid: postId)
+                            postDetail = result.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                        }
+                    }
+                }){
+                    Image(systemName: "heart.circle.fill")
+                        .foregroundColor(ColorManager.GreyColor)
+                        .imageScale(.large)
+                    Text("공감하기 " + String(postDetail.countLike))
+                        .font(.system(size: 17).weight(.medium))
+                        .foregroundColor(ColorManager.GreyColor)
+                        .padding(.trailing,10)
+                    
+                }
 
                 Image(systemName: "bubble.left.circle.fill")
-                    .foregroundColor(.black)
+                    .foregroundColor(ColorManager.GreyColor)
                     .imageScale(.large)
                 
-                Text("댓글 5")
+                Text("댓글 " + String(postDetail.countComment))
                     .font(.system(size: 17).weight(.medium))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(ColorManager.GreyColor)
             }
             .padding(.vertical, 8)
             .padding(.horizontal,20)
             Divider()
         }
-     
+       
     }
-}
+       
+    }
+
