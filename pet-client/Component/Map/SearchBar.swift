@@ -7,11 +7,22 @@
 
 import Foundation
 import SwiftUI
-
+import CoreLocation
+      
 struct SearchBar: View {
     @Binding var text : String
     @State var editText : Bool = false
+    @StateObject var locationManager = LocationManager()
+    @Binding var placeList : [PlaceResult]
     
+    var userLatitude: Double {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
+    }
+    
+    var userLongitude: Double {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
+    }
+
     var body: some View {
      
         HStack{
@@ -32,19 +43,38 @@ struct SearchBar: View {
                             .padding(20)
                         
                         if self.editText{
-                            //x버튼이미지를 클릭하게되면 입력되어있던값들을 취소하고
-                            //키입력 이벤트를 종료해야한다.
                             Button(action : {
                                 self.editText = false
                                 self.text = ""
-                                //키보드에서 입력을 끝내게하는 코드
+                                self.placeList = []
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             }){
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(Color(.black))
-                                    .padding(20)
+                                    .frame(minWidth: 0, maxWidth: 10, alignment: .trailing)
+                                    .padding(10)
                             }
+                            
                         }
+                        
+                        Button(action: {
+                            if(text != ""){
+                                Task{
+                                    let result = try await PlaceManager().getSearchPlaceList(lon: userLongitude, lat:userLatitude, name: self.text)
+                                        placeList = result.data ?? []
+                                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                    }
+                                }
+                            }
+                            ){ Image(systemName: "paperplane")
+                                    .foregroundColor(.black)
+                                    .frame(minWidth: 0, maxWidth:5, alignment: .trailing)
+                                    .padding(30)
+                            }
+                            
+                     
+
+                        
                        
                     }
                 ).onTapGesture {
