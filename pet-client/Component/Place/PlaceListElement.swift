@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaceListElem: View {
-    let place: PlaceTemporary
+    let place: PlaceResult
     
     var body: some View{
         VStack{
@@ -16,7 +16,7 @@ struct PlaceListElem: View {
                 Text(place.name)
                     .font(.system(size: 20).weight(.bold))
                 Spacer()
-                Text("10:00 ~ 18:00")
+                Text(place.phone)
                     .font(.system(size: 14).weight(.regular))
                     .foregroundColor(ColorManager.GreyColor)
             }
@@ -25,7 +25,7 @@ struct PlaceListElem: View {
                 Text(place.address)
                     .font(.system(size: 16).weight(.regular))
                 Spacer()
-                Text("800m")
+                Text("\(String(format: "%.2f", place.distance))km")
                     .font(.system(size: 16).weight(.bold))
                     .foregroundColor(ColorManager.OrangeColor)
             }

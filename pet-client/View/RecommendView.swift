@@ -6,45 +6,65 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct RecommendView: View {
-    @State var isRecommendedOrder: Bool = true
+    @State var sortOrder: String = "recommend"
+    @State var placeList: [PlaceResult] = []
+    @StateObject var locationManager = LocationManager()
     
+    var userLatitude: Double {
+        return locationManager.lastLocation?.coordinate.latitude ?? 0
+    }
+    
+    var userLongitude: Double {
+        return locationManager.lastLocation?.coordinate.longitude ?? 0
+    }
+
     var body: some View {
         NavigationView{
             VStack{
                 Divider()
                 VStack{
-                    Text("김지수 님!\n이런 곳은 어떠세요?")
+                    Text("\(UserDefaults.standard.string(forKey: "nickname") ?? "") 님!\n이런 곳은 어떠세요?")
                         .font(.system(size: 20).weight(.bold))
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    
                     HStack{
                         Button(action: {
-                            self.isRecommendedOrder.toggle()
+                            Task{
+                                self.sortOrder = "recommend"
+                                let result = try await PlaceManager().getPlaceList(lon: userLongitude, lat: userLatitude, sort: 2)
+                                placeList = result.data ?? []
+                            }
                         }) {
                             Text("추천 순")
                                 .font(.system(size: 14))
                                 .fontWeight(.regular)
                                 .padding(.horizontal)
                                 .padding(.vertical, 8)
-                                .foregroundColor(self.isRecommendedOrder ? ColorManager.OrangeColor : ColorManager.GreyColor)
+                                .foregroundColor(self.sortOrder == "recommend" ? ColorManager.OrangeColor : ColorManager.GreyColor)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 30)
-                                        .stroke(self.isRecommendedOrder ? ColorManager.OrangeColor : ColorManager.LightGreyColor, lineWidth: 1)
+                                        .stroke(self.sortOrder == "recommend" ? ColorManager.OrangeColor : ColorManager.LightGreyColor, lineWidth: 1)
                                 )
                         }
                         Button(action: {
-                            self.isRecommendedOrder.toggle()
+                            Task{
+                                self.sortOrder = "distance"
+                                let result = try await PlaceManager().getPlaceList(lon: userLongitude, lat: userLatitude, sort: 1)
+                                placeList = result.data ?? []
+                            }
                         }) {
                             Text("가까운 순")
                                 .font(.system(size: 14))
                                 .fontWeight(.regular)
                                 .padding(.horizontal)
                                 .padding(.vertical, 8)
-                                .foregroundColor(self.isRecommendedOrder ? ColorManager.GreyColor : ColorManager.OrangeColor)
+                                .foregroundColor(self.sortOrder == "recommend" ? ColorManager.GreyColor : ColorManager.OrangeColor)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 30)
-                                        .stroke(self.isRecommendedOrder ? ColorManager.LightGreyColor : ColorManager.OrangeColor, lineWidth: 1)
+                                        .stroke(self.sortOrder == "recommend" ? ColorManager.LightGreyColor : ColorManager.OrangeColor, lineWidth: 1)
                                 )
                         }
                     }
@@ -57,20 +77,21 @@ struct RecommendView: View {
                 Divider()
                 
                 List{
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원", address:"서울시 노원구 석계로 13"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원2", address:"서울시 노원구 석계로 14"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원3", address:"서울시 노원구 석계로 15"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원", address:"서울시 노원구 석계로 13"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원2", address:"서울시 노원구 석계로 14"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원3", address:"서울시 노원구 석계로 15"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원", address:"서울시 노원구 석계로 13"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원2", address:"서울시 노원구 석계로 14"))
-                    PlaceListElem(place: PlaceTemporary(name:"마루 동물병원3", address:"서울시 노원구 석계로 15"))
+                    ForEach(0..<placeList.count, id: \.self) { i in
+                        PlaceListElem(place: placeList[i])
+                    }
                 }
                 .listStyle(.plain)
             }
             .navigationTitle("주변추천")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear{
+            Task{
+                let result = try await PlaceManager().getPlaceList(lon: userLongitude, lat: userLatitude, sort: 2)
+                placeList = result.data ?? []
+                sortOrder = "recommend"
+            }
         }
     }
 }
