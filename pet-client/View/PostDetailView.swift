@@ -12,6 +12,7 @@ struct PostDetailView: View{
     var postId: Int
     @State var postDetail: CommunityGetResponseModel = CommunityGetResponseModel(post: CommunityPostModel(created_at: [0,0,0,0,0,0], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
 
+    @State var isReply: Int = 0
     
     var body: some View{
         NavigationView{            
@@ -31,11 +32,11 @@ struct PostDetailView: View{
                 ScrollView() {
                     PostView(postId : postId, postDetail: $postDetail)
                     if(postDetail.countComment>0){
-                        CommentView(postId: postId, postDetail: $postDetail )
+                        CommentView(postId: postId, postDetail: $postDetail , isReply: $isReply)
                     }
                     Spacer()
                 }
-                commentBar(postId : postId, postDetail: $postDetail)
+                commentBar(postId : postId, postDetail: $postDetail, isReply: $isReply )
             }
         }
         .onAppear{
@@ -53,12 +54,18 @@ struct PostDetailView: View{
 struct CommentView: View {
     var postId:Int
     @Binding var postDetail: CommunityGetResponseModel
-
+    @Binding var isReply:Int
+    
     var body: some View{
         VStack(alignment: .leading){
             if(postDetail.countComment>0){
-                ForEach(0..<postDetail.countComment, id: \.self) { i in
-                    CommentListElem(comment: postDetail.comments![i])
+                ForEach(0..<postDetail.comments!.count, id: \.self) { i in
+                    CommentListElem(comment: postDetail.comments![i], isReply: $isReply)
+                    
+                    ForEach(postDetail.comments![i].childComments!) { line in
+                        ReplyListElem(comment: line)
+                    }
+                    
                 }
             }
         
@@ -70,49 +77,91 @@ struct commentBar: View {
     var postId:Int
     @Binding var postDetail: CommunityGetResponseModel
     @State var text:String = ""
-    @State var editText : Bool = false
+    @Binding var isReply:Int
     
     var body: some View{
         HStack{
-            TextField("댓글을 입력하세요" , text: $text)
-                .padding(15)
-                .padding(.horizontal,5)
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(15)
-                .padding(.horizontal,10)
-                .padding(.top,2)
-                .overlay(
-                    VStack{
-                        
-                        if self.editText{
-                        }
-                        Button(action: {
-                            if(text != ""){
-                            Task{
-                                let result = try await CommunityManager().postComment(postid: postId, comment:text).success ?? false
-                                    if(result){
-                                        let result_ = try await CommunityManager().getPostDetail(postid: postId)
-                                        postDetail = result_.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
-                                        if(result_.success ?? false){
-                                            text = ""
-                                            self.editText = false
-                                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-
+            if(isReply == 0){
+                TextField("댓글을 입력하세요" , text: $text)
+                    .padding(15)
+                    .padding(.horizontal,5)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(15)
+                    .padding(.horizontal,10)
+                    .padding(.top,2)
+                    .overlay(
+                        VStack{
+                            Button(action: {
+                                if(text != ""){
+                                    Task{
+                                        let result = try await CommunityManager().postComment(postid: postId, comment:text).success ?? false
+                                        if(result){
+                                            let result_ = try await CommunityManager().getPostDetail(postid: postId)
+                                            postDetail = result_.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                                            if(result_.success ?? false){
+                                                text = ""
+                                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                                
+                                            }
                                         }
                                     }
                                 }
                             }
+                            ){ Image(systemName: "paperplane")
+                                    .foregroundColor(.black)
+                                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                                    .padding(30)
+                            }
                         }
-                        ){ Image(systemName: "paperplane")
-                                .foregroundColor(.black)
-                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
-                                .padding(30)
+                    )
+            }
+            else{
+                TextField("대댓글을 입력하세요" , text: $text)
+                    .padding(15)
+                    .padding(.horizontal,5)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(15)
+                    .padding(.horizontal,10)
+                    .padding(.top,2)
+                    .overlay(
+                        HStack{
+                                 Spacer()
+
+                                Button(action : {
+                                    self.text = ""
+                                    self.isReply = 0
+                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                }){
+                                    Image(systemName: "multiply.circle.fill")
+                                        .foregroundColor(Color(.black))
+                                        .frame(minWidth: 0, maxWidth: 10, alignment: .trailing)
+                                }
+                            Button(action: {
+                                if(text != ""){
+                                    Task{
+                                        let result = try await CommunityManager().postReply(postid: postId, comment:text, parentid: isReply).success ?? false
+                                        if(result){
+                                            let result_ = try await CommunityManager().getPostDetail(postid: postId)
+                                            postDetail = result_.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                                            if(result_.success ?? false){
+                                                text = ""
+                                                self.isReply = 0
+                                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            ){ Image(systemName: "paperplane")
+                                    .foregroundColor(.black)
+                                    .frame(minWidth: 0, maxWidth:5, alignment: .trailing)
+                                    .padding(30)
+                            }
                         }
-                    }
                         
-                ).onTapGesture {
-                    self.editText = true
-                }
+                    )
+            }
         }
     }
 }
@@ -197,10 +246,11 @@ struct PostView: View {
             HStack{
                 Button(action: {
                     Task {
-                        let result = try await CommunityManager().postLike(postid: postId).success ?? false
+                        let result = try await CommunityManager().postLike(postid: postId).data ?? false
+                        // success-> post 성공여부 / data->늘리기 성공 여부 (이미 공감한 글은 false가 반환됨)
                         if(result){
-                            let result = try await CommunityManager().getPostDetail(postid: postId)
-                            postDetail = result.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                            let result_ = try await CommunityManager().getPostDetail(postid: postId)
+                            postDetail = result_.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
                         }
                     }
                 }){

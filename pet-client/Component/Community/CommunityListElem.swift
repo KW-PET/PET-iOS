@@ -36,13 +36,23 @@ struct CommunityListElem: View {
                 .padding(.bottom, 10)
                 .multilineTextAlignment(.leading)
             HStack{
-                Text("👍 \(communityPost.countLike)")
-                    .font(.system(size: 16).weight(.medium))
-                    .foregroundColor(Color.black)
+                Image(systemName: "heart.circle.fill")
+                    .foregroundColor(ColorManager.GreyColor)
+                    .imageScale(.medium)
+                Text( String(communityPost.countLike))
+                    .font(.system(size: 15).weight(.medium))
+                    .foregroundColor(ColorManager.GreyColor)
+                    .padding(.trailing,9)
+                
 
-                Text("✏️ \(communityPost.countComment)")
-                    .font(.system(size: 16).weight(.medium))
-                    .foregroundColor(Color.black)
+                Image(systemName: "bubble.left.circle.fill")
+                    .foregroundColor(ColorManager.GreyColor)
+                    .imageScale(.medium)
+                
+                Text(String(communityPost.countComment))
+                    .font(.system(size: 15).weight(.medium))
+                    .foregroundColor(ColorManager.GreyColor)
+                
             }
         }
         .padding(18)

@@ -43,8 +43,8 @@ public struct CommunityGetResponseModel: Codable{
         var nickname: String
         var childComments : [ReplyModel]?
  }
-public struct ReplyModel : Codable{
-    var id: Int
+public struct ReplyModel : Codable, Identifiable{
+    public var id: Int
     var comment: String
     var createdDate: [Int]?
     var modifiedDate: [Int]?
