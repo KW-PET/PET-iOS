@@ -252,21 +252,21 @@ struct MypageView: View{
             sort : "시츄",
             age : 5,
             count: 200
-        ),
+           ),
         Pet(petid : 2,
             petname :"초코",
             pic: "PetSample",
             sort : "푸들",
             age : 2,
             count: 100
-        ),
+           ),
         Pet(petid : 3,
             petname :"두부",
             pic: "PetSample",
             sort : "포메",
             age : 5,
             count: 200
-        )
+           )
     ]
     @EnvironmentObject var appState: AppState
     
@@ -330,7 +330,7 @@ struct MypageView: View{
                     }
                     .padding(.top, 14)
                     .padding(.horizontal, 28)
-
+                    
                     
                     
                     // scroll
@@ -357,10 +357,11 @@ struct MypageView: View{
                             .navigationBarBackButtonHidden(true)
                         ){
                             Text("내가 쓴 글")
-                            .font(.system(size: 19).weight(.bold))
-                            .foregroundColor(Color.black)
-                            .padding(.vertical, 11)
-                            .padding(.horizontal, 28)
+                                .font(.system(size: 19).weight(.bold))
+                                .foregroundColor(Color.black)
+                                .padding(.vertical, 11)
+                                .padding(.horizontal, 28)
+                        }
                         Divider()
                         
                         Text("좋아요 누른 글")
@@ -381,11 +382,9 @@ struct MypageView: View{
                         .foregroundColor(Color.black)
                         .padding(.vertical, 11)
                         .padding(.horizontal, 28)
-
-                        Divider()
                         
+                        Divider()
                     }
-                    
                 }
             }
         }
