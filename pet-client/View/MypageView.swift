@@ -361,6 +361,7 @@ struct MypageView: View{
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 11)
                                 .padding(.horizontal, 28)
+                                .frame(maxWidth: .infinity)
                         }
                         Divider()
                         
@@ -373,6 +374,7 @@ struct MypageView: View{
                                 .foregroundColor(Color.black)
                                 .padding(.vertical, 11)
                                 .padding(.horizontal, 28)
+                                .frame(maxWidth: .infinity)
                         }
                         Divider()
                         
@@ -382,12 +384,13 @@ struct MypageView: View{
                             appState.refreshContentView()
                         }) {
                             Text("로그아웃")
+                                .frame(maxWidth: .infinity)
                         }
                         .font(.system(size: 19).weight(.bold))
                         .foregroundColor(Color.black)
                         .padding(.vertical, 11)
                         .padding(.horizontal, 28)
-                        
+
                         Divider()
                     }
                 }
