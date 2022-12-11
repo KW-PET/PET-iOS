@@ -13,8 +13,8 @@ import CoreLocation
 
 
 struct MainView: View {
-    @State var selectedId:Int = 0
     @State var text : String = ""
+    @Binding var selectedId: Int
     @Binding var isPresent: Bool
     @Binding var placeList: [PlaceResult]
     @StateObject var locationManager = LocationManager()
@@ -34,8 +34,9 @@ struct MainView: View {
     
     @StateObject var sheetManager = SheetMananger()
   
-    init(isPresent: Binding<Bool>, placeList: Binding<[PlaceResult]>){
+    init(selectedId: Binding<Int>, isPresent: Binding<Bool>, placeList: Binding<[PlaceResult]>){
         UINavigationBar.setAnimationsEnabled(false)
+        _selectedId = selectedId
         _isPresent = isPresent
         _placeList = placeList
     }
