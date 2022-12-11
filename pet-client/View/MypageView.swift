@@ -245,6 +245,7 @@ struct MypageContentView : View {
 struct MypageView: View{
     @State var selectedId:Int = 1
     @State var isEdit:Bool = false
+    @State var userData: UserModel = UserModel(created_at: [], modified_at: [], userId:0 , uuid: "", name: "", nickname: "", email: "", token: "")
     @State var petList: [Pet] = [
         Pet(petid : 1,
             petname :"몽글이",
@@ -290,7 +291,7 @@ struct MypageView: View{
                     .border(Color.gray.opacity(0.3))
                     
                     HStack{
-                        Text("몽글이")
+                        Text(userData.nickname)
                             .font(.system(size: 20).weight(.bold))
                             .foregroundColor(Color.black)
                         Text("님 반갑습니다!")
@@ -390,11 +391,20 @@ struct MypageView: View{
                         .foregroundColor(Color.black)
                         .padding(.vertical, 11)
                         .padding(.horizontal, 28)
-
+                        
                         Divider()
                     }
                 }
             }
+        }
+        .onAppear{
+            Task{
+                let res = try await UserManager().getUserInfo()
+                userData = res.data!
+                let res_ = try await UserManager().getPetInfo()
+                print(res_.data)
+            }
+            
         }
     }
 }
