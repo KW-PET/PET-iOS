@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
 extension Date {
     func makeTime(created_at:[Int]) -> Date {
         let formatter = DateFormatter()
@@ -19,4 +21,15 @@ extension Date {
         formatter.unitsStyle = .abbreviated
         return formatter.localizedString(for: self, relativeTo: Date())
     }
+}
+
+extension UINavigationController: UIGestureRecognizerDelegate,UINavigationControllerDelegate {
+   open override func viewDidLoad() {
+       super.viewDidLoad()
+       interactivePopGestureRecognizer?.delegate = self
+   }
+
+   public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+       return viewControllers.count > 1
+   }
 }
