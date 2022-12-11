@@ -1,20 +1,19 @@
 # PET-iOS
 광운대 2022 참빛설계 팀 PET
 
+## 진행 사항
 
-### -1004
-- SwiftUI 프로젝트 기본설정
-- contentview (시작화면) -> mainview (map 화면) 전환 설정
-- [ naver map api 연결 ](https://hip-armchair-a2c.notion.site/Frontend-ios-9fdc3ff85da64bbc8273daa280c1de52)
+### [제작 화면](https://hip-armchair-a2c.notion.site/3f17453789cb43fc8ec5ca06d9ccb9a6)
 
-<img width="703" alt="image" src="https://user-images.githubusercontent.com/73420533/193801128-286cc488-056d-490c-990c-f9e715cbd977.png">
+```
+11/1  기준 모든 기능 merge됨 dev fetch 후 진행!
+struct 요소 관련 오류(cannot find type 'class' in scope 에러) 발생 시 clean build 로 해결 가능
+```
 
-<img width="706" alt="image" src="https://user-images.githubusercontent.com/73420533/193801071-a0a9f32e-2791-4857-bbab-7c82ad7562ca.png">
-
-### -1011
-- Map Place 관리 / 마커 / 위치 이동
-<img width="1056" alt="image" src="https://user-images.githubusercontent.com/73420533/195077768-e900868b-38a5-449d-827e-cd82e732e161.png">
-- 카카오 로그인
-
-
-
+- `feature/map` : 지도 마커 / 검색 바 / 인포 탭 퍼블리싱 완료
+  - 마커 필터링 / 인포 오류 수정 중
+- `feature/community` : 커뮤니티 탭 / 게시글 리스트 / 게시글 페이지 퍼블리싱 완료
+- `feature/kakao-login` : 카카오 연결 완료, user post 관련 api 연결하면 됨
+- `feature/facility_list` : 시설 리스트 ( 검색 결과 화면 ) 퍼블리싱 완료
+- `feature/recommand_list` : 주변 추천 화면 퍼블리싱 완료
+- `feature/api_setting` : api 세팅
