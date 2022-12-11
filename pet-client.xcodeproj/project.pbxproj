@@ -25,8 +25,6 @@
 		1E1420C528E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */; };
 		1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1E31B0DD28F39DB700654FC0 /* KakaoSDK */; };
 		1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11276DE128EC34B0001E5CD9 /* NMapsMap.xcframework */; };
-		1E3E197D292E1A25009C5BD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */; };
-		1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		1E7052882944290E009341BA /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7052872944290E009341BA /* LocationService.swift */; };
 		1E70528C2944C04A009341BA /* PlaceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E70528B2944C04A009341BA /* PlaceApi.swift */; };
 		1E756CF8293C2D8300AAB814 /* LaunchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E756CF7293C2D8300AAB814 /* LaunchingView.swift */; };
@@ -102,7 +100,6 @@
 		1E1420C228E817C5003EA6D2 /* pet_clientUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITests.swift; sourceTree = "<group>"; };
 		1E1420C428E817C5003EA6D2 /* pet_clientUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pet_clientUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1E31B0DF28F39FCD00654FC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1E7052872944290E009341BA /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		1E70528B2944C04A009341BA /* PlaceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceApi.swift; sourceTree = "<group>"; };
 		1E756CF7293C2D8300AAB814 /* LaunchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchingView.swift; sourceTree = "<group>"; };
@@ -149,7 +146,6 @@
 				1EFB3156293383ED0064B31E /* SwiftUIFlow in Frameworks */,
 				1E31B0DE28F39DB700654FC0 /* KakaoSDK in Frameworks */,
 				1E31B0F528F3E9C200654FC0 /* NMapsMap.xcframework in Frameworks */,
-				1E3E1980292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				1E9BF717293B8A2000CAF327 /* Overall */,
-				1E3E197C292E1A25009C5BD4 /* GoogleService-Info.plist */,
 				1EA19F86290159E800FB8712 /* Network */,
 				1EE613E628F3EE9D0019C0E4 /* Resources */,
 				1E31B0DF28F39FCD00654FC0 /* Info.plist */,
@@ -432,7 +427,6 @@
 			packageProductDependencies = (
 				1E31B0DD28F39DB700654FC0 /* KakaoSDK */,
 				1EA19F822901591400FB8712 /* Alamofire */,
-				1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				1EFB3155293383ED0064B31E /* SwiftUIFlow */,
 			);
 			productName = "pet-client";
@@ -513,7 +507,6 @@
 			packageReferences = (
 				1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
 				1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				1E3E197E292E1BA7009C5BD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1EFB3154293383ED0064B31E /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 			);
 			productRefGroup = 1E1420A428E817C3003EA6D2 /* Products */;
@@ -534,7 +527,6 @@
 			files = (
 				1EFB315A293389610064B31E /* Config.xcconfig in Resources */,
 				1E1420AF28E817C4003EA6D2 /* Preview Assets.xcassets in Resources */,
-				1E3E197D292E1A25009C5BD4 /* GoogleService-Info.plist in Resources */,
 				1E1420AB28E817C4003EA6D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -866,7 +858,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -893,7 +885,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.PET.pet-client.test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PET.pet-client.beta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -916,7 +908,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"pet-client/Preview Content\"";
-				DEVELOPMENT_TEAM = KVG3UPT55G;
+				DEVELOPMENT_TEAM = X5UR894364;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "pet-client/Info.plist";
@@ -942,7 +934,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.PET.pet-client.test";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.PET.pet-client.beta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1097,14 +1089,6 @@
 				kind = branch;
 			};
 		};
-		1E3E197E292E1BA7009C5BD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		1EA19F812901591400FB8712 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1128,11 +1112,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1E31B0DC28F39DB700654FC0 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
 			productName = KakaoSDK;
-		};
-		1E3E197F292E1BA7009C5BD4 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1E3E197E292E1BA7009C5BD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
 		1EA19F822901591400FB8712 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
