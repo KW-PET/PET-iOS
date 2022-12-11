@@ -40,6 +40,6 @@ class PlaceManager: ObservableObject {
     func postLikePlace(placeid: Int) async throws -> LikeResponse {
         print(placeid)
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        return try await AF.request("\(baseURL)/place/like", method: .post, parameters: [ "placeid": placeid ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LikeResponse.self).value
+        return try await AF.request("\(baseURL)/place/like", method: .post, parameters: [ "place_id": placeid ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LikeResponse.self).value
     }
 }
