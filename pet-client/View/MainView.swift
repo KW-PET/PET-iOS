@@ -106,8 +106,9 @@ struct PlaceInfo: View {
 struct MainView: View {
     @State var selectedId:Int = 0
     @State var text : String = ""
-    
-    
+    @Binding var isPresent: Bool
+    @Binding var placeList: [PlaceResult]
+
     class SheetMananger: ObservableObject{
         @Published var curPlace : PlaceResult = PlaceResult(name: "", address: "", distance: 0, category: "", place_id: 0, phone: "", lon: 0, lat:0, like_cnt: 0)
         @Published var ifView : Bool = false
@@ -115,8 +116,10 @@ struct MainView: View {
     
     @StateObject var sheetManager = SheetMananger()
   
-    init(){
+    init(isPresent: Binding<Bool>, placeList: Binding<[PlaceResult]>){
         UINavigationBar.setAnimationsEnabled(false)
+        _isPresent = isPresent
+        _placeList = placeList
     }
     
     var body: some View {
@@ -128,7 +131,7 @@ struct MainView: View {
                         .navigationBarBackButtonHidden(true)
                     ) {
                         TextField("위치를 검색하세요",text: $text)
-                                .multilineTextAlignment(.leading) 
+                                .multilineTextAlignment(.leading)
                                 .padding(15)
                                 .padding(.horizontal,35)
                                 .background(Color(.white))
@@ -145,6 +148,24 @@ struct MainView: View {
                                     })
                         }
                     Spacer()
+
+                    Button(action: {
+                            self.isPresent = true
+                    }) {
+                        Text("목록 보기")
+                            .font(.system(size: 14))
+                            .fontWeight(.regular)
+                            .padding(.horizontal)
+                            .padding(.vertical, 8)
+                            .foregroundColor(ColorManager.GreyColor)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(ColorManager.LightGreyColor)
+                                    .shadow(color:Color.black.opacity(0.1),radius: 5, x:0, y:2)
+                            )
+                            .background(RoundedRectangle(cornerRadius: 30, style: .continuous).fill(Color.white))
+                    }
+                    
                     ScrollView(.horizontal){
                         HStack{
                             PlaceCard(placeType: PlaceType(id: 0, image: "AllIcon", name: "전체"), selectedId: $selectedId)
@@ -155,17 +176,16 @@ struct MainView: View {
                             PlaceCard(placeType: PlaceType(id: 5, image: "TaxiIcon", name: "운송"), selectedId: $selectedId)
                             PlaceCard(placeType: PlaceType(id: 6, image: "FuneralIcon", name: "장묘"), selectedId: $selectedId)
                         }
-                        .padding()
-                        .padding(.top, 20)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 3)
                     }
                 }
                 .zIndex(10)
-                
-                
+                                
                 .sheet(isPresented: $sheetManager.ifView) {
                     PlaceInfo(place: sheetManager.curPlace)
                     .presentationDetents([.height(200)])}
-                
+
                 UIMapView(selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView)
                     .edgesIgnoringSafeArea(.vertical)
                     .zIndex(1)
@@ -298,9 +318,9 @@ struct UIMapView: UIViewRepresentable {
 }
  
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView()
-    }
-}
-
+//struct MainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView()
+//    }
+//}
+//
