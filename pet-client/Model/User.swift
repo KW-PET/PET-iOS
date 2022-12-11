@@ -14,5 +14,15 @@ public struct UserModel: Codable{
     var name: String?
     var nickname: String
     var email: String?
-    var token: String?
+    var token: String
+}
+
+public struct PetModel : Codable{
+    var petid: Int
+    var name: String
+    var pic: String?
+    var sort: String
+    var age: Int
+    var start_date: [Int]
+    var user: UserModel
 }

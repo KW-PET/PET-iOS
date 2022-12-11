@@ -11,7 +11,8 @@ import SwiftUI
 struct PostDetailView: View{
     var postId: Int
     @State var postDetail: CommunityGetResponseModel = CommunityGetResponseModel(post: CommunityPostModel(created_at: [0,0,0,0,0,0], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
-
+    @State var userInfo: [PetModel] = []
+    
     @State var isReply: Int = 0
     
     var body: some View{
@@ -43,6 +44,11 @@ struct PostDetailView: View{
             Task{
                 let result = try await CommunityManager().getPostDetail(postid: postId)
                 postDetail = result.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+
+//                let result_ = try await UserManager().getPetInfo()
+//                    print(result_.data)
+//                    userInfo = result_.data ?? []
+
             }
         }
    
