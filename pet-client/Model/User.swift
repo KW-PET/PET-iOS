@@ -26,3 +26,11 @@ public struct PetModel : Codable{
     var start_date: [Int]
     var user: UserModel
 }
+
+public struct newPetModel : Codable{
+    var file: Data?
+    var name: String
+    var age: String
+    var start_date: Date
+    var sort: String
+}
