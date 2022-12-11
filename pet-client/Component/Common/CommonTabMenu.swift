@@ -13,7 +13,7 @@ struct CommonTabMenu: View {
     var body: some View {
         ZStack{
             TabView(selection: $selection) {
-                MainView()
+                ListView()
                     .padding(.bottom, 8)
                     .tabItem {
                         Image(systemName: "house.fill")

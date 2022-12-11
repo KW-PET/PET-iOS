@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ListView: View {
-    @State private var firstIsPresented = true
-    @State var selectedId:Int = 10000
+    @State var isPresent = false
+    @State var placeList: [PlaceResult] = []
 
     var body: some View {
         ZStack{
-            MainView()
-                .sheet(isPresented: $firstIsPresented){
+            MainView(isPresent: $isPresent, placeList: $placeList)
+                .sheet(isPresented: $isPresent){
                     VStack{
                         Divider()
                         
                         List{
+                            
 //                            PlaceListElem(place: PlaceTemporary(name:"마루 동물병원", address:"서울시 노원구 석계로 13"))
 //                            PlaceListElem(place: PlaceTemporary(name:"마루 동물병원2", address:"서울시 노원구 석계로 14"))
 //                            PlaceListElem(place: PlaceTemporary(name:"마루 동물병원3", address:"서울시 노원구 석계로 15"))
