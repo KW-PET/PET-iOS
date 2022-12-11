@@ -29,3 +29,37 @@ class PlaceType {
         self.name = name
     }
 }
+
+public struct PlaceResult: Codable, Identifiable{
+    public let id = UUID()
+    let name : String
+    let address : String
+    let distance : Double
+    let category : String
+    let place_id : Int
+    let phone : String
+    let lon : Double?
+    let lat : Double?
+    var like_cnt : Int
+    
+    init(name : String,
+         address : String,
+         distance : Double,
+         category : String,
+         place_id : Int,
+         phone : String,
+         lon : Double,
+         lat : Double,
+         like_cnt : Int) {
+        self.name = name
+        self.address = address
+        self.distance = distance
+        self.category = category
+        self.place_id = place_id
+        self.phone = phone
+        self.lon = lon
+        self.lat = lat
+        self.like_cnt = like_cnt
+    }
+    
+}
