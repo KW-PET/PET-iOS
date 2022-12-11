@@ -10,7 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct PlaceInfo: View {
-    let place: PlaceResult
+    @Binding var place: PlaceResult
     var body: some View {
 
         VStack{
@@ -58,18 +58,25 @@ struct PlaceInfo: View {
                         .frame(width:110, height:60)
                 }
                 Button(action: {
-                    //post API
-                }){
+                    Task{
+                        let res = try await PlaceManager().postLikePlace(placeid: place.place_id)
+                        if(res.success!){
+                            place.like_cnt =  place.like_cnt + 1
+                            // 다시 불러와야되나...? 
+                        }
+                    }
+                    }){
                     HStack{
                             Image(systemName:"bookmark") .foregroundColor(.black)
                                 .imageScale(.large)
                                 .padding(5)
-                            
                             Text("찜")
                                 .font(.system(size:18))
                                 .fontWeight(.medium)
                                 .foregroundColor(Color.black)
                                 .padding(5)
+                            Text(String(place.like_cnt))
+
                         }
                         .frame(width:110, height:60)
                 }

@@ -101,7 +101,7 @@ struct MainView: View {
                 .zIndex(10)
                                 
                 .sheet(isPresented: $sheetManager.ifView) {
-                    PlaceInfo(place: sheetManager.curPlace)
+                    PlaceInfo(place: $sheetManager.curPlace)
                     .presentationDetents([.height(200)])}
 
                 UIMapView(lat: userLatitude, lon: userLongitude, selectedId: selectedId, curPlace: $sheetManager.curPlace, ifView: $sheetManager.ifView, placeList: $placeList)
@@ -207,13 +207,13 @@ struct UIMapView: UIViewRepresentable {
                     if(place.category=="동물병원"){
                         marker.iconTintColor = UIColor.red}
                     else if (place.category=="동물약국"){
-                        marker.iconTintColor = UIColor.blue}
-                    else if(place.category=="동물미용업"){
-                        marker.iconTintColor = UIColor.green}
-                    else if (place.category=="동물위탁관리업"){
                         marker.iconTintColor = UIColor.purple}
+                    else if(place.category=="동물미용업"){
+                        marker.iconTintColor = UIColor.systemRed}
+                    else if (place.category=="동물위탁관리업"){
+                        marker.iconTintColor = UIColor.systemPurple }
                     else if(place.category=="동물운송업"){
-                        marker.iconTintColor = UIColor.yellow}
+                        marker.iconTintColor = UIColor.green}
                     else if (place.category=="동물장묘업"){
                         marker.iconTintColor = UIColor.gray}
                     
