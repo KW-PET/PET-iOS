@@ -21,7 +21,24 @@ extension Date {
         formatter.unitsStyle = .abbreviated
         return formatter.localizedString(for: self, relativeTo: Date())
     }
+    
+    func calculateDays(created_at:[Int]) -> Int {
+        var daysCount:Int = 0
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let startDate = formatter.date(from: "\(created_at[0])-\(created_at[1])-\(created_at[2])")
+        daysCount = days(from: startDate!)
+        return daysCount
+    }
+        
+    func days(from date: Date) -> Int {
+        let calendar = Calendar.current
+        let currentDate = Date()
+
+        return calendar.dateComponents([.day], from: date, to: currentDate).day! + 1
+    }
 }
+
 
 extension UINavigationController: UIGestureRecognizerDelegate,UINavigationControllerDelegate {
    open override func viewDidLoad() {

@@ -60,11 +60,13 @@ struct Profile: View {
                 Text(pet.name+"와 만난지")
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.black)
-                Text(String(""))
+                
+                Text("\(Date().calculateDays(created_at: pet.start_date))")
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.pink)
+                
                 Text("일")
-                    .font(.system(size: 20).weight(.bold))
+                    .font(.system(size: 21).weight(.bold))
                     .foregroundColor(Color.black)
             }
             .padding(.horizontal,16)
