@@ -12,21 +12,26 @@ import SwiftUI
 struct CommentListElem: View {
     var comment: CommentModel
     @Binding var isReply: Int
+    var Icon : [String] = ["🐶", "🐱", "🐹", "🐰", "🐤"]
+
     
     var body: some View{
         
         HStack(alignment: .top) {
-            Image(systemName: "hare")
-                .resizable()
-                .foregroundColor(.white)
-                .background(Color.yellow.opacity(0.5))
+            
+            VStack{
+                Text(Icon[comment.nickname.count % 5])
+                
+            }
                 .frame(width: 50, height: 50)
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(5)
                 .overlay(
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                 )
                 .padding(10)
+            
             
             
             VStack(alignment: .leading){
@@ -86,6 +91,7 @@ struct CommentListElem: View {
 
 struct ReplyListElem: View {
     var comment: ReplyModel
+    var Icon : [String] = ["🐶", "🐱", "🐹", "🐰", "🐤"]
     
     var body: some View{
         VStack(){
@@ -94,14 +100,15 @@ struct ReplyListElem: View {
                     .foregroundColor(.gray)
                     .imageScale(.large)
                     .padding(.leading, 10)
-                    .padding(.trailing, 5)
+                    .padding(.trailing, 0)
 
                 
-                Image(systemName: "hare")
-                    .resizable()
-                    .foregroundColor(.white)
-                    .background(Color.yellow.opacity(0.5))
+                VStack{
+                    Text(Icon[comment.nickname.count % 5])
+                    
+                }
                     .frame(width: 50, height: 50)
+                    .background(Color.gray.opacity(0.1))
                     .cornerRadius(5)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)

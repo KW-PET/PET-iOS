@@ -36,6 +36,11 @@ class UserManager: ObservableObject {
         return try await AF.request("\(baseURL)/user", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken()]).serializingDecodable(UserInfo.self).value
     }
     
+    func getPetInfoFromID(userid : Int) async throws -> PetInfo {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/user/pet?user_id=\(userid)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken()]).serializingDecodable(PetInfo.self).value
+    }
+    
     
     func getPetInfo() async throws -> PetInfo {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""

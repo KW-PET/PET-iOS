@@ -10,8 +10,9 @@ import SwiftUI
 
 struct PostDetailView: View{
     var postId: Int
-    @State var postDetail: CommunityGetResponseModel = CommunityGetResponseModel(post: CommunityPostModel(created_at: [0,0,0,0,0,0], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+    @State var postDetail: CommunityGetResponseModel = CommunityGetResponseModel(post: CommunityPostModel(created_at: [0,0,0,0,0,0], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "_", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
 
+    @State var petData : [PetModel] = [PetModel(petid: 0, name: "", pic: "", sort: "", age: 0, start_date: [0,0,0,0,0,0], user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: ""))]
     @State var isReply: Int = 0
     
     var body: some View{
@@ -30,9 +31,9 @@ struct PostDetailView: View{
                 
                 Divider()
                 ScrollView() {
-                    PostView(postId : postId, postDetail: $postDetail)
+                    PostView(postId : postId, postDetail: $postDetail, petData: $petData )
                     if(postDetail.countComment>0){
-                        CommentView(postId: postId, postDetail: $postDetail , isReply: $isReply)
+                        CommentView(postId: postId, postDetail: $postDetail ,isReply: $isReply)
                     }
                     Spacer()
                 }
@@ -43,6 +44,12 @@ struct PostDetailView: View{
             Task{
                 let result = try await CommunityManager().getPostDetail(postid: postId)
                 postDetail = result.data ?? CommunityGetResponseModel(post: CommunityPostModel(created_at: [], modified_at: [], postId: 0, title: "", content: "", writer: "", tag: "", category: "", view: 0, pic: "", user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: "")), countLike: 0, countComment:0, comments: [])
+                                
+                let result_ = try await UserManager().getPetInfoFromID(userid: result.data!.post.user.userId!)
+                petData = result_.data!.count == 0 ?  [PetModel(petid: 0, name: "", pic: "", sort: "", age: 0, start_date: [0,0,0,0,0,0], user: UserModel(created_at: [], modified_at: [], userId: 0, uuid: "", name: "", nickname: "", email: "", token: ""))] : result_.data!
+                
+                //   print(result_.data!)
+                
             }
         }
    
@@ -170,6 +177,8 @@ struct commentBar: View {
 struct PostView: View {
     var postId:Int
     @Binding var postDetail: CommunityGetResponseModel
+    @Binding var petData: [PetModel]
+
     var body: some View{
         VStack(alignment: .leading){
             VStack(alignment: .leading){
@@ -206,7 +215,27 @@ struct PostView: View {
                 
                 
                 HStack() {
-                    Image(systemName: "hare")
+                    if((petData[0].pic) != nil && petData[0].pic != ""){
+                        AsyncImage(url: URL(string: petData[0].pic!.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed)!)! ,
+                                   content:
+                            { image in  image.resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 80, height: 80)
+                                },
+                                   placeholder:{
+                            
+                            })
+                            .frame(width: 80, height: 80)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                        )
+                        .padding(15)
+                    }
+                    else{
+                        
+                        Image(systemName: "hare")
                             .resizable()
                             .foregroundColor(.white)
                             .background(Color.cyan.opacity(0.5))
@@ -217,7 +246,7 @@ struct PostView: View {
                                     .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                             )
                             .padding(15)
-
+                    }
 
                             VStack(alignment: .leading) {
                                 Text(String(postDetail.post.user.nickname) + "님")
@@ -225,9 +254,12 @@ struct PostView: View {
                               .bold()
                               .padding(.top, 5)
                               .padding(.bottom,1)
-                              Text("펫 (0세)")
-                              .font(Font.system(size: 17))
-                              .padding(.bottom,5)
+                                
+                                if(petData[0].name != "" ){
+                                    Text("\(petData[0].name) / \(petData[0].sort) ( \(petData[0].age)세 )")
+                                        .font(Font.system(size: 17))
+                                        .padding(.bottom,5)
+                                }
                           }
                           Spacer()
     
