@@ -44,10 +44,7 @@ class UserManager: ObservableObject {
     
     func postPet(newPetData: newPetModel) async throws -> PostPetResponse {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        //        return try await AF.request("\(baseURL)/like/\(postid)", method: .post, parameters: nil, encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(),             "Content-Type": "multipart/form-data"]).serializingDecodable(PostPetResponse.self).value
-        //
-       
-        var url = "\(baseURL)/pet"
+        let url = "\(baseURL)/pet"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -71,7 +68,7 @@ class UserManager: ObservableObject {
                 multipartFormData.append("\(value)".data(using: .utf8)!, withName: key, mimeType: "text/plain")
             }
             
-            multipartFormData.append(newPetData.file!, withName: "file", fileName: "\(dateFormatter.string(from: Date()))_\(newPetData.name)).jpg", mimeType: "image/jpg")
+            multipartFormData.append(newPetData.file!, withName: "file", fileName: "\(dateFormatter.string(from: Date()))_\(newPetData.name)).jpg", mimeType: "image/png")
         }, to: url, method: .post, headers: header).serializingDecodable(PostPetResponse.self).value
         
         

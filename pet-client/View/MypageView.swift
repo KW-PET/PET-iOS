@@ -213,6 +213,7 @@ struct MyInfoView : View{
     @State var isEdit:Bool = false
     @State var userData: UserModel = UserModel(created_at: [], modified_at: [], userId:0 , uuid: "", name: "", nickname: "", email: "", token: "")
     @State var petData: [PetModel] = []
+    @State var loading:Bool = true
     @State var newPetData: newPetModel = newPetModel(file: nil, name: "", age: "", start_date: Date(), sort: "")
     @EnvironmentObject var appState: AppState
     
@@ -278,10 +279,10 @@ struct MyInfoView : View{
                     Button(action: {
                         Task{
                             let res = try await UserManager().postPet(newPetData : newPetData)
-                            print(res)
-                            if(res.success!){
+                            if(res.success ?? false){
                                 let res_ = try await UserManager().getPetInfo()
                                 petData = res_.data!
+                                newPetData = newPetModel(file: nil, name: "", age: "", start_date: Date(), sort: "")
                             }
                         }
                         isEdit = false
@@ -304,12 +305,19 @@ struct MyInfoView : View{
             .padding(.top, 14)
             .padding(.horizontal, 28)
             
-            if(!isEdit) {
-                ScrollPetView(petData: $petData)
-                
+            if(loading)
+            {
+                VStack{}
+        .frame(width:270, height:365)
+
             }
-            else {
-                MypageContentView(newPetData: $newPetData)
+            else{
+                if(petData.count == 0 || isEdit ){
+                    MypageContentView(newPetData: $newPetData)
+                }
+                else {
+                    ScrollPetView(petData: $petData)
+                }
             }
             
             VStack {
@@ -370,7 +378,7 @@ struct MyInfoView : View{
                 
                 let res_ = try await UserManager().getPetInfo()
                 petData = res_.data!
-                
+                loading = false
             }
             
         }
