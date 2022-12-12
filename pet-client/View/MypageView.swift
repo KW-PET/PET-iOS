@@ -20,116 +20,66 @@ public struct Pet: Hashable{
 
 
 struct Profile: View {
-    var pet: Pet
+    var pet: PetModel
+
     var body: some View {
         VStack{
-            Image(pet.pic)
-                .foregroundColor(.white)
-                .background(Color.cyan.opacity(0.5))
-                .frame(width: 230, height: 230)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                )
-                .padding(5)
-            
+            if((pet.pic) != nil && pet.pic != ""){
+                AsyncImage(url: URL(string: pet.pic!.addingPercentEncoding(withAllowedCharacters:.urlQueryAllowed)!)! ,
+                           content:
+                    { image in  image.resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 230, height: 230)
+                        },
+                           placeholder:{
+                    Text("loading")
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.gray)
+                })
+
+                    .frame(width: 230, height: 230)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1))
+                    .padding(5)
+            }
+            else{
+                Image("DefaultProfile")
+                    .background(Color.cyan.opacity(0.5))
+                    .frame(width: 230, height: 230)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    )
+                    .padding(5)
+            }
+
             HStack{
-                Text(pet.petname+"와 만난지")
-                    .font(.system(size: 22).weight(.bold))
+                Text(pet.name+"와 만난지")
+                    .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.black)
-                Text(String(pet.count))
+                Text(String(""))
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.pink)
                 Text("일")
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.black)
             }
-            .padding(.horizontal,20)
-            .padding(.vertical,15)
+            .padding(.horizontal,16)
+            .padding(.top,15)
             
             Text(pet.sort+"  /  "+String(pet.age)+" 세")
-                .font(.system(size: 19).weight(.medium))
+                .font(.system(size: 16).weight(.medium))
                 .foregroundColor(Color.black)
-                .padding(.bottom,15)
+                .padding(.vertical,2)
 
         }
-        .frame(width:280, height:420)
+        .frame(width:280, height:365)
      }
-    
 }
 
-
-struct ScrollingHStackModifier: ViewModifier {
-    
-    @State private var scrollOffset: CGFloat
-    @State private var dragOffset: CGFloat
-    
-    var items: Int
-    var itemWidth: CGFloat
-    var itemSpacing: CGFloat
-    
-    init(items: Int, itemWidth: CGFloat, itemSpacing: CGFloat) {
-        self.items = items
-        self.itemWidth = itemWidth
-        self.itemSpacing = itemSpacing
-        
-        // Calculate Total Content Width
-        let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
-        let screenWidth = UIScreen.main.bounds.width
-        
-        // Set Initial Offset to first Item
-        let initialOffset = (contentWidth/2.0) - (screenWidth/2.0) + ((screenWidth - itemWidth) / 2.0)
-        
-        self._scrollOffset = State(initialValue: initialOffset)
-        self._dragOffset = State(initialValue: 0)
-    }
-    
-    func body(content: Content) -> some View {
-        content
-            .offset(x: scrollOffset + dragOffset, y: 0)
-            .gesture(DragGesture()
-                .onChanged({ event in
-                    dragOffset = event.translation.width
-                })
-                .onEnded({ event in
-                    // Scroll to where user dragged
-                    scrollOffset += event.translation.width
-                    dragOffset = 0
-                    
-                    // Now calculate which item to snap to
-                    let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
-                    let screenWidth = UIScreen.main.bounds.width
-                    
-                    // Center position of current offset
-                    let center = scrollOffset + (screenWidth / 2.0) + (contentWidth / 2.0)
-                    
-                    // Calculate which item we are closest to using the defined size
-                    var index = (center - (screenWidth / 2.0)) / (itemWidth + itemSpacing)
-                    
-                    // Should we stay at current index or are we closer to the next item...
-                    if index.remainder(dividingBy: 1) > 0.5 {
-                        index += 1
-                    } else {
-                        index = CGFloat(Int(index))
-                    }
-                    
-                    // Protect from scrolling out of bounds
-                    index = min(index, CGFloat(items) - 1)
-                    index = max(index, 0)
-                    
-                    // Set final offset (snapping to item)
-                    let newOffset = index * itemWidth + (index - 1) * itemSpacing - (contentWidth / 2.0) + (screenWidth / 2.0) - ((screenWidth - itemWidth) / 2.0) + itemSpacing
-                    
-                    // Animate snapping
-                    withAnimation {
-                        scrollOffset = newOffset
-                    }
-                    
-                })
-            )
-    }
-}
 
 struct LabelTextField : View {
     var label: String
@@ -138,7 +88,7 @@ struct LabelTextField : View {
     var body: some View {
         HStack() {
             Text(label)
-                .font(.system(size: 18).weight(.bold))
+                .font(.system(size: 15).weight(.bold))
                 .foregroundColor(Color.black)
              Spacer()
             ZStack {
@@ -147,21 +97,22 @@ struct LabelTextField : View {
                 HStack {
                     TextField("", text: $text)
                         .padding(.leading,10)
+                        .font(.system(size: 14))
                 }
                 .foregroundColor(Color.black)
              }
-            .frame(width:200, height: 40)
+            .frame(width:200, height: 35)
             .cornerRadius(13)
          }
     }
 }
 
 struct MypageContentView : View {
+    @Binding var newPetData : newPetModel
     @State var petname: String = ""
     @State var sort: String = ""
     @State var age : String = ""
     @State var count : Date = Date()
-    @State var pic: String = ""
     
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImageData: Data? = nil
@@ -189,7 +140,7 @@ struct MypageContentView : View {
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                                 )
-                                .padding(.bottom,25)
+                                .padding(.bottom,22)
                         }
                         else{
                             Image("DefaultProfile")
@@ -211,6 +162,7 @@ struct MypageContentView : View {
                             // Retrieve selected asset in the form of Data
                             if let data = try? await newItem?.loadTransferable(type: Data.self) {
                                 selectedImageData = data
+                                newPetData.file = data
                             }
                         }
                     }
@@ -218,15 +170,15 @@ struct MypageContentView : View {
             }
             
             VStack(alignment: .center) {
-                LabelTextField(label: "이름",text: $petname)
-                LabelTextField(label: "종",text: $sort)
-                LabelTextField(label: "나이",text: $age)
+                LabelTextField(label: "이름",text: $newPetData.name)
+                LabelTextField(label: "종",text: $newPetData.sort)
+                LabelTextField(label: "나이",text: $newPetData.age)
                 HStack(){
                     Text("만난 날")
-                        .font(.system(size: 18).weight(.bold))
+                        .font(.system(size: 15).weight(.bold))
                         .foregroundColor(Color.black)
                     Spacer()
-                    DatePicker("날짜", selection: $count,displayedComponents: .date)
+                    DatePicker("", selection: $newPetData.start_date, displayedComponents: .date)
                         .frame(width: 200)
                         .padding(4)
                         .labelsHidden()
@@ -235,169 +187,285 @@ struct MypageContentView : View {
                 
             }
             
-        }.frame(width:270, height:420)
+        }.frame(width:270, height:365)
         
     }
 
     
 }
 
-struct MypageView: View{
+struct ScrollPetView : View{
+    @Binding var petData : [PetModel]
+    
+    var body: some View{
+        HStack(alignment: .center) {
+            ForEach(0..<petData.count, id: \.self) { i in
+                Profile(pet: petData[i])
+            }
+        }
+        .modifier(ScrollingHStackModifier(items: petData.count, itemWidth: 280, itemSpacing: 10))
+    
+    }
+}
+
+struct MyInfoView : View{
     @State var selectedId:Int = 1
     @State var isEdit:Bool = false
-    @State var petList: [Pet] = [
-        Pet(petid : 1,
-            petname :"몽글이",
-            pic: "PetSample",
-            sort : "시츄",
-            age : 5,
-            count: 200
-           ),
-        Pet(petid : 2,
-            petname :"초코",
-            pic: "PetSample",
-            sort : "푸들",
-            age : 2,
-            count: 100
-           ),
-        Pet(petid : 3,
-            petname :"두부",
-            pic: "PetSample",
-            sort : "포메",
-            age : 5,
-            count: 200
-           )
-    ]
+    @State var userData: UserModel = UserModel(created_at: [], modified_at: [], userId:0 , uuid: "", name: "", nickname: "", email: "", token: "")
+    @State var petData: [PetModel] = []
+    @State var loading:Bool = true
+    @State var newPetData: newPetModel = newPetModel(file: nil, name: "", age: "", start_date: Date(), sort: "")
     @EnvironmentObject var appState: AppState
     
     var body: some View{
-        NavigationView{
-            VStack{
-                VStack{
-                    HStack{
-                        Text("마이페이지")
-                            .font(.system(size: 20).weight(.bold))
-                            .foregroundColor(Color.black)
-                        Spacer()
+        VStack{
+            HStack{
+                Text("마이페이지")
+                    .font(.system(size: 20).weight(.bold))
+                    .foregroundColor(Color.black)
+                Spacer()
+            }
+            .padding(.vertical, 15)
+            .padding(.horizontal, 28)
+            
+            VStack {
+            }
+            .frame(width: 1000, height:4)
+            .background(Color.gray.opacity(0.2))
+            .border(Color.gray.opacity(0.3))
+            
+            HStack{
+                Text(userData.nickname)
+                    .font(.system(size: 20).weight(.bold))
+                    .foregroundColor(Color.black)
+                Text("님 반갑습니다!")
+                    .font(.system(size: 18).weight(.bold))
+                    .foregroundColor(Color.black)
+                Spacer()
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal, 28)
+            
+            Divider()
+            
+            HStack{
+                Image("MypetIcon")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                
+                Text("나의 PET !")
+                    .font(.system(size: 20).weight(.bold))
+                    .foregroundColor(Color.black)
+                    .padding(.horizontal,4)
+                Spacer()
+                
+                if(!isEdit){
+                    
+                    Button(action: {
+                        isEdit = true
+                    }){
+                        Text("추가")
+                            .font(.system(size: 15).weight(.medium))
+                            .foregroundColor(ColorManager.GreyColor)
+                            .padding(.vertical, 7)
+                            .padding(.horizontal, 16)
+                            .cornerRadius(50)
+                            .background(RoundedRectangle(cornerRadius: 4, style: .continuous).fill(Color.gray.opacity(0.2)))
+                            .padding(.horizontal, 10)
                     }
-                    .padding(.vertical, 18)
-                    .padding(.horizontal, 28)
                     
-                    VStack {
-                    }
-                    .frame(width: 1000, height:8)
-                    .background(Color.gray.opacity(0.2))
-                    .border(Color.gray.opacity(0.3))
-                    
-                    HStack{
-                        Text("몽글이")
-                            .font(.system(size: 20).weight(.bold))
-                            .foregroundColor(Color.black)
-                        Text("님 반갑습니다!")
-                            .font(.system(size: 18).weight(.bold))
-                            .foregroundColor(Color.black)
-                        Spacer()
-                    }
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 28)
-                    
-                    Divider()
-                    
-                    HStack{
-                        Image("MypetIcon")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                        
-                        Text("나의 PET !")
-                            .font(.system(size: 20).weight(.bold))
-                            .foregroundColor(Color.black)
-                            .padding(.horizontal,5)
-                        Spacer()
-                        
-                        Button(action: {
-                            isEdit = !isEdit
-                        }){
-                            
-                            Text(isEdit ? "완료":"추가")
-                                .font(.system(size: 15).weight(.medium))
-                                .foregroundColor(ColorManager.GreyColor)
-                                .padding(.vertical, 7)
-                                .padding(.horizontal, 16)
-                                .cornerRadius(50)
-                                .background(RoundedRectangle(cornerRadius: 4, style: .continuous).fill(Color.gray.opacity(0.2)))
-                            
-                        }
-                    }
-                    .padding(.top, 14)
-                    .padding(.horizontal, 28)
-                    
-                    
-                    
-                    // scroll
-                    if(!isEdit){
-                        HStack(alignment: .center) {
-                            ForEach(petList,id: \.self) { pet in
-                                Profile(pet: pet)
+                }
+                else {
+                    Button(action: {
+                        Task{
+                            let res = try await UserManager().postPet(newPetData : newPetData)
+                            if(res.success ?? false){
+                                let res_ = try await UserManager().getPetInfo()
+                                petData = res_.data!
+                                newPetData = newPetModel(file: nil, name: "", age: "", start_date: Date(), sort: "")
                             }
-                        }.modifier(ScrollingHStackModifier(items: petList.count, itemWidth: 280, itemSpacing: 10))
-                    }
-                    else{
-                        ContentView()
-                    }
-                    
-                    VStack {
-                    }
-                    .frame(width: 1000, height:8)
-                    .background(Color.gray.opacity(0.2))
-                    .border(Color.gray.opacity(0.3))
-                    
-                    ScrollView{
-                        NavigationLink(destination: MyPostView()
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                        ){
-                            Text("내가 쓴 글")
-                                .font(.system(size: 19).weight(.bold))
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 11)
-                                .padding(.horizontal, 28)
-                                .frame(maxWidth: .infinity)
                         }
-                        Divider()
+                        isEdit = false
+                    }){
                         
-                        NavigationLink(destination: MyLikeView()
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                        ){
-                            Text("공감한 글")
-                                .font(.system(size: 19).weight(.bold))
-                                .foregroundColor(Color.black)
-                                .padding(.vertical, 11)
-                                .padding(.horizontal, 28)
-                                .frame(maxWidth: .infinity)
-                        }
-                        Divider()
-                        
-                        Button(action: {
-                            UserDefaults.standard.removeObject(forKey: "jwtToken")
-                            UserDefaults.standard.removeObject(forKey: "nickname")
-                            appState.refreshContentView()
-                        }) {
-                            Text("로그아웃")
-                                .frame(maxWidth: .infinity)
-                        }
-                        .font(.system(size: 19).weight(.bold))
-                        .foregroundColor(Color.black)
-                        .padding(.vertical, 11)
-                        .padding(.horizontal, 28)
-
-                        Divider()
+                        Text("완료")
+                            .font(.system(size: 15).weight(.medium))
+                            .foregroundColor(ColorManager.GreyColor)
+                            .padding(.vertical, 7)
+                            .padding(.horizontal, 16)
+                            .cornerRadius(50)
+                            .background(RoundedRectangle(cornerRadius: 4, style: .continuous).fill(Color.gray.opacity(0.2)))
+                            .padding(.horizontal, 10)
                     }
                 }
+                
+                
+                
             }
+            .padding(.top, 14)
+            .padding(.horizontal, 28)
+            
+            if(loading)
+            {
+                VStack{}
+        .frame(width:270, height:365)
+
+            }
+            else{
+                if(petData.count == 0 || isEdit ){
+                    MypageContentView(newPetData: $newPetData)
+                }
+                else {
+                    ScrollPetView(petData: $petData)
+                }
+            }
+            
+            VStack {
+            }
+            .frame(width: 1000, height:5)
+            .background(Color.gray.opacity(0.2))
+            .border(Color.gray.opacity(0.3))
+            
+            VStack(alignment: .center){
+                
+                NavigationLink(destination: MyPostView()
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                ){
+                    Text("내가 쓴 글")
+                        .font(.system(size: 17).weight(.bold))
+                        .padding(.vertical, 5)
+                        .foregroundColor(Color.black)
+                }
+                Divider()
+                
+                NavigationLink(destination: MyLikeView()
+                    .navigationBarHidden(true)
+                    .navigationBarBackButtonHidden(true)
+                ){
+                    Text("공감한 글")
+                        .font(.system(size: 17).weight(.bold))
+                        .padding(.vertical, 5)
+                        .foregroundColor(Color.black)
+                }
+                Divider()
+                
+                
+                Button(action: {
+                    UserDefaults.standard.removeObject(forKey: "jwtToken")
+                    UserDefaults.standard.removeObject(forKey: "nickname")
+                    appState.refreshContentView()
+                }) {
+                    Text("로그아웃")
+                        .frame(maxWidth: .infinity)
+                }
+                .font(.system(size: 17).weight(.bold))
+                .padding(.vertical, 5)
+                .foregroundColor(Color.black)
+                
+            }
+            VStack {
+            }
+            .frame(width: 1000, height:4)
+            .background(Color.gray.opacity(0.2))
+            .border(Color.gray.opacity(0.3))
         }
+        
+        .onAppear{
+            Task{
+                let res = try await UserManager().getUserInfo()
+                userData = res.data!
+                
+                let res_ = try await UserManager().getPetInfo()
+                petData = res_.data ?? []
+                loading = false
+            }
+            
+        }
+        
     }
 }
+struct MypageView: View{
+    var body: some View{
+        NavigationView{
+                MyInfoView()
+            }
+        }
+    
+}
+
+
+struct ScrollingHStackModifier: ViewModifier {
+
+    @State private var scrollOffset: CGFloat
+    @State private var dragOffset: CGFloat
+
+    var items: Int
+    var itemWidth: CGFloat
+    var itemSpacing: CGFloat
+
+    init(items: Int, itemWidth: CGFloat, itemSpacing: CGFloat) {
+        self.items = items
+        self.itemWidth = itemWidth
+        self.itemSpacing = itemSpacing
+
+        // Calculate Total Content Width
+        let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
+        let screenWidth = UIScreen.main.bounds.width
+
+        // Set Initial Offset to first Item
+        let initialOffset = (contentWidth/2.0) - (screenWidth/2.0) + ((screenWidth - itemWidth) / 2.0)
+
+        self._scrollOffset = State(initialValue: initialOffset)
+        self._dragOffset = State(initialValue: 0)
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .offset(x: scrollOffset + dragOffset, y: 0)
+            .gesture(DragGesture()
+                .onChanged({ event in
+                    dragOffset = event.translation.width
+                })
+                .onEnded({ event in
+                    // Scroll to where user dragged
+                    scrollOffset += event.translation.width
+                    dragOffset = 0
+
+                    // Now calculate which item to snap to
+                    let contentWidth: CGFloat = CGFloat(items) * itemWidth + CGFloat(items - 1) * itemSpacing
+                    let screenWidth = UIScreen.main.bounds.width
+
+                    // Center position of current offset
+                    let center = scrollOffset + (screenWidth / 2.0) + (contentWidth / 2.0)
+
+                    // Calculate which item we are closest to using the defined size
+                    var index = (center - (screenWidth / 2.0)) / (itemWidth + itemSpacing)
+
+                    // Should we stay at current index or are we closer to the next item...
+                    if index.remainder(dividingBy: 1) > 0.5 {
+                        index += 1
+                    } else {
+                        index = CGFloat(Int(index))
+                    }
+
+                    // Protect from scrolling out of bounds
+                    index = min(index, CGFloat(items) - 1)
+                    index = max(index, 0)
+
+                    // Set final offset (snapping to item)
+                    let newOffset = index * itemWidth + (index - 1) * itemSpacing - (contentWidth / 2.0) + (screenWidth / 2.0) - ((screenWidth - itemWidth) / 2.0) + itemSpacing
+
+                    // Animate snapping
+                    withAnimation {
+                        scrollOffset = newOffset
+                    }
+
+                })
+            )
+    }
+}
+
 
 struct MypageView_Previews: PreviewProvider {
     static var previews: some View {
