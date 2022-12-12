@@ -30,9 +30,11 @@ struct PlaceInfo: View {
                     Text(place.address)
                         .font(.system(size: 13).weight(.regular))
                     Spacer()
-                    Text(String(place.distance) + "km")
-                        .font(.system(size: 16).weight(.bold))
-                        .foregroundColor(ColorManager.OrangeColor)
+                    if(place.distance != nil) {
+                        Text(String(place.distance ?? 0) + "km")
+                            .font(.system(size: 16).weight(.bold))
+                            .foregroundColor(ColorManager.OrangeColor)
+                    }
                 }
             }.padding(23)
             

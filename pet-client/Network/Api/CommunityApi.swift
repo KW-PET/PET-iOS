@@ -55,11 +55,6 @@ class CommunityManager: ObservableObject {
         return try await AF.request("\(baseURL)/mypost", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommunityPostResponse.self).value
     }
     
-    func getMyLikePostList() async throws -> CommunityPostResponse {
-        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
-        return try await AF.request("\(baseURL)/likepost", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommunityPostResponse.self).value
-    }
-    
     func getPostDetail(postid:Int) async throws -> CommunityGetResponse {
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
         return try await AF.request("\(baseURL)/post/\(postid)", method: .get, parameters: nil, encoding: JSONEncoding.default,  headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(CommunityGetResponse.self).value

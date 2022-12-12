@@ -343,7 +343,7 @@ struct MyInfoView : View{
                     .navigationBarHidden(true)
                     .navigationBarBackButtonHidden(true)
                 ){
-                    Text("공감한 글")
+                    Text("찜한 매장")
                         .font(.system(size: 17).weight(.bold))
                         .padding(.vertical, 5)
                         .foregroundColor(Color.black)

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MyLikeView: View{
-    @State var postList: [CommunityPostResponseModel] = []
+    @State var placeList: [PlaceResult] = []
 
     var body: some View{
         NavigationView{
             VStack{
                 HStack{
-                    Text("공감한 글")
+                    Text("찜한 매장")
                         .font(.system(size: 20).weight(.bold))
                         .foregroundColor(Color.black)
                     Spacer()
@@ -22,21 +22,16 @@ struct MyLikeView: View{
                 .padding(.vertical, 18)
                 .padding(.horizontal, 28)
                 
-                if(postList.isEmpty){
+                if(placeList.isEmpty){
                     Spacer()
-                    Text("공감한 글이 없습니다.")
+                    Text("찜한 매장이 없습니다.")
                         .font(.system(size: 16).weight(.bold))
                         .foregroundColor(ColorManager.GreyColor)
                     Spacer()
                 } else{
                     List{
-                        ForEach(0..<postList.count, id: \.self) { i in
-                            NavigationLink(destination: PostDetailView(postId: postList[i].post.postId)
-                                .navigationBarHidden(true)
-                                .navigationBarBackButtonHidden(true)
-                            ){
-                                CommunityListElem(communityPost: $postList[i])
-                            }
+                        ForEach(0..<placeList.count, id: \.self) { i in
+                            PlaceListElem(place: placeList[i])
                         }
                     }
                     .listStyle(.plain)
@@ -45,8 +40,8 @@ struct MyLikeView: View{
         }
         .onAppear{
             Task{
-                let result = try await CommunityManager().getMyLikePostList()
-                postList = result.data ?? []
+                let result = try await PlaceManager().getMyLikePlaceList()
+                 placeList = result.data ?? []
             }
         }
     }
