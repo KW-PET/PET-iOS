@@ -377,7 +377,7 @@ struct MyInfoView : View{
                 userData = res.data!
                 
                 let res_ = try await UserManager().getPetInfo()
-                petData = res_.data!
+                petData = res_.data ?? []
                 loading = false
             }
             
