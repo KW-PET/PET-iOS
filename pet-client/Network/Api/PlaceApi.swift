@@ -20,7 +20,6 @@ struct LikeResponse: Codable {
     let success:Bool?
 }
 
-
 class PlaceManager: ObservableObject {
     @StateObject var viewModel = ContentVM()
     
@@ -41,5 +40,10 @@ class PlaceManager: ObservableObject {
         print(placeid)
         let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
         return try await AF.request("\(baseURL)/place/like", method: .post, parameters: [ "place_id": placeid ], encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(LikeResponse.self).value
+    }
+    
+    func getMyLikePlaceList() async throws -> PlaceResponse {
+        let baseURL = Bundle.main.infoDictionary?["BASE_URL"] ?? ""
+        return try await AF.request("\(baseURL)/likePlace", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["X_ACCESS_TOKEN": AuthService().getJwtToken(), "Content-Type":"application/json"]).serializingDecodable(PlaceResponse.self).value
     }
 }

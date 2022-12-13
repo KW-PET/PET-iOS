@@ -34,7 +34,7 @@ public struct PlaceResult: Codable, Identifiable{
     public let id = UUID()
     let name : String
     let address : String
-    let distance : Double
+    let distance : Double?
     let category : String
     let place_id : Int
     let phone : String
