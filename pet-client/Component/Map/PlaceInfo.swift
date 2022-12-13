@@ -50,7 +50,8 @@ struct PlaceInfo: View {
                             Image(systemName:"phone") .foregroundColor(.black)
                                 .imageScale(.large)
                                 .padding(5)
-                            
+                                .font(.system(size: 20))
+                        
                             Text("전화")
                                 .font(.system(size:18))
                                 .fontWeight(.medium)
@@ -72,6 +73,8 @@ struct PlaceInfo: View {
                             Image(systemName:"bookmark") .foregroundColor(.black)
                                 .imageScale(.large)
                                 .padding(5)
+                                .font(.system(size: 20))
+                        
                             Text("찜")
                                 .font(.system(size:18))
                                 .fontWeight(.medium)
@@ -92,7 +95,8 @@ struct PlaceInfo: View {
                             Image(systemName:"tray.and.arrow.up") .foregroundColor(.black)
                                 .imageScale(.large)
                                 .padding(5)
-                            
+                                .font(.system(size: 20))
+                        
                             Text("공유")
                                 .font(.system(size:18))
                                 .fontWeight(.medium)

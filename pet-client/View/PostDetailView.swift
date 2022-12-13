@@ -72,7 +72,6 @@ struct CommentView: View {
                     ForEach(postDetail.comments![i].childComments!) { line in
                         ReplyListElem(comment: line)
                     }
-                    
                 }
             }
         
@@ -96,6 +95,7 @@ struct commentBar: View {
                     .cornerRadius(15)
                     .padding(.horizontal,10)
                     .padding(.top,2)
+                    .font(.system(size: 18))
                     .overlay(
                         VStack{
                             Button(action: {
@@ -118,6 +118,7 @@ struct commentBar: View {
                                     .foregroundColor(.black)
                                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
                                     .padding(30)
+                                    .font(.system(size: 20))
                             }
                         }
                     )
@@ -142,6 +143,7 @@ struct commentBar: View {
                                     Image(systemName: "multiply.circle.fill")
                                         .foregroundColor(Color(.black))
                                         .frame(minWidth: 0, maxWidth: 10, alignment: .trailing)
+                                        .font(.system(size: 14))
                                 }
                             Button(action: {
                                 if(text != ""){
@@ -164,6 +166,7 @@ struct commentBar: View {
                                     .foregroundColor(.black)
                                     .frame(minWidth: 0, maxWidth:5, alignment: .trailing)
                                     .padding(30)
+                                    .font(.system(size: 20))
                             }
                         }
                         
@@ -289,6 +292,8 @@ struct PostView: View {
                     Image(systemName: "heart.circle.fill")
                         .foregroundColor(ColorManager.GreyColor)
                         .imageScale(.large)
+                        .font(.system(size: 18))
+
                     Text("공감하기 " + String(postDetail.countLike))
                         .font(.system(size: 17).weight(.medium))
                         .foregroundColor(ColorManager.GreyColor)
@@ -299,7 +304,8 @@ struct PostView: View {
                 Image(systemName: "bubble.left.circle.fill")
                     .foregroundColor(ColorManager.GreyColor)
                     .imageScale(.large)
-                
+                    .font(.system(size: 18))
+
                 Text("댓글 " + String(postDetail.countComment))
                     .font(.system(size: 17).weight(.medium))
                     .foregroundColor(ColorManager.GreyColor)

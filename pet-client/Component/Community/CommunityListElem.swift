@@ -39,6 +39,8 @@ struct CommunityListElem: View {
                 Image(systemName: "heart.circle.fill")
                     .foregroundColor(ColorManager.GreyColor)
                     .imageScale(.medium)
+                    .font(.system(size: 20))
+                
                 Text( String(communityPost.countLike))
                     .font(.system(size: 15).weight(.medium))
                     .foregroundColor(ColorManager.GreyColor)
@@ -48,7 +50,8 @@ struct CommunityListElem: View {
                 Image(systemName: "bubble.left.circle.fill")
                     .foregroundColor(ColorManager.GreyColor)
                     .imageScale(.medium)
-                
+                    .font(.system(size: 20))
+
                 Text(String(communityPost.countComment))
                     .font(.system(size: 15).weight(.medium))
                     .foregroundColor(ColorManager.GreyColor)

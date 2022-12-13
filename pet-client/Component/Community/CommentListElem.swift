@@ -57,6 +57,8 @@ struct CommentListElem: View {
                             Image(systemName: "bubble.left")
                                 .foregroundColor(ColorManager.GreyColor.opacity(0.7))
                                 .imageScale(.small)
+                                .font(.system(size: 14))
+                            
                             Text("답글")
                                 .font(.system(size: 12).weight(.medium))
                                 .foregroundColor(ColorManager.GreyColor.opacity(0.8))
@@ -100,8 +102,8 @@ struct ReplyListElem: View {
                     .foregroundColor(.gray)
                     .imageScale(.large)
                     .padding(.leading, 10)
-                    .padding(.trailing, 0)
-
+                    .padding(.trailing, 5)
+                    .font(.system(size: 14))
                 
                 VStack{
                     Text(Icon[comment.nickname.count % 5])
@@ -115,7 +117,6 @@ struct ReplyListElem: View {
                             .stroke(Color.gray.opacity(0.5), lineWidth: 1)
                     )
                     .padding(10)
-                
                 
                 VStack(alignment: .leading){
                     HStack(){
