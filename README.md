@@ -1,19 +1,13 @@
 # PET-iOS
-광운대 2022 참빛설계 팀 PET
+- 광운대 2022 참빛설계 팀 PET
+- iOS 어플리케이션
+- 프론트엔드: 김지수 박수연
 
-## 진행 사항
+### [🐹 시연영상](https://youtu.be/IQxQYNSBgLU?si=AXVFCPL_eTF1O3Wl)
 
-### [제작 화면](https://hip-armchair-a2c.notion.site/3f17453789cb43fc8ec5ca06d9ccb9a6)
+![image](https://github.com/user-attachments/assets/1f12ffdc-b3c8-4803-9cac-e7d44e268362)
+![image](https://github.com/user-attachments/assets/2a854979-7c10-48c8-9304-174430c9ffff)
+![image](https://github.com/user-attachments/assets/44c21e50-bdf9-4bb7-9bb3-c693789cbbd9)
+![image](https://github.com/user-attachments/assets/98aa2c6d-d751-4b23-8f66-34bac9948b9e)
+![image](https://github.com/user-attachments/assets/3ff643cd-e3b5-4c15-98f4-507f8ea36d64)
 
-```
-11/1  기준 모든 기능 merge됨 dev fetch 후 진행!
-struct 요소 관련 오류(cannot find type 'class' in scope 에러) 발생 시 clean build 로 해결 가능
-```
-
-- `feature/map` : 지도 마커 / 검색 바 / 인포 탭 퍼블리싱 완료
-  - 마커 필터링 / 인포 오류 수정 중
-- `feature/community` : 커뮤니티 탭 / 게시글 리스트 / 게시글 페이지 퍼블리싱 완료
-- `feature/kakao-login` : 카카오 연결 완료, user post 관련 api 연결하면 됨
-- `feature/facility_list` : 시설 리스트 ( 검색 결과 화면 ) 퍼블리싱 완료
-- `feature/recommand_list` : 주변 추천 화면 퍼블리싱 완료
-- `feature/api_setting` : api 세팅
